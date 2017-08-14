@@ -1,0 +1,33 @@
+0- Loginnnn.
+1- Add note under Time to notify that this will be in local egyptian time.
+3- Replace fear of the unknown image to be @ the top of the page. especially when in mobile mode.
+4- how did you know about us  will be with other form params.
+5- Message should be appended on body of the email.
+6- Mariam will send text to add statically in "what we offer"=>any program click  at the end of the page.
+7- Copy the Our Coaching services part from live website.
+10- Mariam will send the PDF which will be downloaded in what we offer page.
+11- move banner from index.html footer to top of home page.
+8- Mail Chimp Integration.
+9- newsletter subscription is to be sent to mailchimp account.
+12- Adding Captcha to forms.
+
+//===========After Go Live===========
+2- Youtube link editable(home)
+3- Inspirational Links should be uploaded(home)
+4- Meet our team image.(home)
+5- Campaigns  is a dynamic link and image.(home)
+6- Adding Testimonials
+7- Dynamic VIdeo URLS:
+(Home , Testmonials, FAQs, 2 new Programs) => Testimonials are reacheable via SeeHere link in Banner in homepage. Make avaialable in What we offer page.
+8- Like & Share in articles (like 3andena share on facebook).
+9- Admin should be able to add new articles.	
+9- Coaching Articles (Comments Should be saved as local) username should be mandatory. Comments belong to article.
+10- Admin should have the availability to delete comments.
+11- Articles will be ( Image, First published in, Written by, title, article body)
+12- Subscribe here = newsletter bas f popup
+13- Initially we will put static events in the events page each will have a type of the shown.
+14- will avail input for events ( image, title, type, date, venue, body text,fees, link for facebook event, quota (max subscriber), display how many seats available(after 5 seats left), if event reached max quota Fully booked should appear instead (as in current page), share (integrates with fb), ps: remove like.
+15- make link of event registration to google forms. and make the link attached with the event.
+16- In Testimonials each one will be (Link Youtube, two texts one small on the left and one large on the right).
+17- Inspirational Quotes will be uploaded image one by one and displayed in moreQuotes page. (acceessed from home).
+18- Coaching programs will be added dynamically and displayed as links under Coaching Programs (Comming soon image) inside "What we offer page".
