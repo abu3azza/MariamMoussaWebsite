@@ -1,33 +1,34 @@
-app.controller('BookingController', function ($scope, $http,$filter, $timeout) {
+app.controller('BookingController', function($scope, $http, $filter, $timeout) {
     $scope.reservationObject = {};
     $scope.freeReservationSlots = [];
     $scope.selectedSlot = "halsbala";
     $scope.showModal = false;
     $scope.buttonClicked = "";
+
     function init() {
         $('#datepicker').datepicker();
     }
     init();
 
 
-    $scope.getEmptySlots = function () {
-//        alert("InsideGetAllEmptySlots");
-//        var oldDate = this.reservationObject.date;
-//        this.reservationObject.date.setHours(0, 0, 0, 0);
-       
-//        alert(this.reservationObject.date);
+    $scope.getEmptySlots = function() {
+        //        alert("InsideGetAllEmptySlots");
+        //        var oldDate = this.reservationObject.date;
+        //        this.reservationObject.date.setHours(0, 0, 0, 0);
+
+        //        alert(this.reservationObject.date);
 
         $http({
             method: 'GET',
-            url: 'http://localhost:3000/api/getfreeslots?date=' + $filter('date')(this.reservationObject.date, 'MM-dd-yyyy')
+            url: ':3000/api/getfreeslots?date=' + $filter('date')(this.reservationObject.date, 'MM-dd-yyyy')
         }).then(function successCallback(response) {
             var responseData = response.data;
             $scope.freeReservationSlots.length = 0;
 
             angular.forEach(responseData,
-                    function (item) {
-                        $scope.freeReservationSlots.push(item);
-                    });
+                function(item) {
+                    $scope.freeReservationSlots.push(item);
+                });
             // this callback will be called asynchronously
             // when the response is available
         }, function errorCallback(response) {
@@ -39,69 +40,68 @@ app.controller('BookingController', function ($scope, $http,$filter, $timeout) {
     };
 
 
-    $scope.showAlert = function () {
+    $scope.showAlert = function() {
         this.reservationObject.firstName = "Mina Karim";
-//        alert("hwhwhwhwhwhw");
+        //        alert("hwhwhwhwhwhw");
     };
 
-    $scope.processDate = function (dt)
-    {
+    $scope.processDate = function(dt) {
         return
     };
 
 
-    $scope.postReservation = function () {
-//        alert(JSON.stringify(this.reservationObject));
+    $scope.postReservation = function() {
+        //        alert(JSON.stringify(this.reservationObject));
 
         this.reservationObject.timeslot = angular.toJson(this.reservationObject.timeslot);
-//        this.reservationObject.date.setHours(0, 0, 0, 0);
+        //        this.reservationObject.date.setHours(0, 0, 0, 0);
         this.reservationObject.date = $filter('date')(this.reservationObject.date, 'MM-dd-yyyy');
-//        alert("da el ana 3awzo" + this.reservationObject.timeslot);
+        //        alert("da el ana 3awzo" + this.reservationObject.timeslot);
         $http({
-            url: 'http://localhost:3000/api/newreservation',
-            method: "POST",
-            data: $.param(this.reservationObject),
-            dataType: 'json',
-            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-        })
-                .then(function successCallback(response) {
-//                    alert(response.data);
-                    $http({
+                url: 'http://localhost:3000/api/newreservation',
+                method: "POST",
+                data: $.param(this.reservationObject),
+                dataType: 'json',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+            })
+            .then(function successCallback(response) {
+                //                    alert(response.data);
+                $http({
                         url: 'http://localhost:3000/api/sendemail',
                         method: "POST"
                     })
-                            .then(function successCallback(response) {
-//                                alert("Email Sent " + response.data);
+                    .then(function successCallback(response) {
+                        //                                alert("Email Sent " + response.data);
 
-                                // this callback will be called asynchronously
-                                // when the response is available
-                            }, function errorCallback(response) {
-                                alert("error" + response.data);
-                                // called asynchronously if an error occurs
-                                // or server returns response with an error status.
-                            });
-                    // this callback will be called asynchronously
-                    // when the response is available
-                }, function errorCallback(response) {
-                    alert("error" + response.data);
-                    // called asynchronously if an error occurs
-                    // or server returns response with an error status.
-                });
+                        // this callback will be called asynchronously
+                        // when the response is available
+                    }, function errorCallback(response) {
+                        alert("error" + response.data);
+                        // called asynchronously if an error occurs
+                        // or server returns response with an error status.
+                    });
+                // this callback will be called asynchronously
+                // when the response is available
+            }, function errorCallback(response) {
+                alert("error" + response.data);
+                // called asynchronously if an error occurs
+                // or server returns response with an error status.
+            });
 
     };
 
 
-    $scope.toggleModal = function (btnClicked) {
+    $scope.toggleModal = function(btnClicked) {
         $scope.buttonClicked = btnClicked;
         $scope.showModal = !$scope.showModal;
     };
 
-    $scope.today = function () {
+    $scope.today = function() {
         this.reservationObject.date = new Date();
     };
     $scope.today();
 
-    $scope.clear = function () {
+    $scope.clear = function() {
         this.reservationObject.date = null;
     };
 
@@ -120,26 +120,26 @@ app.controller('BookingController', function ($scope, $http,$filter, $timeout) {
     };
 
     // Disable weekend selection
-//    function disabled(data) {
-//        var date = data.date,
-//                mode = data.mode;
-//        return mode === 'day' && (date.getDay() === 0 || date.getDay() === 6);
-//    }
+    //    function disabled(data) {
+    //        var date = data.date,
+    //                mode = data.mode;
+    //        return mode === 'day' && (date.getDay() === 0 || date.getDay() === 6);
+    //    }
 
-    $scope.toggleMin = function () {
+    $scope.toggleMin = function() {
         $scope.inlineOptions.minDate = $scope.inlineOptions.minDate ? null : new Date();
         $scope.dateOptions.minDate = $scope.inlineOptions.minDate;
     };
 
     $scope.toggleMin();
 
-    $scope.open1 = function () {
+    $scope.open1 = function() {
         $scope.popup1.opened = true;
     };
 
 
 
-    $scope.setDate = function (year, month, day) {
+    $scope.setDate = function(year, month, day) {
         this.reservationObject.date = new Date(year, month, day);
     };
 
@@ -157,8 +157,7 @@ app.controller('BookingController', function ($scope, $http,$filter, $timeout) {
     tomorrow.setDate(tomorrow.getDate() + 1);
     var afterTomorrow = new Date();
     afterTomorrow.setDate(tomorrow.getDate() + 1);
-    $scope.events = [
-        {
+    $scope.events = [{
             date: tomorrow,
             status: 'full'
         },
@@ -170,7 +169,7 @@ app.controller('BookingController', function ($scope, $http,$filter, $timeout) {
 
     function getDayClass(data) {
         var date = data.date,
-                mode = data.mode;
+            mode = data.mode;
         if (mode === 'day') {
             var dayToCheck = new Date(date).setHours(0, 0, 0, 0);
 
@@ -189,39 +188,39 @@ app.controller('BookingController', function ($scope, $http,$filter, $timeout) {
 
 
 
-app.directive('modal', function () {
+app.directive('modal', function() {
     return {
         template: '<div class="modal fade">' +
-                '<div class="modal-dialog">' +
-                '<div class="modal-content">' +
-                '<div class="modal-header">' +
-                '<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>' +
-                '<h4 class="modal-title">{{ buttonClicked }} </h4>' +
-                '</div>' +
-                '<div class="modal-body" ng-transclude></div>' +
-                '</div>' +
-                '</div>' +
-                '</div>',
+            '<div class="modal-dialog">' +
+            '<div class="modal-content">' +
+            '<div class="modal-header">' +
+            '<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>' +
+            '<h4 class="modal-title">{{ buttonClicked }} </h4>' +
+            '</div>' +
+            '<div class="modal-body" ng-transclude></div>' +
+            '</div>' +
+            '</div>' +
+            '</div>',
         restrict: 'E',
         transclude: true,
         replace: true,
         scope: true,
         link: function postLink(scope, element, attrs) {
-            scope.$watch(attrs.visible, function (value) {
+            scope.$watch(attrs.visible, function(value) {
                 if (value == true)
                     $(element).modal('show');
                 else
                     $(element).modal('hide');
             });
 
-            $(element).on('shown.bs.modal', function () {
-                scope.$apply(function () {
+            $(element).on('shown.bs.modal', function() {
+                scope.$apply(function() {
                     scope.$parent[attrs.visible] = true;
                 });
             });
 
-            $(element).on('hidden.bs.modal', function () {
-                scope.$apply(function () {
+            $(element).on('hidden.bs.modal', function() {
+                scope.$apply(function() {
                     scope.$parent[attrs.visible] = false;
                 });
             });
