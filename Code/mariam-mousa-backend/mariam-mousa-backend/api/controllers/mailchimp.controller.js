@@ -2,9 +2,10 @@ var request = require('superagent');
 
 
 module.exports.addUserToList = function(req, res) {
-    var mailchimpInstance = 'us16',
-        listUniqueId = 'f76a0f3e41',
-        mailchimpApiKey = '8ccaa008ac2244c1861d5e0e6d68ccfb-us16';
+    // mailchimp mariam mousa credentials
+    var mailchimpInstance = 'us14',
+        listUniqueId = 'd50f68af62',
+        mailchimpApiKey = '3bd013f718e7b4687e47b7ab20977ee3-us14';
     if (req.query && req.query.mail) {
         var mail = req.query.mail;
         console.log(mail);
@@ -25,7 +26,7 @@ module.exports.addUserToList = function(req, res) {
                     res.send('Signed Up!');
                     console.log("nege7 wla eh");
                 } else {
-                    res.send('Sign Up Failed :(' + response.body.title);
+                    res.send('Sign Up Failed :(' + response.body.toString('utf8'));
                     console.log("mange7sh ya fa2r");
                 }
             });
