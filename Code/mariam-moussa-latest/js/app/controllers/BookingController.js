@@ -32,7 +32,7 @@ app.controller('BookingController', function($scope, $http, $filter, $timeout) {
             // this callback will be called asynchronously
             // when the response is available
         }, function errorCallback(response) {
-            alert("error" + response);
+            alert("error" + JSON.stringify(response));
             // called asynchronously if an error occurs
             // or server returns response with an error status.
         });
@@ -69,7 +69,7 @@ app.controller('BookingController', function($scope, $http, $filter, $timeout) {
                 var maildata = {};
                 maildata.message = this.reservationObject.message;
                 $http({
-                        url: 'http://207.154.226.195:3000/api/sendemail',
+                        url: 'http://207.154.226.195:3000/api/sendbookingmail',
                         method: "POST",
                         data: $.param(this.maildata),
                         dataType: 'json',
