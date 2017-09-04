@@ -24,6 +24,7 @@
     "angular-jwt": "^0.1.9",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.14.2",
+    "cors": "^2.8.4",
     "express": "^4.15.3",
     "json": "^9.0.6",
     "json-parser": "^1.1.5",

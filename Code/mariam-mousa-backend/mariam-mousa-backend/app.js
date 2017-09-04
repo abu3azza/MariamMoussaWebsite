@@ -4,6 +4,7 @@ var express = require('express');
 var app = express();
 var path = require('path');
 var bodyParser = require('body-parser');
+var cors = require('cors');
 
 var routes = require('./api/routes');
 
@@ -24,7 +25,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // Add some routing
 app.use('/api', routes);
-
+app.use(cors());
 // Listen for requests
 var server = app.listen(app.get('port'), function() {
     var port = server.address().port;
