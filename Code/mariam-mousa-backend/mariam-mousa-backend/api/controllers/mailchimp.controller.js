@@ -1,11 +1,12 @@
 var request = require('superagent');
+var config = require('../data/config.js')
 
 
 module.exports.addUserToList = function(req, res) {
     // mailchimp mariam mousa credentials
-    var mailchimpInstance = 'us14',
-        listUniqueId = 'd50f68af62',
-        mailchimpApiKey = '3bd013f718e7b4687e47b7ab20977ee3-us14';
+    var mailchimpInstance = config.MAILCHIMP_INSTANCE,
+        listUniqueId = config.LIST_UNIQUE_ID,
+        mailchimpApiKey = config.MAILCHIMP_API_KEY;
     if (req.query && req.query.mail) {
         var mail = req.query.mail;
         console.log(mail);

@@ -1,0 +1,23 @@
+<h1>
+    Register</h1>
+<div ng-if="message" class="alert alert-success" role="alert">
+    <p>{{message}}</p>
+</div>
+<div ng-if="error" class="alert alert-danger" role="alert">
+    <p> {{error}}</p>
+</div>
+<form ng-hide="message" name="register" ng-submit="postRegister()">
+    <div class="form-group">
+        <label for="username">Username</label>
+        <input type="username" class="form-control" id="username" placeholder="Username" ng-model="user.username" autocapitalize="none">
+    </div>
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" id="password" placeholder="Password" ng-model="user.password" autocapitalize="none">
+    </div>
+    <div class="form-group">
+        <label for="password-repeat">Repeat Password</label>
+        <input type="password" class="form-control" id="password-repeat" placeholder="Password" ng-model="user.passwordRepeat" autocapitalize="none">
+    </div>
+    <button type="submit" class="btn btn-success">Register</button>
+</form>

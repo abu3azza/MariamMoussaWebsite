@@ -10,7 +10,7 @@ app.controller('NewsLetterController', function($scope, $http) {
         //minakarim22@gmail.com
         $http({
             method: 'GET',
-            url: 'http://localhost:3000/api/mailchimp?mail=' + $scope.subscriber
+            url: 'http://207.154.226.195:3000/api/mailchimp?mail=' + $scope.subscriber
         }).then(function successCallback(response) {
             alert("subscribed successfully !" + response);
         }, function errorCallback(response) {

@@ -1,0 +1,70 @@
+<nav ng-controller="NavigationController as vm" ng-init="vm.init()">
+    <div class="navbar navbar-default navbar-static-top yamm sticky" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                <a class="navbar-brand" href="index.html"><img src="img/logo.png" alt="Mariam-Moussa"></a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li ng-class="vm.getClass('/home')">
+                        <a href="index.html">Home </a>
+                    </li>
+                    <li ng-class="getClass('/about')">
+                        <a href="about.html">About </a>
+                    </li>
+                    <li ng-class="getClass('/services')">
+                        <a href="services.html">What we offer </a>
+                    </li>
+                    <li ng-class="vm.getClass('/booking')">
+                        <a href="#!booking">Start Coaching </a>
+                    </li>
+                    <li ng-class="getClass('/articles')">
+                        <a href="articles.html">Coaching Articles </a>
+                    </li>
+                    <li ng-class="getClass('/events')">
+                        <a href="events.html">Events </a>
+                    </li>
+                    <li ng-class="getClass('/careers')">
+                        <a href="careers.html">Careers </a>
+                    </li>
+                    <li ng-class="getClass('/faq')">
+                        <a href="faqs.html">FAQ </a>
+                    </li>
+                    <li ng-if="vm.isLoggedIn()">
+                        <p class="navbar-text">Welcome back {{ vm.loggedInUser }}</p>
+                    </li>
+                    <li ng-if="vm.isLoggedIn()" <button class="navbar-btn btn-sm btn-info" ng-click="vm.logout()">Logout</button>
+                    </li>
+
+                </ul>
+            </div>
+            <!--/.nav-collapse -->
+        </div>
+        <!--container-->
+    </div>
+    <div id="navbar" class="collapse navbar-collapse">
+        <!-- 
+        <form ng-if="!vm.isLoggedIn()" class="navbar-form navbar-right" role="login" ng-submit="vm.login()">
+            <div class="form-group" ng-class="{'has-error': vm.error}">
+                <input type="text" class="form-control input-sm" placeholder="Username" ng-model="vm.username" autocapitalize="none">
+            </div>
+            <div class="form-group" ng-class="{'has-error': vm.error}">
+                <input type="password" class="form-control input-sm" placeholder="Password" ng-model="vm.password" autocapitalize="none">
+            </div>
+            <button type="submit" class="btn btn-sm btn-success">Login</button>
+        </form> -->
+        <!-- <ul ng-if="vm.isLoggedIn()" class="nav navbar-nav navbar-right">
+            <li>
+                <p class="navbar-text">Welcome back {{ vm.username }}</p>
+            </li>
+            <li><button class="navbar-btn btn-sm btn-info" ng-click="vm.logout()">Logout</button></li>
+        </ul> -->
+    </div>
+    </div>
+</nav>

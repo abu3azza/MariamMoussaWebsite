@@ -4,6 +4,7 @@ var router = express.Router();
 var ctrlSite = require('../controllers/site.controllers.js');
 var ctrlEmail = require('../controllers/email.controller.js');
 var ctrlMailChimp = require('../controllers/mailchimp.controller.js');
+var ctrlUsers = require('../controllers/user.controller.js');
 
 
 router
@@ -27,8 +28,16 @@ router
     .put(ctrlSite.updateAccept);
 
 router
-    .route('/sendemail')
-    .post(ctrlEmail.sendEmail);
+    .route('/sendbookingmail')
+    .post(ctrlEmail.sendBookingEmail);
+
+router
+    .route('/sendacceptmail')
+    .post(ctrlEmail.sendAcceptEmail);
+
+router
+    .route('/sendrejectmail')
+    .post(ctrlEmail.sendRejectEmail);
 
 router
     .route('/mailchimp')
@@ -37,5 +46,13 @@ router
 // router
 //     .route('/delete')
 //     .put(ctrlSite.delete);
+
+router
+    .route('/register')
+    .post(ctrlUsers.register);
+
+router
+    .route('/login')
+    .post(ctrlUsers.login);
 
 module.exports = router;

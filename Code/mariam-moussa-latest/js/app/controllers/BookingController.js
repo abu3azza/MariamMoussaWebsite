@@ -20,7 +20,7 @@ app.controller('BookingController', function($scope, $http, $filter, $timeout) {
 
         $http({
             method: 'GET',
-            url: ':3000/api/getfreeslots?date=' + $filter('date')(this.reservationObject.date, 'MM-dd-yyyy')
+            url: 'http://207.154.226.195:3000/api/getfreeslots?date=' + $filter('date')(this.reservationObject.date, 'MM-dd-yyyy')
         }).then(function successCallback(response) {
             var responseData = response.data;
             $scope.freeReservationSlots.length = 0;
@@ -58,7 +58,7 @@ app.controller('BookingController', function($scope, $http, $filter, $timeout) {
         this.reservationObject.date = $filter('date')(this.reservationObject.date, 'MM-dd-yyyy');
         //        alert("da el ana 3awzo" + this.reservationObject.timeslot);
         $http({
-                url: 'http://localhost:3000/api/newreservation',
+                url: 'http://207.154.226.195:3000/api/newreservation',
                 method: "POST",
                 data: $.param(this.reservationObject),
                 dataType: 'json',
@@ -66,9 +66,14 @@ app.controller('BookingController', function($scope, $http, $filter, $timeout) {
             })
             .then(function successCallback(response) {
                 //                    alert(response.data);
+                var maildata = {};
+                maildata.message = this.reservationObject.message;
                 $http({
-                        url: 'http://localhost:3000/api/sendemail',
-                        method: "POST"
+                        url: 'http://207.154.226.195:3000/api/sendemail',
+                        method: "POST",
+                        data: $.param(this.maildata),
+                        dataType: 'json',
+                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
                     })
                     .then(function successCallback(response) {
                         //                                alert("Email Sent " + response.data);

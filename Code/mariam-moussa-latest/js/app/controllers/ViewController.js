@@ -230,9 +230,16 @@ app.controller('ViewController', function($scope, $compile, $http, $route, uiCal
             .then(function successCallback(response) {
                 //                    alert(response.data);
                 $scope.toggleModal("Reservation: " + event.title);
+                var maildata = {};
+
+                maildata.to = eventObject.email;
+
                 $http({
-                        url: 'http://207.154.226.195:3000/api/sendemail',
-                        method: "POST"
+                        url: 'http://207.154.226.195:3000/api/sendacceptmail',
+                        method: "POST",
+                        data: $.param(this.maildata),
+                        dataType: 'json',
+                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
                     })
                     .then(function successCallback(response) {
                         alert("Email Sent successfully");
@@ -263,9 +270,15 @@ app.controller('ViewController', function($scope, $compile, $http, $route, uiCal
             })
             .then(function successCallback(response) {
                 $scope.toggleModal("Reservation: " + event.title);
+                var maildata = {};
+                maildata.to = eventObject.email;
+
                 $http({
-                        url: 'http://207.154.226.195:3000/api/sendemail',
-                        method: "POST"
+                        url: 'http://207.154.226.195:3000/api/sendrejectmail',
+                        method: "POST",
+                        data: $.param(this.maildata),
+                        dataType: 'json',
+                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
                     })
                     .then(function successCallback(response) {
                         alert("Email sent successfully");
