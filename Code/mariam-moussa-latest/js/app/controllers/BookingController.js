@@ -20,7 +20,11 @@ app.controller('BookingController', function($scope, $http, $filter, $timeout) {
 
         $http({
             method: 'GET',
-            url: 'http://207.154.226.195:3000/api/getfreeslots?date=' + $filter('date')(this.reservationObject.date, 'MM-dd-yyyy')
+            url: 'http://207.154.226.195:3000/api/getfreeslots?date=' + $filter('date')(this.reservationObject.date, 'MM-dd-yyyy'),
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                "Access-Control-Allow-Origin": "*"
+            }
         }).then(function successCallback(response) {
             var responseData = response.data;
             $scope.freeReservationSlots.length = 0;

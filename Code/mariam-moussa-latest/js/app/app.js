@@ -1,7 +1,7 @@
 var app = angular.module('mmapp', ['ui.calendar', 'ngRoute', 'ui.bootstrap', 'angular-jwt']).config(['$routeProvider', '$httpProvider',
     function($routeProvider, $httpProvider) {
         $httpProvider.interceptors.push('AuthInterceptor');
-
+        $httpProvider.defaults.useXDomain = true;
         $routeProvider
             .when('/home', {
                 templateUrl: 'home.html',
@@ -45,6 +45,8 @@ var app = angular.module('mmapp', ['ui.calendar', 'ngRoute', 'ui.bootstrap', 'an
         //        $locationProvider.html5Mode(true);
     }
 ]).run(run);
+
+
 
 function run($rootScope, $location, $window, AuthFactory) {
     $rootScope.$on('$routeChangeStart', function(event, nextRoute, currentRoute) {

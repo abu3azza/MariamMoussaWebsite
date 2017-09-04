@@ -5,15 +5,22 @@ var ctrlSite = require('../controllers/site.controllers.js');
 var ctrlEmail = require('../controllers/email.controller.js');
 var ctrlMailChimp = require('../controllers/mailchimp.controller.js');
 var ctrlUsers = require('../controllers/user.controller.js');
+var cors = require('cors');
 
+router.all('/*', function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With, Content-Type");
+    res.header("Access-Control-Allow-Methods", "GET, POST", "PUT");
+    next();
+});
 
 router
     .route('/newreservation')
     .post(ctrlSite.newReservation);
 
 router
-    .route('/getallreservations')
-    .get(ctrlSite.getAllReservations);
+    .route('/getallreservations', cors())
+    .get(ctrlSite.getAllReservations), cors();
 
 router
     .route('/getfreeslots')

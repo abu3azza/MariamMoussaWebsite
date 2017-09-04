@@ -17,15 +17,17 @@ app.use(function(req, res, next) {
     next();
 });
 
+
+
 // Set static directory before defining routes
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Enable parsing of posted forms
 app.use(bodyParser.urlencoded({ extended: false }));
-
+app.use(cors());
 // Add some routing
 app.use('/api', routes);
-app.use(cors());
+
 // Listen for requests
 var server = app.listen(app.get('port'), function() {
     var port = server.address().port;
