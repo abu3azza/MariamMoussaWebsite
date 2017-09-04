@@ -42,12 +42,16 @@ module.exports.sendRejectEmail = function(req, res) {
 var sendEmail = function(mailOptions, res) {
 
     var transporter = nodemailer.createTransport({
-        service: 'Gmail',
+
+        host: 'mail.mmoussalab.com',
+        port: 143,
+        secure: false, // true for 465, false for other ports
         auth: {
-            user: config.MMEmail,
-            pass: config.MMEmail_PASSWORD
+            user: config.MMEmail, // generated ethereal user
+            pass: config.MMEmail_PASSWORD // generated ethereal password
         }
     });
+
 
 
     transporter.sendMail(mailOptions, function(error, info) {

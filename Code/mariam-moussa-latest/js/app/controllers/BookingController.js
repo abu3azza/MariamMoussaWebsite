@@ -71,11 +71,11 @@ app.controller('BookingController', function($scope, $http, $filter, $timeout) {
             .then(function successCallback(response) {
                 //                    alert(response.data);
                 var maildata = {};
-                maildata.message = this.reservationObject.message;
+                maildata.message = $scope.reservationObject.message;
                 $http({
                         url: 'http://207.154.226.195:3000/api/sendbookingmail',
                         method: "POST",
-                        data: $.param(this.maildata),
+                        data: $.param(maildata),
                         dataType: 'json',
                         headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
                     })
