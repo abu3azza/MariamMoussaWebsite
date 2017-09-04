@@ -232,7 +232,7 @@ app.controller('ViewController', function($scope, $compile, $http, $route, uiCal
                 $scope.toggleModal("Reservation: " + event.title);
                 var maildata = {};
 
-                maildata.to = eventObject.email;
+                maildata.to = this.eventObject.email;
 
                 $http({
                         url: 'http://207.154.226.195:3000/api/sendacceptmail',
@@ -271,7 +271,7 @@ app.controller('ViewController', function($scope, $compile, $http, $route, uiCal
             .then(function successCallback(response) {
                 $scope.toggleModal("Reservation: " + event.title);
                 var maildata = {};
-                maildata.to = eventObject.email;
+                maildata.to = this.eventObject.email;
 
                 $http({
                         url: 'http://207.154.226.195:3000/api/sendrejectmail',

@@ -80,7 +80,7 @@ app.controller('BookingController', function($scope, $http, $filter, $timeout) {
                         headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
                     })
                     .then(function successCallback(response) {
-                        //                                alert("Email Sent " + response.data);
+                        alert("Email Sent " + response.data);
 
                         // this callback will be called asynchronously
                         // when the response is available
