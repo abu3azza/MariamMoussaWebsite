@@ -18,7 +18,7 @@ app.controller('ViewController', function($scope, $compile, $http, $route, uiCal
         var responseData;
         $http({
             method: 'GET',
-            url: 'http://207.154.226.195:3000/api/getallreservations'
+            url: 'http://127.0.0.1:3000/api/getallreservations'
         }).then(function successCallback(response) {
             responseData = response.data;
             $scope.events.length = 0;
@@ -47,7 +47,7 @@ app.controller('ViewController', function($scope, $compile, $http, $route, uiCal
         var responseData;
         $http({
             method: 'GET',
-            url: 'http://207.154.226.195:3000/api/getallreservations'
+            url: 'http://127.0.0.1:3000/api/getallreservations'
         }).then(function successCallback(response) {
             responseData = response.data;
             $scope.events.length = 0;
@@ -222,7 +222,7 @@ app.controller('ViewController', function($scope, $compile, $http, $route, uiCal
 
     $scope.accept = function(event) {
         $http({
-                url: 'http://207.154.226.195:3000/api/updateaccept?id=' + this.eventObject.id,
+                url: 'http://127.0.0.1:3000/api/updateaccept?id=' + this.eventObject.id,
                 method: "PUT"
                     //data: $.param(this.reservationObject),
                     //headers: {'Content-Type': 'application/x-www-form-urlencoded'}
@@ -232,12 +232,12 @@ app.controller('ViewController', function($scope, $compile, $http, $route, uiCal
                 $scope.toggleModal("Reservation: " + event.title);
                 var maildata = {};
 
-                maildata.to = this.eventObject.email;
+                maildata.to = $scope.eventObject.email;
 
                 $http({
-                        url: 'http://207.154.226.195:3000/api/sendacceptmail',
+                        url: 'http://127.0.0.1:3000/api/sendacceptmail',
                         method: "POST",
-                        data: $.param(this.maildata),
+                        data: $.param(maildata),
                         dataType: 'json',
                         headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
                     })
@@ -263,7 +263,7 @@ app.controller('ViewController', function($scope, $compile, $http, $route, uiCal
 
     $scope.reject = function(event) {
         $http({
-                url: 'http://207.154.226.195:3000/api/updatereject?id=' + this.eventObject.id,
+                url: 'http://127.0.0.1:3000/api/updatereject?id=' + this.eventObject.id,
                 method: "PUT"
                     //data: $.param(this.reservationObject),
                     //headers: {'Content-Type': 'application/x-www-form-urlencoded'}
@@ -271,12 +271,12 @@ app.controller('ViewController', function($scope, $compile, $http, $route, uiCal
             .then(function successCallback(response) {
                 $scope.toggleModal("Reservation: " + event.title);
                 var maildata = {};
-                maildata.to = this.eventObject.email;
+                maildata.to = $scope.eventObject.email;
 
                 $http({
-                        url: 'http://207.154.226.195:3000/api/sendrejectmail',
+                        url: 'http://127.0.0.1:3000/api/sendrejectmail',
                         method: "POST",
-                        data: $.param(this.maildata),
+                        data: $.param(maildata),
                         dataType: 'json',
                         headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
                     })

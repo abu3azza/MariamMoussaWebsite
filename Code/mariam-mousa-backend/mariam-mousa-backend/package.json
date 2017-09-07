@@ -26,6 +26,7 @@
     "body-parser": "^1.14.2",
     "cors": "^2.8.4",
     "express": "^4.15.3",
+    "forever": "^0.15.3",
     "json": "^9.0.6",
     "json-parser": "^1.1.5",
     "jsonwebtoken": "^7.4.3",

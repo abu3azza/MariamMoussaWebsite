@@ -28,6 +28,13 @@ app.use(cors());
 // Add some routing
 app.use('/api', routes);
 
+// process.on('uncaughtException', function(ex) {
+//     // do something with exception
+//     console.log(ex.stack);
+
+// });
+
+//xyz();
 // Listen for requests
 var server = app.listen(app.get('port'), function() {
     var port = server.address().port;

@@ -11,7 +11,19 @@ module.exports.sendBookingEmail = function(req, res) {
         subject: config.BOOKING_SUBJECT,
         text: req.body.message
     };
-    sendEmail(mailOptions, this.res);
+
+
+    var funcResponse = sendEmail(mailOptions);
+    if (funcResponse.error) {
+        res
+            .status(500)
+            .json(funcResponse.error);
+
+    } else {
+        res
+            .status(200)
+            .json(funcResponse.info);
+    }
 };
 
 module.exports.sendAcceptEmail = function(req, res) {
@@ -22,7 +34,17 @@ module.exports.sendAcceptEmail = function(req, res) {
         subject: config.ACC_SUBJECT,
         text: 'Dear ' + req.body.to + ', /r ' + config.ACC_MES
     };
-    sendEmail(mailOptions, this.res);
+    var funcResponse = sendEmail(mailOptions);
+    if (funcResponse.error) {
+        res
+            .status(500)
+            .json(funcResponse.error);
+
+    } else {
+        res
+            .status(200)
+            .json(funcResponse.info);
+    }
 };
 
 module.exports.sendRejectEmail = function(req, res) {
@@ -33,39 +55,63 @@ module.exports.sendRejectEmail = function(req, res) {
         subject: config.REJ_SUBJECT,
         text: 'Dear ' + req.body.to + ', /r ' + config.REJ_MES
     };
-    sendEmail(mailOptions, this.res);
+
+
+    var funcResponse = sendEmail(mailOptions);
+    if (funcResponse.error) {
+        res
+            .status(500)
+            .json(funcResponse.error);
+
+    } else {
+        res
+            .status(200)
+            .json(funcResponse.info);
+    }
+
 };
 
 
 
 
-var sendEmail = function(mailOptions, res) {
-
-    var transporter = nodemailer.createTransport({
-        service: 'Gmail',
+var sendEmail = function(mailOptions) {
+    var funcResponse = {};
+    var transporter = nodemailer.createTransport(smtpTransport({
+        host: 'mail.mariam-moussa.com',
+        port: 25,
+        secure: true,
         auth: {
-            user: 'nadernaguibmoh@gmail.com',
-            pass: 'nader0181251267'
+            user: 'mina',
+            pass: 'mina@123'
+        },
+        tls: {
+            rejectUnauthorized: false
         }
-
-    });
+    }));
 
 
 
     transporter.sendMail(mailOptions, function(error, info) {
         if (error) {
-            console.log(error);
-            res
-                .status(500)
-                .json(error);
+            console.log("errorrrr===========" + error);
+            // res
+            //     .status(500)
+            //     .json(error);
+
+            funcResponse.state = 'fail';
+            funcResponse.error = error;
+
+
         } else {
             console.log('Email sent: ' + info.response);
-            res
-                .status(200)
-                .json(info.response);
+            // res
+            //     .status(200)
+            //     .json(info.response);
+            funcResponse.state = 'success';
+            funcResponse.info = info.response;
         }
 
 
     });
-
+    return funcResponse;
 }

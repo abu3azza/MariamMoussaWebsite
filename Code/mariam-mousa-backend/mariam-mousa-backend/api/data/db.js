@@ -14,6 +14,12 @@ mongoose.connection.on('disconnected', function() {
     console.log('Mongoose disconnected');
 });
 
+process.on('uncaughtException', function(ex) {
+    // do something with exception
+    console.log(ex.stack);
+
+});
+
 // CAPTURE APP TERMINATION / RESTART EVENTS
 // To be called when process is restarted or terminated
 function gracefulShutdown(msg, callback) {

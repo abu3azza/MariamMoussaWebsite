@@ -20,7 +20,7 @@ app.controller('BookingController', function($scope, $http, $filter, $timeout) {
 
         $http({
             method: 'GET',
-            url: 'http://207.154.226.195:3000/api/getfreeslots?date=' + $filter('date')(this.reservationObject.date, 'MM-dd-yyyy'),
+            url: 'http://127.0.0.1:3000/api/getfreeslots?date=' + $filter('date')(this.reservationObject.date, 'MM-dd-yyyy'),
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
                 "Access-Control-Allow-Origin": "*"
@@ -62,7 +62,7 @@ app.controller('BookingController', function($scope, $http, $filter, $timeout) {
         this.reservationObject.date = $filter('date')(this.reservationObject.date, 'MM-dd-yyyy');
         //        alert("da el ana 3awzo" + this.reservationObject.timeslot);
         $http({
-                url: 'http://207.154.226.195:3000/api/newreservation',
+                url: 'http://127.0.0.1:3000/api/newreservation',
                 method: "POST",
                 data: $.param(this.reservationObject),
                 dataType: 'json',
@@ -73,7 +73,7 @@ app.controller('BookingController', function($scope, $http, $filter, $timeout) {
                 var maildata = {};
                 maildata.message = $scope.reservationObject.message;
                 $http({
-                        url: 'http://207.154.226.195:3000/api/sendbookingmail',
+                        url: 'http://127.0.0.1:3000/api/sendbookingmail',
                         method: "POST",
                         data: $.param(maildata),
                         dataType: 'json',
