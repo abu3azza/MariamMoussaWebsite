@@ -76,8 +76,8 @@ module.exports.sendRejectEmail = function(req, res) {
 
 var sendEmail = function(mailOptions) {
     var funcResponse = {};
-    var transporter = nodemailer.createTransport(smtpTransport({
-        host: 'mail.mariam-moussa.com',
+    var transporter = nodemailer.createTransport({
+        host: 'localhost',
         port: 25,
         secure: true,
         auth: {
@@ -87,7 +87,7 @@ var sendEmail = function(mailOptions) {
         tls: {
             rejectUnauthorized: false
         }
-    }));
+    });
 
 
 
