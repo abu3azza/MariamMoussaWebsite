@@ -12,9 +12,9 @@ app.controller('NewsLetterController', function($scope, $http) {
             method: 'GET',
             url: 'http://207.154.226.195:3000/api/mailchimp?mail=' + $scope.subscriber
         }).then(function successCallback(response) {
-            alert("subscribed successfully !" + response);
+            // alert("subscribed successfully !" + response);
         }, function errorCallback(response) {
-            alert("error" + response);
+            // alert("error" + response);
 
         });
 

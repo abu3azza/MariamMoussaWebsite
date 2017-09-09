@@ -30,29 +30,29 @@ function LoginController($http, $window, $location, AuthFactory, jwtHelper) {
                 password: lc.password
             };
             $http({
-                    url: 'http://localhost:3000/api/login',
+                    url: 'http://207.154.226.195:3000/api/login',
                     method: "POST",
                     data: $.param(user),
                     dataType: 'json',
                     headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
                 })
                 .then(function(response) {
-                    //  alert(JSON.stringify(response));
+                    //  // alert(JSON.stringify(response));
                     if (response.data.success) {
                         $window.sessionStorage.token = response.data.token;
                         AuthFactory.isLoggedIn = true;
                         var token = $window.sessionStorage.token;
                         var decodedToken = jwtHelper.decodeToken(token);
                         lc.loggedInUser = decodedToken.username;
-                        //    alert(lc.loggedInUser);
+                        //    // alert(lc.loggedInUser);
                         // AuthFactory.loggedInUser = loggedInUser;
                         // lc.loggedInUser = user;
-                        //    alert("Token Acuquired :" + JSON.stringify(decodedToken));
+                        //    // alert("Token Acuquired :" + JSON.stringify(decodedToken));
                         $location.path('/admin');
 
                     }
                 }).catch(function(error) {
-                    //    alert(error);
+                    //    // alert(error);
                     console.log(error);
                 })
 

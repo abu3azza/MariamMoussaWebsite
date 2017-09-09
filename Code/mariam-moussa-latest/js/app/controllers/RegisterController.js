@@ -7,16 +7,16 @@ app.controller('RegisterController', function($scope, $http, $filter, $timeout) 
 
     $scope.postRegister = function() {
         if (!$scope.user.username || !$scope.user.password) {
-            alert('check 1');
+            // alert('check 1');
             $scope.error = 'Please add a username and a password.';
         } else {
             if ($scope.user.password !== $scope.user.passwordRepeat) {
-                alert('check 2');
+                // alert('check 2');
                 $scope.error = 'Please make sure the passwords match.';
             } else {
 
                 $http({
-                        url: 'http://localhost:3000/api/register',
+                        url: 'http://207.154.226.195:3000/api/register',
                         method: "POST",
                         data: $.param($scope.user),
                         dataType: 'json',

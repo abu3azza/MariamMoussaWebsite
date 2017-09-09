@@ -12,15 +12,15 @@ app.controller('BookingController', function($scope, $http, $filter, $timeout) {
 
 
     $scope.getEmptySlots = function() {
-        //        alert("InsideGetAllEmptySlots");
+        //        // alert("InsideGetAllEmptySlots");
         //        var oldDate = this.reservationObject.date;
         //        this.reservationObject.date.setHours(0, 0, 0, 0);
 
-        //        alert(this.reservationObject.date);
+        //        // alert(this.reservationObject.date);
 
         $http({
             method: 'GET',
-            url: 'http://127.0.0.1:3000/api/getfreeslots?date=' + $filter('date')(this.reservationObject.date, 'MM-dd-yyyy'),
+            url: 'http://207.154.226.195:3000/api/getfreeslots?date=' + $filter('date')(this.reservationObject.date, 'MM-dd-yyyy'),
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
                 "Access-Control-Allow-Origin": "*"
@@ -36,7 +36,7 @@ app.controller('BookingController', function($scope, $http, $filter, $timeout) {
             // this callback will be called asynchronously
             // when the response is available
         }, function errorCallback(response) {
-            alert("error" + JSON.stringify(response));
+            // // alert("error" + JSON.stringify(response));
             // called asynchronously if an error occurs
             // or server returns response with an error status.
         });
@@ -46,7 +46,7 @@ app.controller('BookingController', function($scope, $http, $filter, $timeout) {
 
     $scope.showAlert = function() {
         this.reservationObject.firstName = "Mina Karim";
-        //        alert("hwhwhwhwhwhw");
+        //        // alert("hwhwhwhwhwhw");
     };
 
     $scope.processDate = function(dt) {
@@ -55,44 +55,45 @@ app.controller('BookingController', function($scope, $http, $filter, $timeout) {
 
 
     $scope.postReservation = function() {
-        //        alert(JSON.stringify(this.reservationObject));
+        //        // alert(JSON.stringify(this.reservationObject));
 
         this.reservationObject.timeslot = angular.toJson(this.reservationObject.timeslot);
         //        this.reservationObject.date.setHours(0, 0, 0, 0);
         this.reservationObject.date = $filter('date')(this.reservationObject.date, 'MM-dd-yyyy');
-        //        alert("da el ana 3awzo" + this.reservationObject.timeslot);
+        //        // alert("da el ana 3awzo" + this.reservationObject.timeslot);
         $http({
-                url: 'http://127.0.0.1:3000/api/newreservation',
+                url: 'http://207.154.226.195:3000/api/newreservation',
                 method: "POST",
                 data: $.param(this.reservationObject),
                 dataType: 'json',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
             })
             .then(function successCallback(response) {
-                //                    alert(response.data);
+                //                    // alert(response.data);
                 var maildata = {};
                 maildata.message = $scope.reservationObject.message;
                 $http({
-                        url: 'http://127.0.0.1:3000/api/sendbookingmail',
+                        url: 'http://207.154.226.195:3000/api/sendbookingmail',
                         method: "POST",
                         data: $.param(maildata),
                         dataType: 'json',
                         headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
                     })
                     .then(function successCallback(response) {
-                        alert("Email Sent " + response.data);
-
+                        // // alert("Email Sent " + response.data);
+                        $scope.toggleModal('Reservation Success');
                         // this callback will be called asynchronously
                         // when the response is available
                     }, function errorCallback(response) {
-                        alert("error" + response.data);
+                        // // alert("error" + response.data);
+                        $scope.toggleModal('Reservation Does Not Success');
                         // called asynchronously if an error occurs
                         // or server returns response with an error status.
                     });
                 // this callback will be called asynchronously
                 // when the response is available
             }, function errorCallback(response) {
-                alert("error" + response.data);
+                consol.log("error" + response.data);
                 // called asynchronously if an error occurs
                 // or server returns response with an error status.
             });

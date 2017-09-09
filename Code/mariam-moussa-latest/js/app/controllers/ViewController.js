@@ -18,7 +18,7 @@ app.controller('ViewController', function($scope, $compile, $http, $route, uiCal
         var responseData;
         $http({
             method: 'GET',
-            url: 'http://127.0.0.1:3000/api/getallreservations'
+            url: 'http://207.154.226.195:3000/api/getallreservations'
         }).then(function successCallback(response) {
             responseData = response.data;
             $scope.events.length = 0;
@@ -29,14 +29,14 @@ app.controller('ViewController', function($scope, $compile, $http, $route, uiCal
                     date.setHours(item.timeslot.startHour);
                     date.toISOString();
                     item.start = date;
-                    // alert(item.title+"----"+item.timeslot.startHour);
+                    // // alert(item.title+"----"+item.timeslot.startHour);
                     $scope.events.push(item);
-                    // alert(item.title +"----"+item.start);
+                    // // alert(item.title +"----"+item.start);
                 });
             // this callback will be called asynchronously
             // when the response is available
         }, function errorCallback(response) {
-            alert("error" + response);
+            // alert("error" + response);
             // called asynchronously if an error occurs
             // or server returns response with an error status.
         });
@@ -47,7 +47,7 @@ app.controller('ViewController', function($scope, $compile, $http, $route, uiCal
         var responseData;
         $http({
             method: 'GET',
-            url: 'http://127.0.0.1:3000/api/getallreservations'
+            url: 'http://207.154.226.195:3000/api/getallreservations'
         }).then(function successCallback(response) {
             responseData = response.data;
             $scope.events.length = 0;
@@ -57,7 +57,7 @@ app.controller('ViewController', function($scope, $compile, $http, $route, uiCal
                     $scope.events.splice(0, 1);
 
                 } catch (err) {
-                    alert(err);
+                    // alert(err);
                 }
             });
             angular.forEach(responseData,
@@ -67,14 +67,14 @@ app.controller('ViewController', function($scope, $compile, $http, $route, uiCal
                     date.setHours(item.timeslot.startHour);
                     date.toISOString();
                     item.start = date;
-                    // alert(item.title+"----"+item.timeslot.startHour);
+                    // // alert(item.title+"----"+item.timeslot.startHour);
                     $scope.events.push(item);
-                    // alert(item.title +"----"+item.start);
+                    // // alert(item.title +"----"+item.start);
                 });
             // this callback will be called asynchronously
             // when the response is available
         }, function errorCallback(response) {
-            alert("error" + response);
+            // alert("error" + response);
             // called asynchronously if an error occurs
             // or server returns response with an error status.
         });
@@ -222,39 +222,39 @@ app.controller('ViewController', function($scope, $compile, $http, $route, uiCal
 
     $scope.accept = function(event) {
         $http({
-                url: 'http://127.0.0.1:3000/api/updateaccept?id=' + this.eventObject.id,
+                url: 'http://207.154.226.195:3000/api/updateaccept?id=' + this.eventObject.id,
                 method: "PUT"
                     //data: $.param(this.reservationObject),
                     //headers: {'Content-Type': 'application/x-www-form-urlencoded'}
             })
             .then(function successCallback(response) {
-                //                    alert(response.data);
+                //                    // alert(response.data);
                 $scope.toggleModal("Reservation: " + event.title);
                 var maildata = {};
 
                 maildata.to = $scope.eventObject.email;
 
                 $http({
-                        url: 'http://127.0.0.1:3000/api/sendacceptmail',
+                        url: 'http://207.154.226.195:3000/api/sendacceptmail',
                         method: "POST",
                         data: $.param(maildata),
                         dataType: 'json',
                         headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
                     })
                     .then(function successCallback(response) {
-                        alert("Email Sent successfully");
+                        // alert("Email Sent successfully");
                         $route.reload();
                         // this callback will be called asynchronously
                         // when the response is available
                     }, function errorCallback(response) {
-                        alert("error" + response.data);
+                        // alert("error" + response.data);
                         // called asynchronously if an error occurs
                         // or server returns response with an error status.
                     });
                 // this callback will be called asynchronously
                 // when the response is available
             }, function errorCallback(response) {
-                alert("error" + response.data);
+                // alert("error" + response.data);
                 // called asynchronously if an error occurs
                 // or server returns response with an error status.
             });
@@ -263,7 +263,7 @@ app.controller('ViewController', function($scope, $compile, $http, $route, uiCal
 
     $scope.reject = function(event) {
         $http({
-                url: 'http://127.0.0.1:3000/api/updatereject?id=' + this.eventObject.id,
+                url: 'http://207.154.226.195:3000/api/updatereject?id=' + this.eventObject.id,
                 method: "PUT"
                     //data: $.param(this.reservationObject),
                     //headers: {'Content-Type': 'application/x-www-form-urlencoded'}
@@ -274,27 +274,27 @@ app.controller('ViewController', function($scope, $compile, $http, $route, uiCal
                 maildata.to = $scope.eventObject.email;
 
                 $http({
-                        url: 'http://127.0.0.1:3000/api/sendrejectmail',
+                        url: 'http://207.154.226.195:3000/api/sendrejectmail',
                         method: "POST",
                         data: $.param(maildata),
                         dataType: 'json',
                         headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
                     })
                     .then(function successCallback(response) {
-                        alert("Email sent successfully");
+                        // alert("Email sent successfully");
                         $route.reload();
 
                         // this callback will be called asynchronously
                         // when the response is available
                     }, function errorCallback(response) {
-                        alert("error" + response.data);
+                        // alert("error" + response.data);
                         // called asynchronously if an error occurs
                         // or server returns response with an error status.
                     });
                 // this callback will be called asynchronously
                 // when the response is available
             }, function errorCallback(response) {
-                alert("error" + response.data);
+                // alert("error" + response.data);
                 // called asynchronously if an error occurs
                 // or server returns response with an error status.
             });

@@ -8,7 +8,7 @@ function NavigationController($http, $window, $location, AuthFactory, jwtHelper)
     var decodedToken = jwtHelper.decodeToken(token);
     vm.loggedInUser = decodedToken.username;
     vm.isLoggedIn = function() {
-        // alert(AuthFactory.isLoggedIn);
+        // // alert(AuthFactory.isLoggedIn);
         return AuthFactory.isLoggedIn;
     };
 
