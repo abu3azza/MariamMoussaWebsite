@@ -6,7 +6,7 @@ app.controller('BookingController', function($scope, $http, $filter, $timeout) {
     $scope.buttonClicked = "";
 
     function init() {
-        $('#datepicker').datepicker();
+        // $('#datepicker').datepicker();
     }
     init();
 
