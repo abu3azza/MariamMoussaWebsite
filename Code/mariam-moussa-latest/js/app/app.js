@@ -223,7 +223,7 @@ function run($rootScope, $location, $window, AuthFactory) {
             $location.path('/');
         }
     });
-}
+};
 // app.config(['$compileProvider', function($compileProvider) {
 //     $compileProvider.debugInfoEnabled(false);
 // }]);

@@ -107,7 +107,8 @@
 
     <!--rev slider start-->
 
-    <div class="fullwidthbanner">
+    <div ng-controller="routeController" class="fullwidthbanner" ng-show="showPageHero()">
+
         <div class="tp-banner">
             <ul>
                 <!-- SLIDE -->
@@ -324,6 +325,8 @@
 
 
 
+
+    <script type="text/javascript" src="js/app/controllers/RouteController.js"></script>
     <script type="text/javascript" src="js/app/controllers/MainController.js"></script>
     <script type="text/javascript" src="js/app/controllers/BookingController.js"></script>
     <script type="text/javascript" src="js/app/controllers/ViewController.js"></script>
