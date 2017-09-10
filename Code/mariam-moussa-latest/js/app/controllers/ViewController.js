@@ -18,7 +18,7 @@ app.controller('ViewController', function($scope, $compile, $http, $route, uiCal
         var responseData;
         $http({
             method: 'GET',
-            url: 'http://207.154.226.195:3000/api/getallreservations'
+            url: 'http://127.0.0.1:3000/api/getallreservations'
         }).then(function successCallback(response) {
             responseData = response.data;
             $scope.events.length = 0;
@@ -47,7 +47,7 @@ app.controller('ViewController', function($scope, $compile, $http, $route, uiCal
         var responseData;
         $http({
             method: 'GET',
-            url: 'http://207.154.226.195:3000/api/getallreservations'
+            url: 'http://127.0.0.1:3000/api/getallreservations'
         }).then(function successCallback(response) {
             responseData = response.data;
             $scope.events.length = 0;
@@ -190,17 +190,19 @@ app.controller('ViewController', function($scope, $compile, $http, $route, uiCal
     /* config object */
     $scope.uiConfig = {
         calendar: {
+            stick: true,
             height: 700,
             editable: true,
             header: {
-                left: '',
+                left: 'month basicWeek basicDay agendaWeek agendaDay',
                 center: 'title',
-                right: 'prev,next'
+                right: 'today prev,next'
             },
             eventClick: $scope.alertOnEventClick,
             //            eventDrop: $scope.alertOnDrop,
             eventResize: $scope.alertOnResize,
-            eventRender: $scope.eventRender
+            eventRender: $scope.eventRender,
+            stick: true
         }
     };
 
