@@ -40,7 +40,7 @@ var app = angular.module('mmapp', ['ui.calendar', 'ngRoute', 'ui.bootstrap', 'an
 
             }).when('/about-mariam', {
                 templateUrl: 'about-mariam.html',
-                // controller: 'LoginController',
+                controller: 'AboutMariamController',
                 access: {
                     restricted: false
                 }
@@ -201,7 +201,7 @@ var app = angular.module('mmapp', ['ui.calendar', 'ngRoute', 'ui.bootstrap', 'an
 
             }).when('/events', {
                 templateUrl: 'events.html',
-                // controller: 'LoginController',
+                controller: 'EventController',
                 access: {
                     restricted: false
                 }

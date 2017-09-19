@@ -14,7 +14,7 @@ var $container = $('.iso-call');
 var $filter = $('.filter');
 
 try {
-    $container.imagesLoaded(function () {
+    $container.imagesLoaded(function() {
         $container.trigger('resize');
         $container.isotope({
             filter: '*',
@@ -25,23 +25,20 @@ try {
             }
         });
 
-        $('.triggerAnimation').waypoint(function () {
+        $('.triggerAnimation').waypoint(function() {
             var animation = $(this).attr('data-animate');
             $(this).css('opacity', '');
             $(this).addClass("animated " + animation);
 
-        },
-                {
-                    offset: '75%',
-                    triggerOnce: true
-                }
-        );
+        }, {
+            offset: '75%',
+            triggerOnce: true
+        });
         setTimeout(1500);
     });
-} catch (err) {
-}
+} catch (err) {}
 
-winDow.bind('resize', function () {
+winDow.bind('resize', function() {
     var selector = $filter.find('a.active').attr('data-filter');
 
     try {
@@ -53,13 +50,12 @@ winDow.bind('resize', function () {
                 queue: false
             }
         });
-    } catch (err) {
-    }
+    } catch (err) {}
     return false;
 });
 
 // Isotope Filter 
-$filter.find('a').click(function () {
+$filter.find('a').click(function() {
     var selector = $(this).attr('data-filter');
 
     try {
@@ -80,7 +76,7 @@ $filter.find('a').click(function () {
 
 var filterItemA = $('.filter li a');
 
-filterItemA.on('click', function () {
+filterItemA.on('click', function() {
     var $this = $(this);
     if (!$this.hasClass('active')) {
         filterItemA.removeClass('active');

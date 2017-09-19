@@ -1,14 +1,14 @@
-app.controller('MainController', function($scope) {
-    $scope.bodyHtml = 'hwhwhwhwhwhwhwhwhwhw';
+app.controller('AboutMariamController', function($scope) {
+
 
     function init() {
-        $("#news-carousel").owlCarousel({
+        $("#testi-carousel").owlCarousel({
             // Most important owl features
-            items: 2,
+            items: 1,
             itemsCustom: false,
-            itemsDesktop: [1199, 2],
-            itemsDesktopSmall: [980, 2],
-            itemsTablet: [768, 2],
+            itemsDesktop: [1199, 1],
+            itemsDesktopSmall: [980, 1],
+            itemsTablet: [768, 1],
             itemsTabletSmall: false,
             itemsMobile: [479, 1],
             singleItem: false,

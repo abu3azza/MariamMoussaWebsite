@@ -190,7 +190,7 @@ app.controller('ViewController', function($scope, $compile, $http, $route, uiCal
     /* config object */
     $scope.uiConfig = {
         calendar: {
-            stick: true,
+
             height: 700,
             editable: true,
             header: {
@@ -200,6 +200,7 @@ app.controller('ViewController', function($scope, $compile, $http, $route, uiCal
             },
             eventClick: $scope.alertOnEventClick,
             //            eventDrop: $scope.alertOnDrop,
+            eventResize: $scope.alertOnResize,
             eventResize: $scope.alertOnResize,
             eventRender: $scope.eventRender,
             stick: true
