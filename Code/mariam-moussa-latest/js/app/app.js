@@ -138,7 +138,7 @@ var app = angular.module('mmapp', ['ui.calendar', 'ngRoute', 'ui.bootstrap', 'an
 
             }).when('/faqs', {
                 templateUrl: 'faqs.html',
-                // controller: 'LoginController',
+                controller: 'FAQController',
                 access: {
                     restricted: false
                 }

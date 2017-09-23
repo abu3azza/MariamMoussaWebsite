@@ -1,4 +1,4 @@
-app.controller('MainController', function($scope) {
+app.controller('MainController', function($scope, $timeout) {
     $scope.bodyHtml = 'hwhwhwhwhwhwhwhwhwhw';
 
     function init() {
@@ -32,4 +32,15 @@ app.controller('MainController', function($scope) {
         });
     }
     init();
+
+    $timeout(function() {
+        $('.panel-heading a[data-toggle="collapse"]').on('click', function() {
+            if ($(this).closest('.panel-heading').hasClass('active')) {
+                $(this).closest('.panel-heading').removeClass('active');
+            } else {
+                $('.panel-heading a[data-toggle="collapse"]').closest('.panel-heading').removeClass('active');
+                $(this).closest('.panel-heading').addClass('active');
+            }
+        });
+    });
 });
