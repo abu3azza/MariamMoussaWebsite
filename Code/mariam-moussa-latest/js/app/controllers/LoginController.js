@@ -30,7 +30,7 @@ function LoginController($http, $window, $location, AuthFactory, jwtHelper) {
                 password: lc.password
             };
             $http({
-                    url: 'http://127.0.0.1:3000/api/login',
+                    url: 'http://207.154.226.195:3000/api/login',
                     method: "POST",
                     data: $.param(user),
                     dataType: 'json',

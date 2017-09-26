@@ -18,7 +18,7 @@ app.controller('ViewController', function($scope, $compile, $http, $route, uiCal
         var responseData;
         $http({
             method: 'GET',
-            url: 'http://127.0.0.1:3000/api/getallreservations'
+            url: 'http://207.154.226.195:3000/api/getallreservations'
         }).then(function successCallback(response) {
             responseData = response.data;
             $scope.events.length = 0;
@@ -47,7 +47,7 @@ app.controller('ViewController', function($scope, $compile, $http, $route, uiCal
         var responseData;
         $http({
             method: 'GET',
-            url: 'http://127.0.0.1:3000/api/getallreservations'
+            url: 'http://207.154.226.195:3000/api/getallreservations'
         }).then(function successCallback(response) {
             responseData = response.data;
             $scope.events.length = 0;

@@ -76,18 +76,28 @@ module.exports.sendRejectEmail = function(req, res) {
 
 var sendEmail = function(mailOptions) {
     var funcResponse = {};
+    // var transporter = nodemailer.createTransport({
+    //     host: 'localhost',
+    //     port: 25,
+    //     secure: true,
+    //     auth: {
+    //         user: 'mina',
+    //         pass: 'mina@123'
+    //     },
+    //     tls: {
+    //         rejectUnauthorized: false
+    //     }
+    // });
+
     var transporter = nodemailer.createTransport({
-        host: 'localhost',
-        port: 25,
-        secure: true,
+        service: 'Gmail',
         auth: {
-            user: 'mina',
-            pass: 'mina@123'
-        },
-        tls: {
-            rejectUnauthorized: false
+
+            user: config.MMEmail,
+            pass: config.MMEmail_PASSWORD
         }
     });
+
 
 
 
