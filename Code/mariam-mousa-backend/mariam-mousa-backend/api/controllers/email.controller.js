@@ -32,7 +32,7 @@ module.exports.sendAcceptEmail = function(req, res) {
         from: config.ACC_REJ_FROM_MMEmail,
         to: req.body.to,
         subject: config.ACC_SUBJECT,
-        text: 'Dear ' + req.body.name + ', \r ' + 'at ' + date + config.ACC_MES
+        text: 'Dear ' + req.body.name + ', \r ' + 'at ' + req.body.date + config.ACC_MES
     };
     var funcResponse = sendEmail(mailOptions);
     if (funcResponse.error) {
@@ -53,7 +53,7 @@ module.exports.sendRejectEmail = function(req, res) {
         from: config.ACC_REJ_FROM_MMEmail,
         to: req.body.to,
         subject: config.REJ_SUBJECT,
-        text: 'Dear ' + req.body.name + ', \r ' + 'at ' + date + config.REJ_MES
+        text: 'Dear ' + req.body.name + ', \r ' + 'at ' + req.body.date + config.REJ_MES
     };
 
 
