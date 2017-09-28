@@ -5,51 +5,63 @@ var jwt = require('jsonwebtoken');
 
 
 
-module.exports.register = function(req, res) {
+module.exports.register = function(req, res, next) {
     console.log('registering');
 
-    var username = req.body.username;
-    var name = req.body.name || null;
-    var password = req.body.password;
+    try {
+        var username = req.body.username;
+        var name = req.body.name || null;
+        var password = req.body.password;
 
-    User.create({
-        username: username,
-        name: name,
-        password: bcrypt.hashSync(password, bcrypt.genSaltSync(10))
+        console.log("o-o-o-o-o-o-o-o-o" + username + "0-0-0-0-0-00--00--00-" + password);
 
-    }, function(err, user) {
-        if (err) {
-            console.log(err);
-            res.status(400).json(err);
-        } else {
-            console.log('user created' + user);
-            res.status(201).json(user);
-        }
-    });
+        User.create({
+            username: username,
+            name: name,
+            password: bcrypt.hashSync(password, bcrypt.genSaltSync(10))
+
+        }, function(err, user) {
+            if (err) {
+                console.log(err);
+                res.status(400).json(err);
+            } else {
+                console.log('user created' + user);
+                res.status(201).json(user);
+            }
+        });
+    } catch (next) {
+
+    }
 };
 
-module.exports.login = function(req, res) {
-    console.log('logging in user');
-    var username = req.body.username;
-    var password = req.body.password;
+module.exports.login = function(req, res, next) {
+    try {
 
-    User.findOne({
-        username: username
-    }).exec(function(err, user) {
-        if (err) {
-            console.log(err);
-            res.status(400).json(err);
-        } else {
-            if (bcrypt.compareSync(password, user.password)) {
-                console.log('user found' + user);
-                var token = jwt.sign({ username: user.username }, 's3cr3t', { expiresIn: 3600 });
-                res.status(200).json({ success: true, token: token });
+
+        console.log('logging in user');
+        var username = req.body.username || null;
+        var password = req.body.password || null;
+
+        User.findOne({
+            username: username
+        }).exec(function(err, user) {
+            if (err) {
+                console.log(err);
+                res.status(400).json(err);
             } else {
-                console.log('user Unauthorized');
-                res.status(401).json('Unauthorized');
+                if (bcrypt.compareSync(password, user.password)) {
+                    console.log('user found' + user);
+                    var token = jwt.sign({ username: user.username }, 's3cr3t', { expiresIn: 3600 });
+                    res.status(200).json({ success: true, token: token });
+                } else {
+                    console.log('user Unauthorized');
+                    res.status(401).json('Unauthorized');
+                }
             }
-        }
-    })
+        })
+    } catch (error) {
+        console.log("ana la2et error msh 3aref a3ml be eh ^_^" + error);
+    }
 };
 module.exports.authenticate = function(req, res, next) {
     var headerExists = req.headers.authorization;

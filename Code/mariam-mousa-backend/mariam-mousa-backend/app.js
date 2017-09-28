@@ -17,6 +17,7 @@ app.use(function(req, res, next) {
     next();
 });
 
+//error  handling  middleware
 
 
 // Set static directory before defining routes
@@ -28,10 +29,15 @@ app.use(cors());
 // Add some routing
 app.use('/api', routes);
 
+// app.use(function(err, req, res, next) {
+
+//     console.log("--------------ba2olak eh da el error el fel habdelar ha " + err);
+// })
+
 // process.on('uncaughtException', function(ex) {
 //     // do something with exception
-//     console.log(ex.stack);
-
+//     console.log("ba2olak eh----" + ex.stack);
+//     process.exit(1);
 // });
 
 //xyz();

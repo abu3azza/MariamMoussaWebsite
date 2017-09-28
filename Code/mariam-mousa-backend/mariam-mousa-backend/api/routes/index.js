@@ -5,6 +5,7 @@ var ctrlSite = require('../controllers/site.controllers.js');
 var ctrlEmail = require('../controllers/email.controller.js');
 var ctrlMailChimp = require('../controllers/mailchimp.controller.js');
 var ctrlUsers = require('../controllers/user.controller.js');
+var ctrlBrochure = require('../controllers/brochure.controller.js');
 var cors = require('cors');
 
 router.all('/*', function(req, res, next) {
@@ -61,5 +62,10 @@ router
 router
     .route('/login')
     .post(ctrlUsers.login);
+
+router
+    .route('/download')
+    .get(ctrlBrochure.download);
+
 
 module.exports = router;
