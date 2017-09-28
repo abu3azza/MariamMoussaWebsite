@@ -33,7 +33,7 @@ module.exports.sendAcceptEmail = function(req, res) {
         to: req.body.email,
         subject: config.ACC_SUBJECT,
         text: 'Dear ' + req.body.name + ', \r ' + config.ACC_MES + '. Awaiting you on ' + req.body.date +
-            ' at ' + req.body.timeslot + '. \r \r Sincerely \r Mariam Moussa Coaching team'
+            ' ' + req.body.timeslot || '' + '. \r \r Sincerely, \r Mariam Moussa Coaching team'
     };
     var funcResponse = sendEmail(mailOptions);
     if (funcResponse.error) {
@@ -55,7 +55,7 @@ module.exports.sendRejectEmail = function(req, res) {
         to: req.body.email,
         subject: config.REJ_SUBJECT,
         text: 'Dear ' + req.body.name + ', \r ' + config.REJ_MES + ' on ' + req.body.date +
-            ' at ' + req.body.timeslot + '. \r \r Sincerely \r Mariam Moussa Coaching team.'
+            ' at ' + req.body.timeslot || '' + '. \r \r Sincerely, \r Mariam Moussa Coaching team.'
     };
 
 
