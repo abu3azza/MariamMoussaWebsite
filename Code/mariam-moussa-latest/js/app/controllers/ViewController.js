@@ -236,7 +236,7 @@ app.controller('ViewController', function($scope, $compile, $http, $route, uiCal
                 var maildata = {};
 
                 maildata = $scope.eventObject;
-
+                maildata.timeslot = $scope.eventObject.timeslot.name;
                 $http({
                         url: 'http://207.154.226.195:3000/api/sendacceptmail',
                         method: "POST",
@@ -275,6 +275,7 @@ app.controller('ViewController', function($scope, $compile, $http, $route, uiCal
                 $scope.toggleModal("Reservation: " + event.title);
                 var maildata = {};
                 maildata = $scope.eventObject;
+                maildata.timeslot = $scope.eventObject.timeslot.name;
 
                 $http({
                         url: 'http://207.154.226.195:3000/api/sendrejectmail',
