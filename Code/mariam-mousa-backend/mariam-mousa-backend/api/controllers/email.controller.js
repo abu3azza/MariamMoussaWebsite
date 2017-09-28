@@ -30,7 +30,7 @@ module.exports.sendAcceptEmail = function(req, res) {
 
     var mailOptions = {
         from: config.ACC_REJ_FROM_MMEmail,
-        to: req.body.to,
+        to: req.body.email,
         subject: config.ACC_SUBJECT,
         text: 'Dear ' + req.body.name + ', \r ' + 'at ' + req.body.date + config.ACC_MES
     };
@@ -51,7 +51,7 @@ module.exports.sendRejectEmail = function(req, res) {
 
     var mailOptions = {
         from: config.ACC_REJ_FROM_MMEmail,
-        to: req.body.to,
+        to: req.body.email,
         subject: config.REJ_SUBJECT,
         text: 'Dear ' + req.body.name + ', \r ' + 'at ' + req.body.date + config.REJ_MES
     };
