@@ -29,7 +29,7 @@ function LoginController($http, $window, $location, AuthFactory, jwtHelper) {
                 username: lc.username,
                 password: lc.password
             };
-            alert(user.username + " fasla  " + user.password);
+            // alert(user.username + " fasla  " + user.password);
             $http({
                     url: 'http://207.154.226.195:3000/api/login',
                     method: "POST",
