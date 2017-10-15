@@ -22,12 +22,15 @@ app.controller('ViewController', function($scope, $compile, $http, $route, uiCal
         }).then(function successCallback(response) {
             responseData = response.data;
             $scope.events.length = 0;
+            alert("hawhaw" + JSON.stringify(responseData));
+            console.log("respnse data" + JSON.stringify(responseData));
             angular.forEach(responseData,
                 function(item) {
                     item.title = item.firstname;
                     var date = new Date(item.date);
+
                     date.setHours(item.timeslot.startHour);
-                    date.toISOString();
+                    //date.toISOString();
                     item.start = date;
                     // // alert(item.title+"----"+item.timeslot.startHour);
                     $scope.events.push(item);

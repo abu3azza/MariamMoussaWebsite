@@ -26,16 +26,39 @@ module.exports.getFreeSlots = function(req, res) {
     var db = dbconn.get();
     var collection = db.collection('reservations');
     // var slots = ["slot 1", "slot 2", "slot 3", "slot 4"];
-    var slots = [{ 'id': '1', 'name': "9:00 AM", 'startHour': '9' },
-        { 'id': '2', 'name': "10:00 AM", 'startHour': '10' },
-        { 'id': '3', 'name': "11:00 AM", 'startHour': '11' },
-        { 'id': '4', 'name': "12:00 PM", 'startHour': '12' },
-        { 'id': '5', 'name': "1:00 PM", 'startHour': '13' },
-        { 'id': '6', 'name': "2:00 PM", 'startHour': '14' },
-        { 'id': '7', 'name': "3:00 PM", 'startHour': '15' },
-        { 'id': '8', 'name': "4:00 PM", 'startHour': '16' }
+    var slots = [];
+    //Sunday
+    slots[0] = [{ 'id': '1', 'name': "9:00 AM - 10:00 AM", 'startHour': '9' },
+        { 'id': '2', 'name': "1:00 PM - 2:00 PM", 'startHour': '13' },
+        { 'id': '3', 'name': "2:00 PM - 3:00 PM", 'startHour': '14' },
+        { 'id': '4', 'name': "5:00 PM - 6:00 PM", 'startHour': '17' }
     ];
-
+    //Monday
+    slots[1] = [{ 'id': '1', 'name': "9:00 AM - 10:00 AM", 'startHour': '9' },
+        { 'id': '2', 'name': "1:00 PM - 2:00 PM", 'startHour': '13' },
+        { 'id': '3', 'name': "2:00 PM - 3:00 PM", 'startHour': '14' },
+        { 'id': '4', 'name': "5:00 PM - 6:00 PM", 'startHour': '17' },
+        { 'id': '5', 'name': "6:00 PM - 7:00 PM", 'startHour': '18' }
+    ];
+    //Tuesday
+    slots[2] = [{ 'id': '1', 'name': "9:00 AM - 10:00 AM", 'startHour': '9' },
+        { 'id': '2', 'name': "1:00 PM - 2:00 PM", 'startHour': '13' },
+        { 'id': '3', 'name': "2:00 PM - 3:00 PM", 'startHour': '14' },
+        { 'id': '4', 'name': "5:00 PM - 6:00 PM", 'startHour': '17' },
+        { 'id': '5', 'name': "9:00 PM - 10:00 PM", 'startHour': '21' }
+    ];
+    //Wednesday
+    slots[3] = [{ 'id': '1', 'name': "9:00 AM - 10:00 AM", 'startHour': '9' },
+        { 'id': '2', 'name': "1:00 PM - 2:00 PM", 'startHour': '13' },
+        { 'id': '3', 'name': "2:00 PM - 3:00 PM", 'startHour': '14' },
+        { 'id': '4', 'name': "5:00 PM - 6:00 PM", 'startHour': '17' }
+    ];
+    //Thrusday
+    slots[4] = [{ 'id': '1', 'name': "9:00 AM - 10:00 AM", 'startHour': '9' },
+        { 'id': '2', 'name': "1:00 PM - 2:00 PM", 'startHour': '13' },
+        { 'id': '3', 'name': "2:00 PM - 3:00 PM", 'startHour': '14' },
+        { 'id': '4', 'name': "5:00 PM - 6:00 PM", 'startHour': '17' }
+    ];
     //
     console.log("db", db);
     console.log('GET the slots');
@@ -44,25 +67,31 @@ module.exports.getFreeSlots = function(req, res) {
     if (req.query && req.query.date) {
         date = req.query.date;
     }
-    var query = { 'date': date };
+    // 0 = Sunday :
     console.log("Date==>" + date);
+    var dateObj = new Date(date);
+    var dayOfWeek = dateObj.getDay();
+    var selectedDaySlots = slots[dayOfWeek];
+    var query = { 'date': date };
     collection.find(query).toArray(function(err, returnData) {
         console.log("returnData" + returnData.toString());
-        for (var i = 0; i < slots.length; i++) {
-            //Do something
-            returnData.forEach(function(obj) {
-                console.log("slot id = " + slots[i].id + "timeslot id =" + obj.timeslot.id);
+        if (selectedDaySlots) {
+            for (var i = 0; i < selectedDaySlots.length; i++) {
+                //Do something
+                returnData.forEach(function(reservationRecord) {
+                    console.log("slot id = " + selectedDaySlots[i].id + "timeslot id =" + reservationRecord.timeslot.id);
 
-                if (slots[i].id == obj.timeslot.id) {
-                    console.log("inside if" + i);
-                    slots.splice(i, 1);
-                }
-            });
+                    if (selectedDaySlots[i].id == reservationRecord.timeslot.id) {
+                        console.log("inside if" + i);
+                        selectedDaySlots.splice(i, 1);
+                    }
+                });
+            }
         }
 
         res
             .status(200)
-            .json(slots);
+            .json(selectedDaySlots);
     });
 };
 

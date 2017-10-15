@@ -11,7 +11,7 @@ var app = angular.module('mmapp', ['ui.calendar', 'ngRoute', 'ui.bootstrap', 'an
                     restricted: false
                 }
             }).when('/booking', {
-                templateUrl: 'booking.html',
+                templateUrl: '/booking.html',
                 controller: 'BookingController',
                 controllerAs: 'bookingCtrl',
                 access: {
@@ -206,7 +206,17 @@ var app = angular.module('mmapp', ['ui.calendar', 'ngRoute', 'ui.bootstrap', 'an
                     restricted: false
                 }
 
-            }).otherwise("/home");
+            }).otherwise({
+
+
+                template: "<div></div>",
+                controller: function($window, $location, $rootScope) {
+
+                    $window.location.href = 'index.html#!home';
+
+                }
+
+            });
 
         // events
 

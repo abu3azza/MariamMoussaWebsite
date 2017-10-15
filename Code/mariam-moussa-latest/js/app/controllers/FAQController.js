@@ -9,5 +9,10 @@ app.controller('FAQController', function($scope, $timeout) {
                 $(this).closest('.panel-heading').addClass('active');
             }
         });
+
+
+
     });
+
+
 });
