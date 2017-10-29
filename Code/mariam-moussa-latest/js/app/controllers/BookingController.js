@@ -82,6 +82,7 @@ app.controller('BookingController', function($scope, $http, $filter, $timeout) {
                     .then(function successCallback(response) {
                         // // alert("Email Sent " + response.data);
                         $scope.toggleModal('Reservation Success');
+                        $scope.reservationObject = {};
                         // this callback will be called asynchronously
                         // when the response is available
                     }, function errorCallback(response) {

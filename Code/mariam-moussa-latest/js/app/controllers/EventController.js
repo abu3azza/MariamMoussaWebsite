@@ -1,5 +1,15 @@
 app.controller('EventController', function($scope, $timeout) {
 
+
+    $scope.toggleModal = function(btnClicked) {
+        $scope.buttonClicked = btnClicked;
+        $scope.showModal = !$scope.showModal;
+    };
+
+    $scope.open = function() {
+        //  alert('halsbala');
+        $scope.toggleModal('Subscribe Here');
+    };
     $timeout(function() {
         /* 
          * To change this license header, choose License Headers in Project Properties.

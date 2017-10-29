@@ -251,17 +251,20 @@
                     </div>
                 </div>
                 <!--footer col-->
-                <div ng-controller="NewsLetterController" class="col-md-3 margin20">
+                <div id "newsletter" ng-controller="NewsLetterController" class="col-md-3 margin20">
                     <div class="footer-col">
                         <h3 style="color:#ececec">Newsletter</h3>
 
-                        <form role="form" class="subscribe-form">
+                        <form ng-submit="subscribeNewsLetter()" role="form" class="subscribe-form">
                             <div class="input-group">
-                                <input type="text" class="form-control" ng-model="subscriber" placeholder="Enter email to subscribe">
+
+                                <input type="email" class="form-control" required data-validation-required-message="Please enter email." ng-model="subscriber" placeholder="Enter email to subscribe">
                                 <span class="input-group-btn">
-                                        <button class="btn  btn-theme-bg btn-lg" ng-click="subscribeNewsLetter()" type="submit">Ok</button>
+                                        <button class="btn  btn-theme-bg btn-lg"  type="submit">Ok</button>
+                                        <!--  -->
                                     </span>
                             </div>
+                            <span ng-show="showSubMsg" style="color: #ffba00;"> Thanks For Subscription</span>
                         </form>
                     </div>
                 </div>
@@ -336,6 +339,7 @@
 
     <script type="text/javascript" src="js/app/controllers/EventController.js"></script>
 
+    <script type="text/javascript" src="js/app/controllers/ServicesController.js"></script>
     <script type="text/javascript" src="js/app/controllers/AboutMariamController.js"></script>
     <script type="text/javascript" src="js/app/controllers/RouteController.js"></script>
     <script type="text/javascript" src="js/app/controllers/MainController.js"></script>

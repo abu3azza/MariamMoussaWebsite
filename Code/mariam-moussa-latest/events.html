@@ -20,7 +20,7 @@
                                         <button class="btn  btn-theme-bg btn-lg" type="submit">Submit</button>
                                     </span>
                                 </div>
-                            </form> --><small><a href="#" onclick="myFunction()">Subscribe here</a></small></h4>
+                            </form> --><small><a href="" ng-click="open()">Subscribe here</a></small></h4>
         <script>
             function myFunction() {
                 var email = prompt("Enter email to subscribe");
@@ -56,9 +56,9 @@
                     </div>
                 </div>
                 <div class="work-desc">
-                    <h3><a href="#!eve-life-tuning">Life Tuning Program	</a></h3>
+                    <h3><a href="https://www.facebook.com/Mariam.Moussa.Coaching">Life Tuning Program	</a></h3>
                     <span>Programs <br/>
-                            <i class="fa fa-calendar"></i> June 5th to 6th July</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><a href="#!eve-life-tuning">more details</a></small>
+                            <i class="fa fa-calendar"></i> June 5th to 6th July</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><a href="https://www.facebook.com/Mariam.Moussa.Coaching">more details</a></small>
                 </div>
                 <!--work desc-->
             </div>
@@ -69,6 +69,31 @@
 <!--container-->
 
 <div class="divide30"></div>
+
+<modal visible="showModal">
+
+
+
+
+    <div id "newsletter" ng-controller="NewsLetterController">
+
+        <!-- <h3 style="color:#ececec">Subscribe here</h3> -->
+
+        <form ng-submit="subscribeNewsLetter()" role="form" class="subscribe-form">
+            <div class="input-group">
+
+                <input type="email" class="form-control" required data-validation-required-message="Please enter email." ng-model="subscriber" placeholder="Enter email to subscribe">
+                <span class="input-group-btn">
+                                    <button class="btn  btn-theme-bg btn-lg"  type="submit">Ok</button>
+                                    <!--  -->
+                                </span>
+            </div>
+            <span ng-show="showSubMsg" style="color: #ffba00;"> Thanks For Subscription</span>
+        </form>
+    </div>
+
+
+</modal>
 <script>
     var winDow = $(window);
     // Needed variables

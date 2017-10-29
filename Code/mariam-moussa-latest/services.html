@@ -1,3 +1,4 @@
+<!-- <div ng-controller="ServicesController"> -->
 <div class="breadcrumb-wrap">
     <div class="container">
         <div class="row">
@@ -42,7 +43,10 @@
                                 <li>Team Personal Coaching</li>
                             </ul>
                             </p>
-                            <p><a href="#personal" class="btn  border-theme">Read more</a></p></em>
+                            <!-- <p><a href="#!services#personal" class="btn  border-theme">Read more</a></p></em> -->
+                        <p><button style="background: #FFF;" ng-click="gotoBottom( 'personal' )" class="btn  border-theme">Read more</button></p>
+                        </em>
+
                     </div>
                 </div>
             </div>
@@ -58,7 +62,9 @@
                                 <li>Team Professional Coaching</li>
                             </ul>
                             </p>
-                            <p><a href="#professional" class="btn  border-theme">Read more</a></p></em>
+                            <!-- <p><a href="#professional" class="btn  border-theme">Read more</a></p></em> -->
+                        <p><button style="background: #FFF;" ng-click="gotoBottom( 'professional' )" class="btn  border-theme">Read more</button></p>
+
                     </div>
                 </div>
             </div>
@@ -184,7 +190,7 @@
                         <!--price price-->
                         <div class="price-features">
                             <p align="justify">An ongoing intimate relationship between the coach and the team in the form of one-to-many sessions to take the team from where they are right now to where they want to be in the future in terms of team goals, growth and Organization
-                                and Relationship Systems Dynamics.<br/><br/><br/></p>
+                                and Relationship Systems Dynamics.<br/><br/></p>
                         </div>
                         <!--price features-->
                         <div class="price-action" align="left">
@@ -207,3 +213,5 @@
 </div>
 <!--.container-->
 <div class="divide30"></div>
+
+<!-- </div> -->

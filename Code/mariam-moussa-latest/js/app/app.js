@@ -173,12 +173,20 @@ var app = angular.module('mmapp', ['ui.calendar', 'ngRoute', 'ui.bootstrap', 'an
 
             }).when('/services', {
                 templateUrl: 'services.html',
-                // controller: 'LoginController',
+                controller: 'ServicesController',
                 access: {
                     restricted: false
                 }
 
-            }).when('/eve-life-tuning', {
+                // }).when('/services#personal', {
+                //     templateUrl: 'services.html',
+                //     // controller: 'LoginController',
+                //     access: {
+                //         restricted: false
+                //     }
+
+            })
+            .when('/eve-life-tuning', {
                 templateUrl: 'eve-life-tuning.html',
                 // controller: 'LoginController',
                 access: {
@@ -223,6 +231,7 @@ var app = angular.module('mmapp', ['ui.calendar', 'ngRoute', 'ui.bootstrap', 'an
         //        $locationProvider.html5Mode(true);
     }
 ]).run(run);
+
 
 
 
