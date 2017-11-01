@@ -73,9 +73,9 @@ app.controller('BookingController', function($scope, $http, $filter, $timeout) {
                 var maildata = {};
                 maildata.message = $scope.reservationObject.message;
                 $http({
-                        url: 'http://207.154.226.195:3000/api/sendbookingmail',
+                        url: 'http://127.0.0.1:3000/api/sendbookingmail',
                         method: "POST",
-                        data: $.param(maildata),
+                        data: $.param($scope.reservationObject),
                         dataType: 'json',
                         headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
                     })

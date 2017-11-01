@@ -22,7 +22,7 @@ app.controller('ViewController', function($scope, $compile, $http, $route, uiCal
         }).then(function successCallback(response) {
             responseData = response.data;
             $scope.events.length = 0;
-            alert("hawhaw" + JSON.stringify(responseData));
+            //  alert("hawhaw" + JSON.stringify(responseData));
             console.log("respnse data" + JSON.stringify(responseData));
             angular.forEach(responseData,
                 function(item) {

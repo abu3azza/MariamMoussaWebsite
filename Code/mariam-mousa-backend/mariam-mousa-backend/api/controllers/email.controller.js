@@ -1,15 +1,27 @@
 var nodemailer = require('nodemailer');
-var config = require('../data/config.js')
-
+var config = require('../data/config.js');
+var JSON = require('json');
+var parser = require('json-parser');
 
 
 module.exports.sendBookingEmail = function(req, res) {
 
+    console.log(req.body.firstname);
+    console.log(req.body.lastname);
+    console.log(req.body.date);
+    var timeSlot = parser.parse(req.body.timeslot);
+    console.log(timeSlot.name);
+    console.log(req.body.message);
+    console.log(req.body.email);
+    console.log(req.body.phone);
+    var mailBody = "You have a pending reservation from " + req.body.firstname + " " + req.body.lastname +
+        ".\r Reservation Date :" + req.body.date + "\r Time :" + timeSlot.name + "\r Reserver Phone :" + req.body.phone +
+        "\r Reserver mail :" + req.body.email + "\r Reservation message :" + req.body.message + ".";
     var mailOptions = {
         from: config.BOOKING_FROM_MMEmail,
         to: config.BOOKING_TO_MMEmail,
         subject: config.BOOKING_SUBJECT,
-        text: req.body.message
+        text: mailBody
     };
 
 
