@@ -78,9 +78,9 @@
                         <li><a href="https://www.youtube.com/channel/UCHBESP7XIzu7fi8z6jhfduw" target="_blank"><i class="fa fa-youtube"></i></a></li>
                     </ul>
                 </div>
-                <div class="col-sm-8 text-right">
+                <div ng-controller="ServicesController" class="col-sm-8 text-right">
                     <ul class="list-inline top-dark-right">
-                        <li><a href="#contact-us"><i class="fa fa-user"></i> Contact Us</a></li>
+                        <li><button style="background: transparent;border: aliceblue;" ng-click="gotoBottom( 'contact-us' )"><i class="fa fa-user"></i> Contact Us</button></li>
                     </ul>
                     <div class="search">
                         <form role="form">
