@@ -5,17 +5,22 @@
  */
 
 
-app.controller('ViewController', function($scope, $compile, $http, $route, uiCalendarConfig) {
+app.controller('ViewController', function($scope, $compile, $http, $timeout, $route, uiCalendarConfig) {
     $scope.eventObject = {};
     $scope.freeReservationSlots = ["1", "2"];
     $scope.selectedSlot = "halsbala";
     $scope.showModal = false;
     $scope.buttonClicked = "";
     $scope.eventSources = [];
+
     $scope.events = [];
 
     function init() {
         var responseData;
+        $timeout(function() {
+            $('#calendar').fullCalendar('render');
+            $('#calendar').fullCalendar('rerenderEvents');
+        }, 0);
         $http({
             method: 'GET',
             url: 'http://207.154.226.195:3000/api/getallreservations'
@@ -48,6 +53,10 @@ app.controller('ViewController', function($scope, $compile, $http, $route, uiCal
 
     function refreshCalendar() {
         var responseData;
+        $timeout(function() {
+            $('#calendar').fullCalendar('render');
+            $('#calendar').fullCalendar('rerenderEvents');
+        }, 0);
         $http({
             method: 'GET',
             url: 'http://207.154.226.195:3000/api/getallreservations'
@@ -178,6 +187,7 @@ app.controller('ViewController', function($scope, $compile, $http, $route, uiCal
     };
     /* Change View */
     $scope.renderCalender = function(calendar) {
+
         if (uiCalendarConfig.calendars[calendar]) {
             uiCalendarConfig.calendars[calendar].fullCalendar('render');
         }

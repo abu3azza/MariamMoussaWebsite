@@ -1,7 +1,7 @@
 angular.module('mmapp').controller('NavigationController', NavigationController);
 
 // app.controller('NavigationController', ['$scope', '$location', function($scope, $location) {
-function NavigationController($http, $window, $location, AuthFactory, jwtHelper) {
+function NavigationController($http, $window, $location, AuthFactory, jwtHelper, $anchorScroll) {
     var vm = this;
     var loggedInUser;
     var token = $window.sessionStorage.token;
@@ -20,6 +20,7 @@ function NavigationController($http, $window, $location, AuthFactory, jwtHelper)
     }
 
     vm.getClass = function(path) {
+
         return ($location.path().substr(0, path.length) === path) ? 'active' : '';
     };
 

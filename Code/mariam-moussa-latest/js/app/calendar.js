@@ -57,13 +57,13 @@ angular.module('ui.calendar', [])
             var sourceEventsSerialId = 1;
             // @return {String} fingerprint of the source object and its events array
             this.sourceFingerprint = function(source) {
-                var fp = '' + (source.__id || (source.__id = sourceSerialId++));
+                // var fp = '' + (source.__id || (source.__id = sourceSerialId++));
                 var events = angular.isObject(source) && source.events;
 
                 if (events) {
-                    fp = fp + '-' + (events.__id || (events.__id = sourceEventsSerialId++));
+                    // fp = fp + '-' + (events.__id || (events.__id = sourceEventsSerialId++));
                 }
-                return fp;
+                // return fp;
             };
 
             // @return {Array} all events from all sources

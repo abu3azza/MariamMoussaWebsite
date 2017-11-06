@@ -1,5 +1,5 @@
 var app = angular.module('mmapp', ['ui.calendar', 'ngRoute', 'ui.bootstrap', 'angular-jwt']).config(['$routeProvider', '$httpProvider',
-    function($routeProvider, $httpProvider) {
+    function($routeProvider, $httpProvider, $window) {
         $httpProvider.interceptors.push('AuthInterceptor');
         $httpProvider.defaults.useXDomain = true;
         $routeProvider
@@ -237,6 +237,7 @@ var app = angular.module('mmapp', ['ui.calendar', 'ngRoute', 'ui.bootstrap', 'an
 
 function run($rootScope, $location, $window, AuthFactory) {
     $rootScope.$on('$routeChangeStart', function(event, nextRoute, currentRoute) {
+        $window.scrollTo(0, 0);
         if (nextRoute.access !== undefined && nextRoute.access.restricted && !$window.sessionStorage.token && !AuthFactory.isLoggedIn) {
             event.preventDefault();
             $location.path('/');
