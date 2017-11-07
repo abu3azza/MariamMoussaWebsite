@@ -44,8 +44,10 @@ module.exports.sendAcceptEmail = function(req, res) {
         from: config.ACC_REJ_FROM_MMEmail,
         to: req.body.email,
         subject: config.ACC_SUBJECT,
-        text: 'Dear ' + req.body.name + ', \r ' + config.ACC_MES + '. Awaiting you on ' + req.body.date +
-            ' ' + (req.body.timeslot || '') + '. \r \r Sincerely, \r Mariam Moussa Coaching team'
+        text: 'Dear ' + req.body.name + ', \r ' + config.ACC_MES + '. Awaiting you on ' 
+        + req.body.date +
+            ' ' + (req.body.timeslot || '') 
+            + '\r\r Best Regards,\rMariam Moussa, CPCC, ACC\rCertified Personal & Professional Co-Active Coach'
     };
     var funcResponse = sendEmail(mailOptions);
     if (funcResponse.error) {
