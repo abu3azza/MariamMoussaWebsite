@@ -4,7 +4,7 @@ var JSON = require('json');
 var parser = require('json-parser');
 
 
-module.exports.sendBookingEmail = function(req, res) {
+module.exports.sendBookingEmail = function (req, res) {
 
     console.log(req.body.firstname);
     console.log(req.body.lastname);
@@ -38,16 +38,20 @@ module.exports.sendBookingEmail = function(req, res) {
     }
 };
 
-module.exports.sendAcceptEmail = function(req, res) {
+module.exports.sendAcceptEmail = function (req, res) {
 
     var mailOptions = {
         from: config.ACC_REJ_FROM_MMEmail,
         to: req.body.email,
         subject: config.ACC_SUBJECT,
-        text: 'Dear ' + req.body.name + ', \r ' + config.ACC_MES + '. Awaiting you on ' 
-        + req.body.date +
-            ' ' + (req.body.timeslot || '') 
-            + '\r\r Best Regards,\rMariam Moussa, CPCC, ACC\rCertified Personal & Professional Co-Active Coach'
+        text: 'Dear ' + req.body.name + ', \r ' + 'Congratulations on taking your first step towards investing in yourself!' +
+        ' \r Your sample session has been confirmed on ' + req.body.date + ' ' + (req.body.timeslot || '')
+        + '. \r\r The sample session is carried by phone. I will be waiting for your call at the exact time of the session.' +
+        'The number you should call is 01222318990.' +
+        ' \r\r Looking forwards to coaching you! \r\r'
+        + 'Best Regards,' +
+        '\rMariam Moussa, CPCC, ACC \r'
+        + ' Certified Personal & Professional Co-Active Coach'
     };
     var funcResponse = sendEmail(mailOptions);
     if (funcResponse.error) {
@@ -62,14 +66,14 @@ module.exports.sendAcceptEmail = function(req, res) {
     }
 };
 
-module.exports.sendRejectEmail = function(req, res) {
+module.exports.sendRejectEmail = function (req, res) {
 
     var mailOptions = {
         from: config.ACC_REJ_FROM_MMEmail,
         to: req.body.email,
         subject: config.REJ_SUBJECT,
         text: 'Dear ' + req.body.name + ', \r ' + config.REJ_MES + ' on ' + req.body.date +
-            ' at ' + (req.body.timeslot || '') + '. \r \r Sincerely, \r Mariam Moussa Coaching team.'
+        ' at ' + (req.body.timeslot || '') + '. \r \r Sincerely, \r Mariam Moussa Coaching team.'
     };
 
 
@@ -90,7 +94,7 @@ module.exports.sendRejectEmail = function(req, res) {
 
 
 
-var sendEmail = function(mailOptions) {
+var sendEmail = function (mailOptions) {
     var funcResponse = {};
     // var transporter = nodemailer.createTransport({
     //     host: 'localhost',
@@ -117,7 +121,7 @@ var sendEmail = function(mailOptions) {
 
 
 
-    transporter.sendMail(mailOptions, function(error, info) {
+    transporter.sendMail(mailOptions, function (error, info) {
         if (error) {
             console.log("errorrrr===========" + error);
             // res
