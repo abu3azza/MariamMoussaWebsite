@@ -44,11 +44,11 @@ module.exports.sendAcceptEmail = function (req, res) {
         from: config.ACC_REJ_FROM_MMEmail,
         to: req.body.email,
         subject: config.ACC_SUBJECT,
-        text: 'Dear ' + req.body.name + ', \r ' + 'Congratulations on taking your first step towards investing in yourself!' +
-        ' \r Your sample session has been confirmed on ' + req.body.date + ' ' + (req.body.timeslot || '')
-        + '. \r\r The sample session is carried by phone. I will be waiting for your call at the exact time of the session.' +
+        text: 'Dear ' + req.body.name + ', \r' + 'Congratulations on taking your first step towards investing in yourself!' +
+        ' \rYour sample session has been confirmed on ' + req.body.date + ' ' + (req.body.timeslot || '')
+        + '. \r\rThe sample session is carried by phone. I will be waiting for your call at the exact time of the session.' +
         'The number you should call is 01222318990.' +
-        ' \r\r Looking forwards to coaching you! \r\r'
+        '\r\rLooking forwards to coaching you! \r\r'
         + 'Best Regards,' +
         '\rMariam Moussa, CPCC, ACC \r'
         + ' Certified Personal & Professional Co-Active Coach'
@@ -72,12 +72,12 @@ module.exports.sendRejectEmail = function (req, res) {
         from: config.ACC_REJ_FROM_MMEmail,
         to: req.body.email,
         subject: config.REJ_SUBJECT,
-        text: 'Dear ' + req.body.name + ', \r\r ' + 'Congratulations on taking your first step towards investing in yourself!'
-        + ' \r\r'
+        text: 'Dear ' + req.body.name + ', \r\r' + 'Congratulations on taking your first step towards investing in yourself!'
+        + '\r\r'
         + 'As eager I am to start coaching, as sorry I am that the time slot you have chosen, unfortunately, won\'t be possible. \r\r'
         + 'You could register for a new slot on the website or we could reach a consensus directly here.\r\r'
         + 'Thank you for understanding and looking forwards to our session together!\r\r'
-        + 'Best Regards, \r Mariam Moussa, CPCC, ACC \r'
+        + 'Best Regards, \rMariam Moussa, CPCC, ACC \r'
         + 'Certified Personal & Professional Coach'
     };
 
