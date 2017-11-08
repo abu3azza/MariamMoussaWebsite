@@ -44,14 +44,14 @@ module.exports.sendAcceptEmail = function (req, res) {
         from: config.ACC_REJ_FROM_MMEmail,
         to: req.body.email,
         subject: config.ACC_SUBJECT,
-        text: 'Dear ' + req.body.name + ', \r' + 'Congratulations on taking your first step towards investing in yourself!' +
+        text: 'Dear ' + req.body.name + ', \r\r' + 'Congratulations on taking your first step towards investing in yourself!' +
         ' \rYour sample session has been confirmed on ' + req.body.date + ' ' + (req.body.timeslot || '')
         + '. \r\rThe sample session is carried by phone. I will be waiting for your call at the exact time of the session.' +
         'The number you should call is 01222318990.' +
         '\r\rLooking forwards to coaching you! \r\r'
         + 'Best Regards,' +
         '\rMariam Moussa, CPCC, ACC \r'
-        + ' Certified Personal & Professional Co-Active Coach'
+        + 'Certified Personal & Professional Co-Active Coach'
     };
     var funcResponse = sendEmail(mailOptions);
     if (funcResponse.error) {
