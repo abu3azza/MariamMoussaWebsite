@@ -72,8 +72,13 @@ module.exports.sendRejectEmail = function (req, res) {
         from: config.ACC_REJ_FROM_MMEmail,
         to: req.body.email,
         subject: config.REJ_SUBJECT,
-        text: 'Dear ' + req.body.name + ', \r ' + config.REJ_MES + ' on ' + req.body.date +
-        ' at ' + (req.body.timeslot || '') + '. \r \r Sincerely, \r Mariam Moussa Coaching team.'
+        text: 'Dear ' + req.body.name + ', \r\r ' + 'Congratulations on taking your first step towards investing in yourself!'
+        + ' on ' + req.body.date + ' at ' + (req.body.timeslot || '') + ' \r\r' +
+        + 'As eager I am to start coaching, as sorry I am that the time slot you have chosen, unfortunately, won\'t be possible. \r\r'
+        + 'You could register for a new slot on the website or we could reach a consensus directly here.\r\r'
+        + 'Thank you for understanding and looking forwards to our session together!\r\r'
+        + 'Best Regards, \r Mariam Moussa, CPCC, ACC \r'
+        + 'Certified Personal & Professional Coach'
     };
 
 
