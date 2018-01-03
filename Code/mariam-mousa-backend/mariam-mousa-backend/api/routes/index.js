@@ -6,12 +6,17 @@ var ctrlEmail = require('../controllers/email.controller.js');
 var ctrlMailChimp = require('../controllers/mailchimp.controller.js');
 var ctrlUsers = require('../controllers/user.controller.js');
 var ctrlBrochure = require('../controllers/brochure.controller.js');
+var ctrlUpload = require('../controllers/fileupload.controller.js');
 var cors = require('cors');
 
 router.all('/*', function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "X-Requested-With, Content-Type");
-    res.header("Access-Control-Allow-Methods", "GET, POST", "PUT");
+    // res.header("Access-Control-Allow-Headers", "X-Requested-With, Content-Type");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.header("Access-Control-Allow-Methods", "GET, POST", "PUT", "OPTIONS");
+    // res.setHeader("Access-Control-Allow-Methods", "POST, PUT, OPTIONS, DELETE, GET");
+    // res.header("Access-Control-Allow-Origin", "http://127.0.0.1:8082");
+
     next();
 });
 
@@ -66,6 +71,11 @@ router
 router
     .route('/download')
     .get(ctrlBrochure.download);
+
+router
+    .route('/upload')
+    .post(ctrlUpload.upload);
+
 
 
 module.exports = router;
