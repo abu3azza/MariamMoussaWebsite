@@ -4,7 +4,7 @@ var SelectedArticles = mongoose.model('SelectedArticles');
 
 
 
-module.exports.add = function (req, res, next) {
+module.exports.add = function(req, res, next) {
     console.log('adding new article');
 
     try {
@@ -27,7 +27,7 @@ module.exports.add = function (req, res, next) {
             publishDate: publishDate,
             imagePath: imagePath
 
-        }, function (err, article) {
+        }, function(err, article) {
             if (err) {
                 console.log(err);
                 res.status(400).json(err);
@@ -41,7 +41,7 @@ module.exports.add = function (req, res, next) {
     }
 };
 
-module.exports.articlesGetAll = function (req, res) {
+module.exports.articlesGetAll = function(req, res) {
 
 
     console.log('GET the articles');
@@ -49,7 +49,7 @@ module.exports.articlesGetAll = function (req, res) {
 
     Articles
         .find()
-        .exec(function (err, articles) {
+        .exec(function(err, articles) {
             console.log("Found articles", articles.length);
             res
                 .json(articles);
@@ -57,7 +57,7 @@ module.exports.articlesGetAll = function (req, res) {
 
 };
 
-module.exports.addSelectedArticles = function (req, res, next) {
+module.exports.addSelectedArticles = function(req, res, next) {
     console.log('adding new selected articles');
 
 
@@ -81,7 +81,7 @@ module.exports.addSelectedArticles = function (req, res, next) {
             publishDate: publishDate,
             imagePath: imagePath
 
-        }, function (err, databaseResp) {
+        }, function(err, databaseResp) {
             if (err) {
                 console.log(err);
                 res.status(400).json(err);
@@ -94,7 +94,7 @@ module.exports.addSelectedArticles = function (req, res, next) {
 
     }
 };
-module.exports.articlesGetSelected = function (req, res) {
+module.exports.articlesGetSelected = function(req, res) {
 
 
     console.log('GET the selected Articles');
@@ -102,18 +102,18 @@ module.exports.articlesGetSelected = function (req, res) {
 
     SelectedArticles
         .find()
-        .exec(function (err, articles) {
+        .exec(function(err, articles) {
             console.log("Found Articles", articles.length);
             res
                 .json(articles);
         });
 
 };
-module.exports.deleteArticle = function (req, res) {
+module.exports.deleteArticle = function(req, res) {
 
 
     console.log("deleting Article");
-    Articles.remove({ _id: req.body._id }, function (err) {
+    Articles.remove({ _id: req.body._id }, function(err) {
         if (err) {
             console.log("cannot delete =>" + err)
             res.status(400).json(err);
@@ -126,11 +126,11 @@ module.exports.deleteArticle = function (req, res) {
     });
 
 };
-module.exports.deleteSelectedArticle = function (req, res) {
+module.exports.deleteSelectedArticle = function(req, res) {
 
 
     console.log("deleting selected Article");
-    SelectedArticles.remove({ _id: req.body._id }, function (err) {
+    SelectedArticles.remove({ _id: req.body._id }, function(err) {
         if (err) {
             console.log("cannot delete =>" + err)
             res.status(400).json(err);
@@ -144,13 +144,13 @@ module.exports.deleteSelectedArticle = function (req, res) {
 
 };
 
-module.exports.articlesGetOne = function (req, res) {
+module.exports.articlesGetOne = function(req, res) {
     var id = req.query.id;
     console.log('GET Article by ID:', id);
 
     SelectedArticles
         .findById(id)
-        .exec(function (err, article) {
+        .exec(function(err, article) {
             if (err) {
                 console.log("cannot get article =>" + err)
                 res.status(400).json(err);

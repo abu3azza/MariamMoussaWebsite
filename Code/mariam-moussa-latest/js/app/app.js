@@ -156,6 +156,13 @@ var app = angular.module('mmapp', ['ui.calendar', 'ngRoute', 'ui.bootstrap', "ch
                         restricted: false
                     }
 
+                }).when('/manageArticles', {
+                    templateUrl: 'manageArticiles.html',
+                    controller: 'MArticlesController',
+                    access: {
+                        restricted: false
+                    }
+
                 }).when('/articles', {
                     templateUrl: 'articles.html',
                     // controller: 'LoginController',
