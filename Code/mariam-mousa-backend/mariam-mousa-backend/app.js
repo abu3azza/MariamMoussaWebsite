@@ -22,12 +22,16 @@ app.use(function(req, res, next) {
 
 // Set static directory before defining routes
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'uploads')));
+
+
 
 // Enable parsing of posted forms
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
 // Add some routing
 app.use('/api', routes);
+
 
 // app.use(function(err, req, res, next) {
 
@@ -45,4 +49,16 @@ app.use('/api', routes);
 var server = app.listen(app.get('port'), function() {
     var port = server.address().port;
     console.log('Magic happens on port ' + port);
+});
+
+//not used currently
+app.get('/getimgbydir/:img_name', function(req, res) {
+    //calling the function from index.js class using routes object..
+    res.sendFile('/Users/nadernaguib/MariamMoussaWebsite/Code/mariam-mousa-backend/mariam-mousa-backend/uploads/' + req.params.img_name, function(error) {
+        if (error)
+            console.log(error.message);
+        else
+            console.log('File transferd successfully.');
+    })
+
 });

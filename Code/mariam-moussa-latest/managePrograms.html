@@ -1,0 +1,99 @@
+<div class="container">
+    <div class="divide30"></div>
+    <h3>Manage Programs</h1>
+        <div class="divide30"></div>
+
+        <h5>Add New Program :</h5>
+        <div class="divide5"></div>
+        <form ng-controller="MProgramController as up" name="up.upload_form" class="sky-form">
+            <div class="row">
+                <div class="col-xs-4">
+                    <div class="input-group">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-italic"></span></span>
+                        <input type="text" class="form-control" ng-model="up.newProgram.title" placeholder="Title">
+                    </div>
+                </div>
+                <div class="col-xs-4">
+                    <div class="input-group">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-link"></span></span>
+                        <input type="text" ng-model="up.newProgram.videoLink" class="form-control" placeholder="Video Embeded Link">
+                    </div>
+                </div>
+            </div>
+            <div class="divide20"></div>
+            <div class="row">
+
+                <div class="col-md-12 col-xs-4">
+                    <br> Add Program Describtion :
+                    <br>
+                    <br>
+                    <div class="form-group">
+                        <textarea name="editor1" class="content-box" ng-model="editor1" markdown-editor="{  'iconlibrary': 'fa', addExtraButtons: true, resize: 'vertical'}" on-fullscreen="onFullScreenCallback()" on-fullscreen-exit="onFullScreenExitCallback()" rows="10">
+                                    </textarea>
+                    </div>
+                </div>
+                <div class="col-md-12 col-xs-4">
+                    <div class="form-group">
+                        <button ng-click="getHTML()">getHTML</button>
+                        <label for="comment">Preview Result:</label>
+                        <div marked="editor1" class="markdown outline" style="padding: 20px">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <br>
+            <div class="row">
+                <div class="col-xs-4">
+                    Add Program Icon :
+                    <br>
+                    <br>
+                    <input type="file" ngf-select ng-model="up.file" name="file" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="20MB" /> Maximum 20M
+                </div>
+                <div class="col-xs-4">
+                    Image thumbnail:
+                    <img style="width:100px;" ngf-thumbnail="up.file || './img/add_-ile.png'" />
+                    <i ng-show="up.upload_form.file.$error.required">*required</i><br>
+                    <i ng-show="up.upload_form.file.$error.maxSize">File too large 
+                                {{up.file.size / 1000000|number:1}}MB: max 20M</i>
+                    <!-- <button ng-click="up.submit()">submit</button> -->
+                    <p>{{up.progress}}
+                </div>
+            </div>
+            <div class="divide10"></div>
+            <footer class="text-left">
+                <button ng-click="up.submit()" class="btn btn-theme-bg btn-lg">Submit</button>
+            </footer>
+            <div class="divide30"></div>
+            <div class="divide30"></div>
+        </form>
+
+        <div class="divide30"></div>
+        <h5 style="display: inline-block;">Select Programs ( Choose for Addition ) :</h5><span style="color: red;">  Max 4 Programs</span>
+        <div class="divide5"></div>
+        <div style="background-color: #CDE;">
+            <div ng-repeat="prog in programs">
+                <input type="checkbox" data-checklist-model="foundPrograms.programs" data-checklist-value="prog"> {{prog.title}}
+            </div>
+            <button ng-click="checkAllPrograms()" style="margin-right: 10px">Check all</button>
+            <button ng-click="uncheckAllPrograms()" style="margin-right: 10px">Uncheck all</button>
+            <button ng-click="save()" style="margin-right: 10px">Save</button>
+            <button ng-click="deletePrograms()">Delete</button>
+        </div>
+        <div class="divide30"></div>
+        <div class="divide30"></div>
+
+
+        <h5>Selected Programs ( Choose for Deletion ) :</h5>
+        <div class="divide5"></div>
+        <div style="background-color: #CDE;">
+            <div ng-repeat="sprog in selectedPrograms">
+                <input type="checkbox" data-checklist-model="toBeSelectedPrograms.programs" data-checklist-value="sprog"> {{sprog.title}}
+            </div>
+            <button ng-click="checkAllSelectedPrograms()" style="margin-right: 10px">Check all</button>
+            <button ng-click="uncheckAllSelectedPrograms()" style="margin-right: 10px">Uncheck all</button>
+            <button ng-click="deleteSelectedProgram()">Delete</button>
+        </div>
+        <div class="divide30"></div>
+        <div class="divide30"></div>
+</div>

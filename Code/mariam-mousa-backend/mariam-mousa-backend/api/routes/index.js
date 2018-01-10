@@ -7,6 +7,9 @@ var ctrlMailChimp = require('../controllers/mailchimp.controller.js');
 var ctrlUsers = require('../controllers/user.controller.js');
 var ctrlBrochure = require('../controllers/brochure.controller.js');
 var ctrlUpload = require('../controllers/fileupload.controller.js');
+var ctrlCampaign = require('../controllers/campaign.controller.js');
+var ctrlProgram = require('../controllers/program.controller.js');
+
 var cors = require('cors');
 
 router.all('/*', function(req, res, next) {
@@ -76,6 +79,57 @@ router
     .route('/upload')
     .post(ctrlUpload.upload);
 
+router
+    .route('/addCampaign')
+    .post(ctrlCampaign.add);
 
+router
+    .route('/getCampaigns')
+    .get(ctrlCampaign.campaignsGetAll);
+
+router
+    .route('/addSelectedCampaigns')
+    .post(ctrlCampaign.addSelectedCampaigns);
+
+router
+    .route('/getSelectedCampaigns')
+    .get(ctrlCampaign.campaignsGetSelected);
+
+router
+    .route('/deleteSelectedCampaign')
+    .put(ctrlCampaign.deleteSelectedCampaign);
+
+router
+    .route('/deleteCampaign')
+    .put(ctrlCampaign.deleteCampaign);
+
+router
+    .route('/addProgram')
+    .post(ctrlProgram.add);
+
+router
+    .route('/getPrograms')
+    .get(ctrlProgram.programsGetAll);
+
+router
+    .route('/deleteProgram')
+    .put(ctrlProgram.deleteProgram);
+
+router
+    .route('/addSelectedPrograms')
+    .post(ctrlProgram.addSelectedPrograms);
+
+router
+    .route('/getSelectedPrograms')
+    .get(ctrlProgram.programsGetSelected);
+
+router
+    .route('/deleteSelectedProgram')
+    .put(ctrlProgram.deleteSelectedProgram);
+
+
+router
+    .route('/getProgramById')
+    .get(ctrlProgram.programsGetOne);
 
 module.exports = router;

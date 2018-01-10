@@ -1,5 +1,5 @@
 'use strict';
-var app = angular.module('mmapp', ['ui.calendar', 'ngRoute', 'ui.bootstrap',
+var app = angular.module('mmapp', ['ui.calendar', 'ngRoute', 'ui.bootstrap', "checklist-model",
         'angular-jwt', 'ngFileUpload', 'hc.marked', 'hljs', 'angular-markdown-editor'
     ])
     .config(['$routeProvider', '$httpProvider', 'markedProvider', 'hljsServiceProvider',
@@ -61,6 +61,20 @@ var app = angular.module('mmapp', ['ui.calendar', 'ngRoute', 'ui.bootstrap',
                 }).when('/login', {
                     templateUrl: 'login.html',
                     controller: 'LoginController',
+                    access: {
+                        restricted: false
+                    }
+
+                }).when('/addCampaign', {
+                    templateUrl: 'newCampaign.html',
+                    controller: 'CampaignController',
+                    access: {
+                        restricted: false
+                    }
+
+                }).when('/managePrograms', {
+                    templateUrl: 'managePrograms.html',
+                    controller: 'MProgramController',
                     access: {
                         restricted: false
                     }
@@ -179,7 +193,14 @@ var app = angular.module('mmapp', ['ui.calendar', 'ngRoute', 'ui.bootstrap',
 
                 }).when('/pro-life-tuning', {
                     templateUrl: 'pro-life-tuning.html',
-                    // controller: 'LoginController',
+                    controller: 'ProgramController',
+                    access: {
+                        restricted: false
+                    }
+
+                }).when('/pro-life-tuning/:id', {
+                    templateUrl: 'pro-life-tuning.html',
+                    controller: 'ProgramController',
                     access: {
                         restricted: false
                     }

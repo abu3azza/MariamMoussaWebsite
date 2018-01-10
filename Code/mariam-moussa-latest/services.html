@@ -76,8 +76,7 @@
                         <h3>Coaching Programs</h3>
                         <em><p>
                                 <ul class="list-unstyled">
-                                <li><a href="#!pro-life-tuning"><b><u>LIFE TUNING PROGRAM</u></b></a></li>
-                                <li><a href="#!pro-coaching-for-managers"><b><u>COACHING FOR MANGERS PROGRAM</u></b></a></li>
+                                <li ng-repeat="sprog in selectedPrograms"><a href="#!pro-life-tuning/{{sprog._id}}"><b><u>{{sprog.title}}</u></b></a></li>
                             </ul>
                             </p></em>
                     </div>

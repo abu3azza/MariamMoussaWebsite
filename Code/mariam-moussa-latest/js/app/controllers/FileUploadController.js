@@ -13,6 +13,7 @@ app.controller('FileUploadController', ['Upload', '$window', function(Upload, $w
         }).then(function(resp) { //upload function returns a promise
             if (resp.data.error_code === 0) { //validate success
                 $window.alert('Success ' + resp.config.data.file.name + 'uploaded. Response: ');
+                $window.alert('Success ' + resp.data.imgname);
             } else {
                 $window.alert('an error occured');
             }

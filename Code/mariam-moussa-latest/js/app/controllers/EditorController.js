@@ -1,4 +1,4 @@
-app.controller("EditorController", ["$rootScope", "$scope", "marked", function MarkdownController($rootScope, $scope, marked) {
+app.controller("EditorController", ["$rootScope", "$scope", "marked", function($rootScope, $scope, marked) {
     $scope.editor1 = "*This* **is** [markdown](https://daringfireball.net/projects/markdown/)\n and `{{ 1 + 2 }}` = {{ 1 + 2 }}";
     $scope.markdownService = marked('#TEST');
 

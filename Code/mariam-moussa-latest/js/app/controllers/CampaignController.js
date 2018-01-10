@@ -1,206 +1,183 @@
-app.controller('CampaignController', function($scope, $http, $filter, $timeout) {
-    $scope.campaignObject = {};
-
+app.controller('CampaignController', ['Upload', '$window', '$http', '$scope', function(Upload, $window, $http, $scope) {
+    // alert('hi campaign controller');
+    var vm = this;
+    vm.newCampaign = {};
+    $scope.campaigns = [];
+    $scope.selectedCampaigns = [];
 
     function init() {
-        // $('#datepicker').datepicker();
+        var responseData;
+        var responseData2;
+        $http({
+            method: 'GET',
+            url: 'http://localhost:3000/api/getCampaigns'
+        }).then(function successCallback(response) {
+            responseData = response.data;
+            // alert("respnse data" + JSON.stringify(responseData));
+            angular.forEach(responseData,
+                function(item) {
+                    $scope.campaigns.push(item);
+                });
+
+        }, function errorCallback(response) {
+            alert("error" + response);
+
+        });
+        $http({
+            method: 'GET',
+            url: 'http://localhost:3000/api/getSelectedCampaigns'
+        }).then(function successCallback(response) {
+            responseData2 = response.data;
+            // alert("respnse data" + JSON.stringify(responseData2));
+            angular.forEach(responseData2,
+                function(item) {
+                    $scope.selectedCampaigns.push(item);
+                });
+
+        }, function errorCallback(response) {
+            alert("error" + response);
+
+        });
     }
+
     init();
 
+    vm.submit = function() { //function to call on form submit
+        if (vm.upload_form.file.$valid && vm.file) { //check if from is valid
+            vm.upload(vm.file); //call upload function
+        }
+    }
+    vm.upload = function(file) {
+        // alert("File: =>" + JSON.stringify(file));
+        Upload.upload({
+            url: 'http://localhost:3000/api/upload', //webAPI exposed to upload the file
+            data: { file: file } //pass file as data, should be user ng-model
+        }).then(function(resp) { //upload function returns a promise
+            if (resp.data.error_code === 0) { //validate success
+                // $window.alert('Success ' + resp.config.data.file.name + 'uploaded. Response: ');
+                vm.addCampaign(resp.data.imgname);
 
-
-
-    $scope.showAlert = function() {
-        this.reservationObject.firstName = "Mina Karim";
-        //        // alert("hwhwhwhwhwhw");
+            } else {
+                $window.alert('an error occured');
+            }
+        }, function(resp) { //catch error
+            console.log('Error status: ' + resp.status);
+            $window.alert('Error status: ' + resp.status);
+        }, function(evt) {
+            console.log(evt);
+            var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+            console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
+            vm.progress = 'progress: ' + progressPercentage + '% '; // capture upload progress
+        });
+        alert("finish upload ");
     };
 
-    $scope.processDate = function(dt) {
-        return
-    };
+    vm.addCampaign = function(imgname) {
+        vm.newCampaign.path = imgname;
+        // $window.alert(JSON.stringify(vm.newCampaign));
 
-
-    $scope.addNewCampaign = function() {
-        //        // alert(JSON.stringify(this.reservationObject));
-
-        this.reservationObject.timeslot = angular.toJson(this.reservationObject.timeslot);
-        //        this.reservationObject.date.setHours(0, 0, 0, 0);
-        this.reservationObject.date = $filter('date')(this.reservationObject.date, 'MM-dd-yyyy');
-        //        // alert("da el ana 3awzo" + this.reservationObject.timeslot);
         $http({
-                url: 'http://207.154.226.195:3000/api/newreservation',
+                url: 'http://localhost:3000/api/addCampaign',
                 method: "POST",
-                data: $.param(this.reservationObject),
+                data: $.param(vm.newCampaign),
                 dataType: 'json',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
             })
-            .then(function successCallback(response) {
-                //                    // alert(response.data);
-                var maildata = {};
-                maildata.message = $scope.reservationObject.message;
+            .then(function(result) {
+                console.log(result);
+                alert("Campaign added successfully");
+
+            }).catch(function(error) {
+                console.log(error);
+            });
+    }
+
+    $scope.foundCampaigns = {
+        campaigns: []
+    };
+    $scope.toBeSelectedCampaigns = {
+        campaigns: []
+    };
+    $scope.checkAllCampaigns = function() {
+        $scope.foundCampaigns.campaigns = angular.copy($scope.campaigns);
+    };
+    $scope.uncheckAllCampaigns = function() {
+        $scope.foundCampaigns.campaigns = [];
+    };
+    $scope.checkAllSelectedCampaigns = function() {
+        $scope.toBeSelectedCampaigns.campaigns = angular.copy($scope.selectedCampaigns);
+    };
+    $scope.uncheckAllSelectedCampaigns = function() {
+        $scope.toBeSelectedCampaigns.campaigns = [];
+    };
+
+
+    $scope.save = function() {
+        // alert(JSON.stringify($scope.foundCampaigns.campaigns));
+
+        if (($scope.foundCampaigns.campaigns.length + $scope.selectedCampaigns.length) > 4) {
+            alert("Selected Campaigns must be 4 or less");
+        } else {
+            for (var i = 0; i < $scope.foundCampaigns.campaigns.length; i++) {
+                // alert($scope.foundCampaigns.campaigns[i]);
                 $http({
-                        url: 'http://207.154.226.195:3000/api/sendbookingmail',
+                        url: 'http://localhost:3000/api/addSelectedCampaigns',
                         method: "POST",
-                        data: $.param($scope.reservationObject),
+                        data: $.param($scope.foundCampaigns.campaigns[i]),
                         dataType: 'json',
                         headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
                     })
-                    .then(function successCallback(response) {
-                        // // alert("Email Sent " + response.data);
-                        $scope.toggleModal('Reservation Success');
-                        $scope.reservationObject = {};
-                        // this callback will be called asynchronously
-                        // when the response is available
-                    }, function errorCallback(response) {
-                        // // alert("error" + response.data);
-                        $scope.toggleModal('Reservation Does Not Success');
-                        // called asynchronously if an error occurs
-                        // or server returns response with an error status.
+                    .then(function(result) {
+                        console.log(result);
+
+                    }).catch(function(error) {
+                        console.log(error);
                     });
-                // this callback will be called asynchronously
-                // when the response is available
-            }, function errorCallback(response) {
-                consol.log("error" + response.data);
-                // called asynchronously if an error occurs
-                // or server returns response with an error status.
-            });
-
-    };
-
-
-    $scope.toggleModal = function(btnClicked) {
-        $scope.buttonClicked = btnClicked;
-        $scope.showModal = !$scope.showModal;
-    };
-
-    $scope.today = function() {
-        this.reservationObject.date = new Date();
-    };
-    $scope.today();
-
-    $scope.clear = function() {
-        this.reservationObject.date = null;
-    };
-
-    $scope.inlineOptions = {
-        customClass: getDayClass,
-        minDate: new Date(),
-        showWeeks: true
-    };
-
-    $scope.dateOptions = {
-        //dateDisabled: disabled,
-        formatYear: 'yy',
-        maxDate: new Date(2050, 5, 22),
-        minDate: new Date(),
-        startingDay: 1
-    };
-
-    // Disable weekend selection
-    //    function disabled(data) {
-    //        var date = data.date,
-    //                mode = data.mode;
-    //        return mode === 'day' && (date.getDay() === 0 || date.getDay() === 6);
-    //    }
-
-    $scope.toggleMin = function() {
-        $scope.inlineOptions.minDate = $scope.inlineOptions.minDate ? null : new Date();
-        $scope.dateOptions.minDate = $scope.inlineOptions.minDate;
-    };
-
-    $scope.toggleMin();
-
-    $scope.open1 = function() {
-        $scope.popup1.opened = true;
-    };
-
-
-
-    $scope.setDate = function(year, month, day) {
-        this.reservationObject.date = new Date(year, month, day);
-    };
-
-
-    $scope.format = 'yyyy/MM/dd';
-
-
-    $scope.popup1 = {
-        opened: false
-    };
-
-
-
-    var tomorrow = new Date();
-    tomorrow.setDate(tomorrow.getDate() + 1);
-    var afterTomorrow = new Date();
-    afterTomorrow.setDate(tomorrow.getDate() + 1);
-    $scope.events = [{
-            date: tomorrow,
-            status: 'full'
-        },
-        {
-            date: afterTomorrow,
-            status: 'partially'
-        }
-    ];
-
-    function getDayClass(data) {
-        var date = data.date,
-            mode = data.mode;
-        if (mode === 'day') {
-            var dayToCheck = new Date(date).setHours(0, 0, 0, 0);
-
-            for (var i = 0; i < $scope.events.length; i++) {
-                var currentDay = new Date($scope.events[i].date).setHours(0, 0, 0, 0);
-
-                if (dayToCheck === currentDay) {
-                    return $scope.events[i].status;
-                }
             }
+            alert("Saved Successfully");
         }
 
-        return '';
-    }
-});
-
-
-
-app.directive('modal', function() {
-    return {
-        template: '<div class="modal fade">' +
-            '<div class="modal-dialog">' +
-            '<div class="modal-content">' +
-            '<div class="modal-header">' +
-            '<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>' +
-            '<h4 class="modal-title">{{ buttonClicked }} </h4>' +
-            '</div>' +
-            '<div class="modal-body" ng-transclude></div>' +
-            '</div>' +
-            '</div>' +
-            '</div>',
-        restrict: 'E',
-        transclude: true,
-        replace: true,
-        scope: true,
-        link: function postLink(scope, element, attrs) {
-            scope.$watch(attrs.visible, function(value) {
-                if (value == true)
-                    $(element).modal('show');
-                else
-                    $(element).modal('hide');
-            });
-
-            $(element).on('shown.bs.modal', function() {
-                scope.$apply(function() {
-                    scope.$parent[attrs.visible] = true;
-                });
-            });
-
-            $(element).on('hidden.bs.modal', function() {
-                scope.$apply(function() {
-                    scope.$parent[attrs.visible] = false;
-                });
-            });
-        }
     };
-});
+    $scope.deleteSelectedCampaign = function() {
+        // alert(JSON.stringify($scope.toBeSelectedCampaigns.campaigns));
+
+        for (var i = 0; i < $scope.toBeSelectedCampaigns.campaigns.length; i++) {
+            // alert($scope.toBeSelectedCampaigns.campaigns[i]);
+            $http({
+                    url: 'http://localhost:3000/api/deleteSelectedCampaign',
+                    method: "PUT",
+                    data: $.param($scope.toBeSelectedCampaigns.campaigns[i]),
+                    dataType: 'json',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+                })
+                .then(function(result) {
+                    console.log(result);
+
+                }).catch(function(error) {
+                    console.log(error);
+                });
+        }
+        alert("Deleted Successfully");
+    }
+    $scope.deleteCampaign = function() {
+        // alert(JSON.stringify($scope.foundCampaigns.campaigns));
+
+        for (var i = 0; i < $scope.foundCampaigns.campaigns.length; i++) {
+            // alert($scope.foundCampaigns.campaigns[i]);
+            $http({
+                    url: 'http://localhost:3000/api/deleteCampaign',
+                    method: "PUT",
+                    data: $.param($scope.foundCampaigns.campaigns[i]),
+                    dataType: 'json',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+                })
+                .then(function(result) {
+                    console.log(result);
+
+                }).catch(function(error) {
+                    console.log(error);
+                });
+        }
+        alert("Deleted Successfully");
+    }
+}]);

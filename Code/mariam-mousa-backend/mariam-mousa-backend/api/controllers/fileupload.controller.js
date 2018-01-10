@@ -3,7 +3,7 @@ var multer = require('multer');
 
 module.exports.upload = function(req, res) {
 
-
+    var filename;
     console.log("bedayet el upload");
     var storage = multer.diskStorage({ //multers disk storage settings
         destination: function(req, file, cb) {
@@ -12,7 +12,8 @@ module.exports.upload = function(req, res) {
         filename: function(req, file, cb) {
             console.log("File :" + JSON.stringify(file));
             var datetimestamp = Date.now();
-            cb(null, file.fieldname + '-' + datetimestamp + '.' + file.originalname.split('.')[file.originalname.split('.').length - 1])
+            filename = file.fieldname + '-' + datetimestamp + '.' + file.originalname.split('.')[file.originalname.split('.').length - 1];
+            cb(null, filename)
         }
     });
     console.log("da el var storage " + storage);
@@ -28,6 +29,7 @@ module.exports.upload = function(req, res) {
             res.json({ error_code: 1, err_desc: err });
             return;
         }
-        res.json({ error_code: 0, err_desc: null });
+        console.log("da el file name" + filename);
+        res.json({ error_code: 0, err_desc: null, imgname: filename });
     })
 };
