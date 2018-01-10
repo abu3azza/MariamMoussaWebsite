@@ -126,7 +126,7 @@ module.exports.deleteArticle = function (req, res) {
     });
 
 };
-module.exports.deleteSelectedArticles = function (req, res) {
+module.exports.deleteSelectedArticle = function (req, res) {
 
 
     console.log("deleting selected Article");
