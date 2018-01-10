@@ -9,6 +9,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-animate.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-sanitize.js"></script>
 
+    <script src="./js/ng-file-upload/ng-file-upload-shim.min.js"></script>
+    <script src="./js/ng-file-upload/ng-file-upload.min.js"></script>
+    <!-- for no html5 browsers support -->
+
+
     <script src="https://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.5.0.js"></script>
     <meta name="keywords" content="Egypt, Middle East, Coaching, Co-Active Coaching, Personal Coaching, Corporate Coaching, Professional Coaching, Individual Coaching, Team Coaching, Coaching Services, Group Coaching, Coach, Coachee, Certified Coach, ICF Certified, CTI Certified, ACC, CPCC, Life Coach, Business Coach, Executive Coach, Transformational Coach, Coaching Relationship, Transformation, Fear, Stuck, Obstacles, Impact, Inspiring Quotes, Aliveness, Dreams, Passion, Life Purpose, Life Meaning, Potential, Values, Magnificence, Fulfillment, Spark, Purpose, Change, Growth, Self-Development, Development, Inspiration, Life Story, Quotes, Leadership, Leaders, Teams, Career Shifting, Transitioning, Entrepreneurship, Relationships, Habits, Perspectives, Values, Empowerment, Self-Confidence, Self-Discovery, Self-Awareness, Who Am I, Training, Webinars, Articles, Workshops, Day Events, Free Sample Session, Programs, Business Partners, ICF, CTI, Professionalism, Quality of Services, Compassion, Aliveness, Inspiration, Influence, Leadership, Challenges, Development, Learning, Positivity, Support, Understanding, Championing, Innovation, Individuality, Love, Social, People-oriented, Society, People, Corporate social responsibility, Writer, Secretary, Office assistant, Marketing, Events, Finance, Sales, Business development"
     />
@@ -24,6 +29,10 @@
 
     <!-- font awesome for icons -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="./node_modules/bootstrap-markdown/css/bootstrap-markdown.min.css">
+    <link rel="stylesheet" href="./css/angular-markdown-editor.css">
+
     <!-- flex slider css -->
     <link href="css/flexslider.css" rel="stylesheet" type="text/css" media="screen">
     <!-- animated css  -->
@@ -336,7 +345,21 @@
 
     <script type="text/javascript" src="js/angular-jwt.js"></script>
 
+
+    <script type="text/javascript" src="./node_modules/marked/lib/marked.js"></script>
+    <script type="text/javascript" src="./node_modules/angular-marked/dist/angular-marked.min.js"></script>
+    <script type="text/javascript" src="./node_modules/bootstrap-markdown/js/bootstrap-markdown.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.5.0/highlight.min.js"></script>
+    <script type="text/javascript" src="./node_modules/angular-highlightjs/src/angular-highlightjs.js"></script>
+
+    <!-- your ng-app file -->
+    <script type="text/javascript" src="./js/app/angular-markdown-editor.js"></script>
+    <script src='./js/app/checklist-model.js'></script>
+
     <script type="text/javascript" src="js/app/app.js"></script>
+
+    <script type="text/javascript" src="./node_modules/bootstrap-markdown/locale/bootstrap-markdown.fr.js"></script>
+
     <!-- <script type="text/javascript" src="js/app/controllers/NavigationController.js"></script> -->
     <script type="text/javascript" src="js/app/controllers/FAQController.js"></script>
 
@@ -352,6 +375,11 @@
     <script type="text/javascript" src="js/app/controllers/RegisterController.js"></script>
     <script type="text/javascript" src="js/app/controllers/NavigationController.js"></script>
     <script type="text/javascript" src="js/app/controllers/LoginController.js"></script>
+    <script type="text/javascript" src="js/app/controllers/FileUploadController.js"></script>
+    <script type="text/javascript" src="js/app/controllers/EditorController.js"></script>
+    <script type="text/javascript" src="js/app/controllers/CampaignController.js"></script>
+    <script type="text/javascript" src="js/app/controllers/MProgramController.js"></script>
+    <script type="text/javascript" src="js/app/controllers/ProgramController.js"></script>
     <script type="text/javascript" src="js/app/directives/NavbarDirective.js"></script>
     <script type="text/javascript" src="js/app/auth/auth-factory.js"></script>
     <script type="text/javascript" src="js/app/auth/auth-interceptor.js"></script>

@@ -5,7 +5,7 @@
         <div class="row">
 
             <div class="col-sm-12">
-                <h4 align="right">Coaching Programs - <small>Life Tuning Program</small></h4>
+                <h4 align="right">Coaching Programs - <small>{{program.title}}</small></h4>
 
             </div>
 
@@ -27,16 +27,16 @@
         </div>
         <div class="col-md-3">
 
-            <h3> <img src="img/program/life-tuning-logo.jpg" class="img-responsive" alt="Life Tuning">
+            <h3> <img ng-src="http://localhost:3000/{{program.path}}" class="img-responsive">
             </h3>
         </div>
         <div class="col-md-4">
         </div>
-        <div class="row">
+        <div ng-if="trustedVideo" class="row">
             <div class="col-md-12">
                 <div class="blog-post">
                     <div class="embed-responsive embed-responsive-16by9">
-                        <iframe width="560" height="315" src="https://www.youtube.com/embed/2Vme0FhrtGw" frameborder="0" allowfullscreen></iframe>
+                        <iframe width="560" height="315" ng-src="{{trustedVideo}}" frameborder="0" allowfullscreen></iframe>
                     </div>
                     <!--          <ul class="list-inline post-detail">
                             <li>by <a href="#">assan</a></li>
@@ -53,33 +53,15 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h3 style="color: #ffba00"> ‘LIFE TUNING’
+                    <h3 style="color: #ffba00"> ‘{{program.title}}’
 
-                        <small style="color: #1d8bc0">The 360 Personality Coaching Program</small></h3>
-                    <h3 class="heading">Description</h3>
-                    <p class="margin20" align="justify">
-                        LIFE TUNING is a one-month program that combines “Personality Analysis” with “Life Coaching”. The formula for the program is simple but effective:
-                        <p class="margin20" align="center"><i>
-“Personality Awareness + Individual Coaching = Steps Towards Healthier, More Productive Lives”
-</i></p>
-                        The program is a collaborative work between the Certified Personal & Professional Coach, Mariam Moussa, CPCC, ACC and the MBTI Certified Practitioner, Karim El-Shammaa; who have come together with the same vision of using their skilled expertise in order
-                        to empower, transform, and develop personalities to their fullest potential.
-                        <br/><br/> LIFE TUNING is composed of:
-                        <ul>
-                            <li>Group Sessions: To create space for awareness of individual differences between people through activities and discussions</li>
-                            <li>Individual Sessions: To receive customized coaching and create personal life action plans</li>
-                            <li>Written Exercises: To give you room for guided personal reflection</li>
-                            <li>Personality Readings: To give you deeper understanding of your personality’s dynamics</li>
+                        <h3 class="heading">Description</h3>
+                        <p ng-bind-html="trustedHTML" class="margin20" align="justify">
+
+                        </p>
+                        <ul class="pager">
+                            <li class="previous"><a href="#!services">&larr; Back</a></li>
                         </ul>
-                        <br/><br/> LIFE TUNING isn't just a workshop or a program that you will attend, it is a journey and a life-changing experience where you will be discovering yourself, understanding others, connecting with your inner jewels, being
-                        vulnerable in service of growth, being conscious and intentional in your choices, and building inspiring relationships with the whole group during the program.
-                        <br/><br/> The personality assessment that will be taught in this course is the Myers-Briggs Type Indicator (MBTI), the most globally popular personality assessment with businesses and individuals.
-                        <br/><br/> The coaching model used in the program is the Co-Active Model.
-
-                    </p>
-                    <ul class="pager">
-                        <li class="previous"><a href="#!services">&larr; Back</a></li>
-                    </ul>
                 </div>
 
             </div>

@@ -1,0 +1,21 @@
+<h1>editorr</h1>
+
+<div class="container" ng-controller="EditorController">
+
+    <div class="row">
+        <div class="col-md-12 col-lg-6">
+            <div class="form-group">
+                <textarea name="editor1" class="content-box" ng-model="editor1" markdown-editor="{  'iconlibrary': 'fa', addExtraButtons: true, resize: 'vertical'}" on-fullscreen="onFullScreenCallback()" on-fullscreen-exit="onFullScreenExitCallback()" rows="10">
+                        </textarea>
+            </div>
+        </div>
+        <div class="col-md-12 col-lg-6 fill">
+            <div class="form-group">
+                <button ng-click="getHTML()">getHTML</button>
+                <label for="comment">Preview Result:</label>
+                <div marked="editor1" class="markdown outline" style="padding: 20px">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
