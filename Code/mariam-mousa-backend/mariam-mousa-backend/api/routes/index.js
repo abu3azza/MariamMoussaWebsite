@@ -9,10 +9,11 @@ var ctrlBrochure = require('../controllers/brochure.controller.js');
 var ctrlUpload = require('../controllers/fileupload.controller.js');
 var ctrlCampaign = require('../controllers/campaign.controller.js');
 var ctrlProgram = require('../controllers/program.controller.js');
+var ctrlArticle = require('../controllers/articles.controller.js');
 
 var cors = require('cors');
 
-router.all('/*', function(req, res, next) {
+router.all('/*', function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     // res.header("Access-Control-Allow-Headers", "X-Requested-With, Content-Type");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -131,5 +132,36 @@ router
 router
     .route('/getProgramById')
     .get(ctrlProgram.programsGetOne);
+
+//======================== Articles ======================
+
+router
+    .route('/addArticle')
+    .post(ctrlArticle.add);
+
+router
+    .route('/getArticles')
+    .get(ctrlArticle.articlesGetAll);
+
+router
+    .route('/deleteArticle')
+    .put(ctrlArticle.deleteArticle);
+
+router
+    .route('/addSelectedArticles')
+    .post(ctrlArticle.addSelectedArticles);
+
+router
+    .route('/getSelectedArticles')
+    .get(ctrlArticle.articlesGetSelected);
+
+router
+    .route('/deleteSelectedArticle')
+    .put(ctrlArticle.deleteSelectedArticle);
+
+
+router
+    .route('/getArticleById')
+    .get(ctrlArticle.articlesGetOne);
 
 module.exports = router;

@@ -31,8 +31,8 @@ module.exports.add = function(req, res, next) {
                 res.status(201).json(prog);
             }
         });
-    } catch (next) {
-
+    } catch (err) {
+        console.log(err);
     }
 };
 
