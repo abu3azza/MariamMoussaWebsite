@@ -174,25 +174,63 @@ module.exports.articlesGetOne = function(req, res) {
         });
 
 };
+module.exports.articlesGetOne = function(req, res) {
+    var id = req.query.id;
+    console.log('GET Article by ID:', id);
 
-module.exports.getNextArticleId = function(req, res) {
-        var id = req.query.id;
-        console.log('GET Article by ID:', id);
+    Articles
+        .findOne({ _id: id })
+        .exec(function(err, article) {
+            if (err) {
+                console.log("cannot get article =>" + err)
+                res.status(400).json(err);
+            } else {
+                console.log("article found " + JSON.stringify(article));
+                res
+                    .status(200)
+                    .json(article);
+            }
+        });
 
-        Articles
-            .findOne({
-                    _id: { _id: { $gt: curId } }.sort({ _id: 1 }).limit(1)
-                    .populate('_id')
-                    .exec(function(err, article) {
-                        if (err) {
-                            console.log("cannot get article =>" + err)
-                            res.status(400).json(err);
-                        } else {
-                            console.log("article found " + JSON.stringify(article));
-                            res
-                                .status(200)
-                                .json(article);
-                        }
-                    });
+};
 
-                };
+module.exports.articlesGetNext = function(req, res) {
+    var offset = req.query.offset;
+    console.log('offset : ' + offset);
+
+    Articles
+        .find()
+        .skip(parseInt(offset, 10))
+        .limit(1)
+        .exec(function(err, article) {
+            if (err) {
+                console.log("cannot get article =>" + err)
+                res.status(400).json(err);
+            } else {
+                console.log("article found " + JSON.stringify(article));
+                res
+                    .status(200)
+                    .json(article);
+            }
+        });
+
+};
+
+module.exports.articlesGetCount = function(req, res) {
+
+
+    Articles
+        .count({},
+            function(err, count) {
+                if (err) {
+                    console.log("cannot get article =>" + err)
+                    res.status(400).json(err);
+                } else {
+                    console.log("article found " + JSON.stringify(count));
+                    res
+                        .status(200)
+                        .json(count);
+                }
+            });
+
+};

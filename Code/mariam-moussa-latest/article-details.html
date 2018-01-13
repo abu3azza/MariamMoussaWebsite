@@ -30,6 +30,7 @@
                 <p ng-bind-html="trustedHTML" align="justify">
                 </p>
 
+                {{object}}
                 <br/>
                 <!-- <form action="" id="comments">
                     <div class="row" id="comments">
@@ -46,8 +47,9 @@
             </div>
             <!--blog post-->
             <ul class="pager">
-                <!--      <li class="previous"><a href="#">&larr; Previous Page</a></li>  -->
-                <li class="next"><a href="#!art-Sports">Next Page &rarr;</a></li>
+                {{hawhaw}}
+                <li ng-show="offset > 0" class="previous"><button class="npbut" ng-click="getPrevArticle()">&larr; Previous Page</button></li>
+                <li ng-show="offset+1 < count" class="next"><button class="npbut" ng-click="getNextArticle()">Next Page &rarr;</button></li>
             </ul>
             <!--pager-->
         </div>
@@ -57,3 +59,30 @@
 </div>
 <!--blog full main container-->
 <div class="divide30"></div>
+
+<style>
+    .previous {
+        display: inline-block;
+        padding: 5px 14px;
+        background-color: #fff;
+        border: 1px solid #ffba00;
+        border-radius: 15px;
+        color: #2ba5f8;
+        float: left;
+    }
+    
+    .next {
+        display: inline-block;
+        padding: 5px 14px;
+        background-color: #fff;
+        border: 1px solid #ffba00;
+        border-radius: 15px;
+        color: #2ba5f8;
+        float: right;
+    }
+    
+    .npbut {
+        background-color: transparent;
+        border: 0px;
+    }
+</style>

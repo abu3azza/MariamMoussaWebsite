@@ -5,9 +5,13 @@ app.controller('ArticleDetailsController', function($window, $http, $scope, $rou
 
     $scope.articles = [];
     $scope.id = $routeParams.id;
-    alert(JSON.stringify($scope.id));
+    $scope.offset = parseInt($routeParams.offset);
+    alert($scope.offset);
     $scope.article;
     $scope.trustedHTML;
+    $scope.hawhaw = "not hawhaw";
+    $scope.object = "fady";
+    $scope.count;
 
     function init() {
         var responseData;
@@ -28,8 +32,75 @@ app.controller('ArticleDetailsController', function($window, $http, $scope, $rou
         });
 
 
+        $http({
+            method: 'GET',
+            url: 'http://localhost:3000/api/getArticlesCount'
+
+
+        }).then(function successCallback(response) {
+            $scope.count = response.data;
+            alert("count =" + $scope.count);
+
+
+        }, function errorCallback(response) {
+            alert("error" + response);
+
+        });
+
 
     }
 
     init();
+
+    $scope.getNextArticle = function() {
+        alert("dal el offset abl " + $scope.offset + 2 + " we dah el count " + $scope.count);
+        if (($scope.offset + 1) < $scope.count) {
+            alert("da5al");
+            $scope.offset++;
+        }
+        $scope.hawhaw = "hawhaw";
+        $http({
+            method: 'GET',
+            url: 'http://localhost:3000/api/getNextArticle?offset=' + $scope.offset
+
+
+        }).then(function successCallback(response) {
+            alert("respnse  data==>" + JSON.stringify(response.data));
+            $scope.article = response.data[0];
+            alert("respnse ==>" + JSON.stringify($scope.article));
+            $scope.trustedHTML = $sce.trustAsHtml($scope.article.description);
+
+
+
+        }, function errorCallback(response) {
+            alert("error" + response);
+
+        });
+        alert("after Alert" + JSON.stringify($scope.article));
+    }
+
+    $scope.getPrevArticle = function() {
+        alert("befor" + $scope.offset);
+
+        $scope.offset = $scope.offset - 1;
+        $scope.object = JSON.stringify($scope.article);
+        $http({
+            method: 'GET',
+            url: 'http://localhost:3000/api/getNextArticle?offset=' + $scope.offset
+
+
+        }).then(function successCallback(response) {
+            alert("respnse  data==>" + JSON.stringify(response.data));
+            $scope.article = response.data[0];
+            alert("respnse ==>" + JSON.stringify($scope.article));
+            $scope.trustedHTML = $sce.trustAsHtml($scope.article.description);
+
+
+        }, function errorCallback(response) {
+            alert("error" + response);
+
+        });
+        alert("after Alert" + JSON.stringify($scope.article));
+    }
+
 });

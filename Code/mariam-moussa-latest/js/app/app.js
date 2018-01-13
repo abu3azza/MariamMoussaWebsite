@@ -142,7 +142,7 @@ var app = angular.module('mmapp', ['ui.calendar', 'ngRoute', 'ui.bootstrap', "ch
                         restricted: false
                     }
 
-                }).when('/article-details/:id', {
+                }).when('/article-details/:id/:offset', {
                     templateUrl: 'article-details.html',
                     controller: 'ArticleDetailsController',
                     access: {

@@ -13,7 +13,7 @@ var ctrlArticle = require('../controllers/articles.controller.js');
 
 var cors = require('cors');
 
-router.all('/*', function (req, res, next) {
+router.all('/*', function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     // res.header("Access-Control-Allow-Headers", "X-Requested-With, Content-Type");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -163,5 +163,13 @@ router
 router
     .route('/getArticleById')
     .get(ctrlArticle.articlesGetOne);
+
+router
+    .route('/getNextArticle')
+    .get(ctrlArticle.articlesGetNext);
+router
+    .route('/getArticlesCount')
+    .get(ctrlArticle.articlesGetCount);
+
 
 module.exports = router;
