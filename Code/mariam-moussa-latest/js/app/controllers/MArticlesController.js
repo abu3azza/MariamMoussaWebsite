@@ -2,45 +2,45 @@ app.controller('MArticlesController', ['Upload', '$window', '$http', "$rootScope
     alert("hi MArticlesController");
     var vm = this;
     vm.newArticle = {};
-    // $scope.programs = [];
-    // $scope.selectedPrograms = [];
+    $scope.articles = [];
+    // $scope.selectedArticles = [];
 
-    // function init() {
-    //     var responseData;
-    //     var responseData2;
-    //     $http({
-    //         method: 'GET',
-    //         url: 'http://localhost:3000/api/getPrograms'
-    //     }).then(function successCallback(response) {
-    //         responseData = response.data;
-    //         // alert("respnse data" + JSON.stringify(responseData));
-    //         angular.forEach(responseData,
-    //             function(item) {
-    //                 $scope.programs.push(item);
-    //             });
+    function init() {
+        var responseData;
+        var responseData2;
+        $http({
+            method: 'GET',
+            url: 'http://localhost:3000/api/getArticles'
+        }).then(function successCallback(response) {
+            responseData = response.data;
+            // alert("respnse data" + JSON.stringify(responseData));
+            angular.forEach(responseData,
+                function(item) {
+                    $scope.articles.push(item);
+                });
 
-    //     }, function errorCallback(response) {
-    //         alert("error" + response);
+        }, function errorCallback(response) {
+            alert("error" + response);
 
-    //     });
-    //     $http({
-    //         method: 'GET',
-    //         url: 'http://localhost:3000/api/getSelectedPrograms'
-    //     }).then(function successCallback(response) {
-    //         responseData2 = response.data;
-    //         // alert("respnse data" + JSON.stringify(responseData2));
-    //         angular.forEach(responseData2,
-    //             function(item) {
-    //                 $scope.selectedPrograms.push(item);
-    //             });
+        });
+        // $http({
+        //     method: 'GET',
+        //     url: 'http://localhost:3000/api/getSelectedArticles'
+        // }).then(function successCallback(response) {
+        //     responseData2 = response.data;
+        //     // alert("respnse data" + JSON.stringify(responseData2));
+        //     angular.forEach(responseData2,
+        //         function(item) {
+        //             $scope.selectedArticles.push(item);
+        //         });
 
-    //     }, function errorCallback(response) {
-    //         alert("error" + response);
+        // }, function errorCallback(response) {
+        //     alert("error" + response);
 
-    //     });
-    // }
+        // });
+    }
 
-    // init();
+    init();
     vm.submit = function() { //function to call on form submit
         var result = document.getElementsByClassName("markdown");
         vm.newArticle.description = result[0].innerHTML;
@@ -96,16 +96,16 @@ app.controller('MArticlesController', ['Upload', '$window', '$http', "$rootScope
 
 
 
-    // $scope.editor1 = "*This* **is** [markdown](https://daringfireball.net/projects/markdown/)\n and `{{ 1 + 2 }}` = {{ 1 + 2 }}";
-    // $scope.markdownService = marked('#TEST');
+    $scope.editor1 = "*This* **is** [markdown](https://daringfireball.net/projects/markdown/)\n and `{{ 1 + 2 }}` = {{ 1 + 2 }}";
+    $scope.markdownService = marked('#TEST');
 
-    // // --
-    // // normal flow, function call
-    // $scope.convertMarkdown = function() {
-    //     vm.convertedMarkdown = marked(vm.markdown);
+    // --
+    // normal flow, function call
+    $scope.convertMarkdown = function() {
+        vm.convertedMarkdown = marked(vm.markdown);
 
 
-    // }
+    }
 
     // /**
     //  * For some convenience, Angular-Markdown-Editor Directive also save each Markdown Editor inside $rootScope
@@ -139,46 +139,46 @@ app.controller('MArticlesController', ['Upload', '$window', '$http', "$rootScope
     //  * NOTE: If you want this one to work, you will have to manually download the JS file, not sure why but they haven't released any versions in a while
     //  *       https://github.com/toopay/bootstrap-markdown/tree/master/js
     //  */
-    // $scope.onFullScreenExitCallback = function(e) {
-    //     e.hidePreview();
-    // }
+    $scope.onFullScreenExitCallback = function(e) {
+        e.hidePreview();
+    }
 
 
 
 
-    // $scope.foundPrograms = {
-    //     programs: []
-    // };
-    // $scope.toBeSelectedPrograms = {
-    //     programs: []
-    // };
-
-    // $scope.checkAllPrograms = function() {
-    //     $scope.foundPrograms.programs = angular.copy($scope.programs);
-    // };
-    // $scope.uncheckAllPrograms = function() {
-    //     $scope.foundPrograms.programs = [];
+    $scope.foundArticles = {
+        articles: []
+    };
+    // $scope.toBeSelectedArticles = {
+    //     articles: []
     // };
 
-    // $scope.checkAllSelectedPrograms = function() {
-    //     $scope.toBeSelectedPrograms.programs = angular.copy($scope.selectedPrograms);
+    $scope.checkAllArticles = function() {
+        $scope.foundArticles.articles = angular.copy($scope.articles);
+    };
+    $scope.uncheckAllArticles = function() {
+        $scope.foundArticles.articles = [];
+    };
+
+    // $scope.checkAllSelectedArticles = function() {
+    //     $scope.toBeSelectedArticles.articles = angular.copy($scope.selectedArticles);
     // };
-    // $scope.uncheckAllSelectedPrograms = function() {
-    //     $scope.toBeSelectedPrograms.programs = [];
+    // $scope.uncheckAllSelectedArticles = function() {
+    //     $scope.toBeSelectedArticles.articles = [];
     // };
 
     // $scope.save = function() {
     //     // alert(JSON.stringify($scope.foundCampaigns.campaigns));
 
-    //     if (($scope.foundPrograms.programs.length + $scope.selectedPrograms.length) > 4) {
-    //         alert("Selected Programs must be 4 or less");
+    //     if (($scope.foundArticles.articles.length + $scope.selectedArticles.length) > 4) {
+    //         alert("Selected Articles must be 4 or less");
     //     } else {
-    //         for (var i = 0; i < $scope.foundPrograms.programs.length; i++) {
+    //         for (var i = 0; i < $scope.foundArticles.articles.length; i++) {
     //             // alert($scope.foundCampaigns.campaigns[i]);
     //             $http({
-    //                     url: 'http://localhost:3000/api/addSelectedPrograms',
+    //                     url: 'http://localhost:3000/api/addSelectedArticles',
     //                     method: "POST",
-    //                     data: $.param($scope.foundPrograms.programs[i]),
+    //                     data: $.param($scope.foundArticles.articles[i]),
     //                     dataType: 'json',
     //                     headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
     //                 })
@@ -193,39 +193,39 @@ app.controller('MArticlesController', ['Upload', '$window', '$http', "$rootScope
     //     }
 
     // };
-    // $scope.deletePrograms = function() {
-    //     // alert(JSON.stringify($scope.foundCampaigns.campaigns));
+    $scope.deleteArticles = function() {
+        // alert(JSON.stringify($scope.foundCampaigns.campaigns));
 
-    //     for (var i = 0; i < $scope.foundPrograms.programs.length; i++) {
-    //         // alert($scope.foundCampaigns.campaigns[i]);
-    //         $http({
-    //                 url: 'http://localhost:3000/api/deleteProgram',
-    //                 method: "PUT",
-    //                 data: $.param($scope.foundPrograms.programs[i]),
-    //                 dataType: 'json',
-    //                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
-    //             })
-    //             .then(function(result) {
-    //                 console.log(result);
+        for (var i = 0; i < $scope.foundArticles.articles.length; i++) {
+            // alert($scope.foundCampaigns.campaigns[i]);
+            $http({
+                    url: 'http://localhost:3000/api/deleteArticle',
+                    method: "PUT",
+                    data: $.param($scope.foundArticles.articles[i]),
+                    dataType: 'json',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+                })
+                .then(function(result) {
+                    console.log(result);
 
-    //             }).catch(function(error) {
-    //                 console.log(error);
-    //             });
-    //     }
-    //     alert("Deleted Successfully");
-    // }
+                }).catch(function(error) {
+                    console.log(error);
+                });
+        }
+        alert("Deleted Successfully");
+    }
 
 
 
-    // $scope.deleteSelectedProgram = function() {
+    // $scope.deleteSelectedArticle = function() {
     //     // alert(JSON.stringify($scope.toBeSelectedCampaigns.campaigns));
 
-    //     for (var i = 0; i < $scope.toBeSelectedPrograms.programs.length; i++) {
+    //     for (var i = 0; i < $scope.toBeSelectedArticles.articles.length; i++) {
     //         // alert($scope.toBeSelectedCampaigns.campaigns[i]);
     //         $http({
-    //                 url: 'http://localhost:3000/api/deleteSelectedProgram',
+    //                 url: 'http://localhost:3000/api/deleteSelectedArticle',
     //                 method: "PUT",
-    //                 data: $.param($scope.toBeSelectedPrograms.programs[i]),
+    //                 data: $.param($scope.toBeSelectedArticles.articles[i]),
     //                 dataType: 'json',
     //                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
     //             })

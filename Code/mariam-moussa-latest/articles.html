@@ -13,174 +13,27 @@
 <!--=== Content Part ===-->
 <div class="container">
     <ul class="timeline">
-        <li>
+        <li ng-repeat="article in articles" ng-class-even="'timeline-inverted'">
             <div class="timeline-badge primary"><i class="fa fa-image"></i></div>
             <div class="timeline-panel wow animated fadeInUp">
                 <div class="timeline-heading">
-                    <img class="img-responsive" src="img/articles/Weddings.jpg" alt="Weddings" />
+                    <img class="img-responsive" ng-src="http://localhost:3000/{{article.imagePath}}" alt="Weddings" />
                 </div>
 
                 <div class="timeline-body">
-                    <h2><a href="#!art-Weddings" style="color:#064256">Did you have a real wedding?</a></h2>
+                    <h2><a href="#!article-details/{{article._id}}" style="color:#064256">{{article.title}}</a></h2>
                     <ul class="list-inline post-detail">
-                        <li>First Published in <a href="#">Insight Magazine </a></li>
-                        <li>Written by : <a href="#">Mariam Moussa </a></li>
-                        <li><i class="fa fa-calendar"></i> May 15, 2016</li>
+                        <li>First Published in <a href="#">{{article.publishedIn}} </a></li>
+                        <li>Written by : <a href="#">{{article.writtenBy}} </a></li>
+                        <li><i class="fa fa-calendar"></i> {{article.publishDate}}</li>
                     </ul>
-                    <p align="justify">Wedding Bells. Tying Knots. Happily Ever After. Just Married. Floral Decorations. Wedding Themes. Ballrooms. Wedding Dresses. Wedding Suits. Bridesmaids...</p>
-                    <a class="btn border-theme" href="#!art-Weddings">Read More</a>
+                    <p align="justify">{{article.miniDescription}}...</p>
+                    <a class="btn border-theme" href="#!article-details/{{article._id}}">Read More</a>
                 </div>
 
             </div>
+
         </li>
-        <li class="timeline-inverted">
-            <div class="timeline-badge primary"><i class="fa fa-image invert"></i></div>
-            <div class="timeline-panel wow animated fadeInUp">
-                <div class="timeline-heading">
-                    <img class="img-responsive" src="img/articles/Sports.jpg" alt="Sports" />
-                </div>
-                <div class="timeline-body">
-                    <h2><a href="#!art-Sports" style="color:#064256">Could Sports Be Dangerous?!</a></h2>
-                    <ul class="list-inline post-detail">
-                        <li>First Published in <a href="#">Insight Magazine </a></li>
-                        <li>Written by : <a href="#">Mariam Moussa </a></li>
-                        <li><i class="fa fa-calendar"></i> April 15, 2016</li>
-                    </ul>
-                    <p align="justify">When would you say that something is dangerous? When something is at the verge of being lost, damaged or depleted? ...
-
-                    </p>
-
-                    <a class="btn border-theme" href="#!art-Sports">Read More</a>
-                </div>
-
-            </div>
-        </li>
-        <li>
-            <div class="timeline-badge primary"><i class="fa fa-image invert"></i></div>
-            <div class="timeline-panel wow animated fadeInUp">
-                <div class="timeline-heading">
-                    <img class="img-responsive" src="img/articles/Empowering-Women.jpg" alt="Empowering-Women" />
-                </div>
-                <div class="timeline-body">
-                    <h2><a href="#!art-Empowering-Women" style="color:#064256">7 Magical Keys to Empower A Woman Now!</a></h2>
-                    <ul class="list-inline post-detail">
-                        <li>First Published in <a href="#">Insight Magazine </a></li>
-                        <li>Written by : <a href="#">Mariam Moussa </a></li>
-                        <li><i class="fa fa-calendar"></i> March 15, 2016</li>
-                    </ul>
-                    <p align="justify">What is Empowering Women for you? What’s the importance of Empowering Women? Who do you want Empowered Women to become? ...
-
-                    </p>
-
-                    <a class="btn border-theme" href="#!art-Empowering-Women">Read More</a>
-                </div>
-
-            </div>
-        </li>
-        <li class="timeline-inverted">
-            <div class="timeline-badge primary"><i class="fa fa-image"></i></div>
-            <div class="timeline-panel wow animated fadeInUp">
-                <div class="timeline-heading">
-                    <img class="img-responsive" src="img/articles/Are-You-a-Pharoah.jpg" alt="Are-You-a-Pharoah" />
-                </div>
-
-                <div class="timeline-body">
-                    <h2><a href="#!art-Are-You-a-Pharoah" style="color:#064256">Are You a Pharaoh or an Up to date Version?!</a></h2>
-                    <ul class="list-inline post-detail">
-                        <li>First Published in <a href="#">Insight Magazine </a></li>
-                        <li>Written by : <a href="#">Mariam Moussa </a></li>
-                        <li><i class="fa fa-calendar"></i> February 1, 2016</li>
-                    </ul>
-                    <p align="justify">If you would compare yourself today and who you are right now to the different Egyptians along the history, whom would you closely be similar to? ...</p>
-                    <a class="btn border-theme" href="#!art-Are-You-a-Pharoah">Read More</a>
-                </div>
-
-            </div>
-        </li>
-        <li>
-            <div class="timeline-badge primary"><i class="fa fa-image invert"></i></div>
-            <div class="timeline-panel wow animated fadeInUp">
-                <div class="timeline-heading">
-                    <img class="img-responsive" src="img/articles/Contradictions-that-Complement.jpg" alt="Contradictions-that-Complement" />
-                </div>
-                <div class="timeline-body">
-                    <h2><a href="#!art-My-Way-or-The-Highway" style="color:#064256">Is it My Way or The Highway?!</a></h2>
-                    <ul class="list-inline post-detail">
-                        <li>First Published in <a href="#">Insight Magazine </a></li>
-                        <li>Written by : <a href="#">Mariam Moussa </a></li>
-                        <li><i class="fa fa-calendar"></i> January 1, 2016</li>
-                    </ul>
-                    <p align="justify">What comes to your mind when you hear the word contradiction?
-                        <br/> I asked some friends this question and here are some of their common answers: ...
-
-                    </p>
-
-                    <a class="btn border-theme" href="#!art-My-Way-or-The-Highway">Read More</a>
-                </div>
-
-            </div>
-        </li>
-        <li class="timeline-inverted">
-            <div class="timeline-badge primary"><i class="fa fa-image"></i></div>
-            <div class="timeline-panel wow animated fadeInUp">
-                <div class="timeline-heading">
-                    <img class="img-responsive" src="img/articles/Wild-is-Natural.jpg" alt="Wild-is-Natural" />
-                </div>
-
-                <div class="timeline-body">
-                    <h2><a href="#!art-Wild-is-Natural" style="color:#064256">ARE YOU WILD ENOUGH?!</a></h2>
-                    <ul class="list-inline post-detail">
-                        <li>First Published in <a href="#">Insight Magazine </a></li>
-                        <li>Written by : <a href="#">Mariam Moussa </a></li>
-                        <li><i class="fa fa-calendar"></i> December 1, 2015</li>
-                    </ul>
-                    <p align="justify">Do people say that wild is crazy?! Do people say that wild is being outside of the box?! Do people say that wild is not who you are supposed to be?!...</p>
-                    <a class="btn border-theme" href="#!art-Wild-is-Natural">Read More</a>
-                </div>
-
-            </div>
-        </li>
-
-        <li>
-            <div class="timeline-badge primary"><i class="fa fa-image invert"></i></div>
-            <div class="timeline-panel wow animated fadeInUp">
-                <div class="timeline-heading">
-                    <img class="img-responsive" src="img/articles/Doing-Good-to-Others.jpg" alt="Doing-Good-to-Others" />
-                </div>
-                <div class="timeline-body">
-                    <h2><a href="#!art-Doing-Good-to-Others" style="color:#064256">Is Doing Good the Best Investment?</a></h2>
-                    <ul class="list-inline post-detail">
-                        <li>First Published in <a href="#">Insight Magazine </a></li>
-                        <li>Written by : <a href="#">Mariam Moussa </a></li>
-                        <li><i class="fa fa-calendar"></i> November 1, 2015</li>
-                    </ul>
-                    <p align="justify">Hell yeah! Well, when you do good to others, you do give your money that you have earned through hard work and long working hours ...</p>
-                    <a class="btn border-theme" href="#!art-Doing-Good-to-Others">Read More</a>
-                </div>
-
-            </div>
-        </li>
-        <li class="timeline-inverted">
-            <div class="timeline-badge primary"><i class="fa fa-image"></i></div>
-            <div class="timeline-panel wow animated fadeInUp">
-                <div class="timeline-heading">
-                    <img class="img-responsive" src="img/articles/Mysterious.jpg" alt="Mysterious" />
-                </div>
-
-                <div class="timeline-body">
-                    <h2><a href="#!art-Mysterious" style="color:#064256">Mysterious/Seductive Relationships …. YES or NO?!</a></h2>
-                    <ul class="list-inline post-detail">
-                        <li>First Published in <a href="#">Insight Magazine </a></li>
-                        <li>Written by : <a href="#">Mariam Moussa </a></li>
-                        <li><i class="fa fa-calendar"></i> October 1, 2015</li>
-                    </ul>
-                    <p align="justify">Be Mysterious! Be seductive! That’s what guys want now right?! You don’t want to risk your relationship, do you?! … Some people would advise you with that!...</p>
-                    <a class="btn border-theme" href="#!art-Mysterious">Read More</a>
-                </div>
-
-            </div>
-        </li>
-
 
 
 

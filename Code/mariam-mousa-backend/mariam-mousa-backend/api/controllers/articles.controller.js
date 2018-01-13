@@ -46,14 +46,25 @@ module.exports.articlesGetAll = function(req, res) {
 
     console.log('GET the articles');
     console.log(req.query);
+    if (req.query.maxArticles && parseInt(req.query.maxArticles)) {
+        console.log("Got Max Articles to fetch :" + req.query.maxArticles)
+        Articles
+            .find().limit(parseInt(req.query.maxArticles))
+            .exec(function(err, articles) {
+                console.log("Found articles", articles.length);
+                res
+                    .json(articles);
+            });
+    } else {
 
-    Articles
-        .find()
-        .exec(function(err, articles) {
-            console.log("Found articles", articles.length);
-            res
-                .json(articles);
-        });
+        Articles
+            .find()
+            .exec(function(err, articles) {
+                console.log("Found articles", articles.length);
+                res
+                    .json(articles);
+            });
+    }
 
 };
 
@@ -148,13 +159,14 @@ module.exports.articlesGetOne = function(req, res) {
     var id = req.query.id;
     console.log('GET Article by ID:', id);
 
-    SelectedArticles
-        .findById(id)
+    Articles
+        .findOne({ _id: id })
         .exec(function(err, article) {
             if (err) {
                 console.log("cannot get article =>" + err)
                 res.status(400).json(err);
             } else {
+                console.log("article found " + JSON.stringify(article));
                 res
                     .status(200)
                     .json(article);
@@ -162,3 +174,25 @@ module.exports.articlesGetOne = function(req, res) {
         });
 
 };
+
+module.exports.getNextArticleId = function(req, res) {
+        var id = req.query.id;
+        console.log('GET Article by ID:', id);
+
+        Articles
+            .findOne({
+                    _id: { _id: { $gt: curId } }.sort({ _id: 1 }).limit(1)
+                    .populate('_id')
+                    .exec(function(err, article) {
+                        if (err) {
+                            console.log("cannot get article =>" + err)
+                            res.status(400).json(err);
+                        } else {
+                            console.log("article found " + JSON.stringify(article));
+                            res
+                                .status(200)
+                                .json(article);
+                        }
+                    });
+
+                };

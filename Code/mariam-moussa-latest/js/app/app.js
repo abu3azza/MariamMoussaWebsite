@@ -142,9 +142,9 @@ var app = angular.module('mmapp', ['ui.calendar', 'ngRoute', 'ui.bootstrap', "ch
                         restricted: false
                     }
 
-                }).when('/art-Weddings', {
-                    templateUrl: 'art-Weddings.html',
-                    //controller: 'LoginController',
+                }).when('/article-details/:id', {
+                    templateUrl: 'article-details.html',
+                    controller: 'ArticleDetailsController',
                     access: {
                         restricted: false
                     }
@@ -165,7 +165,7 @@ var app = angular.module('mmapp', ['ui.calendar', 'ngRoute', 'ui.bootstrap', "ch
 
                 }).when('/articles', {
                     templateUrl: 'articles.html',
-                    // controller: 'LoginController',
+                    controller: 'ArticleController',
                     access: {
                         restricted: false
                     }

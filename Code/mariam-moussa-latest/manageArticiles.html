@@ -94,28 +94,28 @@
         <h5 style="display: inline-block;">Select Articles ( Choose for Addition ) :</h5><span style="color: red;">  Max 4 Programs</span>
         <div class="divide5"></div>
         <div style="background-color: #CDE;">
-            <div ng-repeat="prog in programs">
-                <input type="checkbox" data-checklist-model="foundPrograms.programs" data-checklist-value="prog"> {{prog.title}}
+            <div ng-repeat="article in articles">
+                <input type="checkbox" data-checklist-model="foundArticles.articles" data-checklist-value="article"> {{article.title}}
             </div>
-            <button ng-click="checkAllPrograms()" style="margin-right: 10px">Check all</button>
-            <button ng-click="uncheckAllPrograms()" style="margin-right: 10px">Uncheck all</button>
-            <button ng-click="save()" style="margin-right: 10px">Save</button>
-            <button ng-click="deletePrograms()">Delete</button>
+            <button ng-click="checkAllArticles()" style="margin-right: 10px">Check all</button>
+            <button ng-click="uncheckAllArticles()" style="margin-right: 10px">Uncheck all</button>
+            <!-- <button ng-click="save()" style="margin-right: 10px">Save</button> -->
+            <button ng-click="deleteArticles()">Delete</button>
         </div>
         <div class="divide30"></div>
         <div class="divide30"></div>
 
 
-        <h5>Selected Articles ( Choose for Deletion ) :</h5>
+        <!-- <h5>Selected Articles ( Choose for Deletion ) :</h5>
         <div class="divide5"></div>
         <div style="background-color: #CDE;">
-            <div ng-repeat="sprog in selectedPrograms">
-                <input type="checkbox" data-checklist-model="toBeSelectedPrograms.programs" data-checklist-value="sprog"> {{sprog.title}}
+            <div ng-repeat="sarticle in selectedArticles">
+                <input type="checkbox" data-checklist-model="toBeSelectedArticles.articles" data-checklist-value="sarticle"> {{sarticle.title}}
             </div>
-            <button ng-click="checkAllSelectedPrograms()" style="margin-right: 10px">Check all</button>
-            <button ng-click="uncheckAllSelectedPrograms()" style="margin-right: 10px">Uncheck all</button>
-            <button ng-click="deleteSelectedProgram()">Delete</button>
+            <button ng-click="checkAllSelectedArticles()" style="margin-right: 10px">Check all</button>
+            <button ng-click="uncheckAllSelectedArticles()" style="margin-right: 10px">Uncheck all</button>
+            <button ng-click="deleteSelectedArticle()">Delete</button>
         </div>
         <div class="divide30"></div>
-        <div class="divide30"></div>
+        <div class="divide30"></div> -->
 </div>
