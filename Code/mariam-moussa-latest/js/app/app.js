@@ -1,6 +1,6 @@
 'use strict';
 var app = angular.module('mmapp', ['ui.calendar', 'ngRoute', 'ui.bootstrap', "checklist-model",
-        'angular-jwt', 'ngFileUpload', 'hc.marked', 'hljs', 'angular-markdown-editor'
+        'angular-jwt', 'ngFileUpload', 'hc.marked', 'hljs', 'angular-markdown-editor', 'td.easySocialShare'
     ])
     .config(['$routeProvider', '$httpProvider', 'markedProvider', 'hljsServiceProvider',
         function($routeProvider, $httpProvider, $window, markedProvider, hljsServiceProvider) {
