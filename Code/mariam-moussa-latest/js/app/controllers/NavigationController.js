@@ -7,19 +7,22 @@ function NavigationController($http, $window, $location, AuthFactory, jwtHelper,
     var token = $window.sessionStorage.token;
     var decodedToken = jwtHelper.decodeToken(token);
     vm.loggedInUser = decodedToken.username;
-    vm.isLoggedIn = function() {
+    vm.isLoggedIn = function () {
         // // alert(AuthFactory.isLoggedIn);
         return AuthFactory.isLoggedIn;
     };
 
 
-    vm.logout = function() {
+    vm.logout = function () {
         AuthFactory.isLoggedIn = false;
         delete $window.sessionStorage.token;
         $location.path('/');
     }
+    vm.goToAdmin = function () {
+        $location.path('/admin');
+    }
 
-    vm.getClass = function(path) {
+    vm.getClass = function (path) {
 
         return ($location.path().substr(0, path.length) === path) ? 'active' : '';
     };
