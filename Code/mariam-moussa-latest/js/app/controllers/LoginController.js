@@ -50,6 +50,7 @@ function LoginController($http, $window, $location, AuthFactory, jwtHelper) {
                         // lc.loggedInUser = user;
                         //    // alert("Token Acuquired :" + JSON.stringify(decodedToken));
                         $location.path('/admin');
+                        $scope.$apply();
 
                     }
                 }).catch(function(error) {

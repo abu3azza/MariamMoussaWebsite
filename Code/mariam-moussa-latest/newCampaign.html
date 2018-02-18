@@ -1,76 +1,88 @@
 <div class="container">
+    <div class="divide30">
+
+    </div>
+    <h3>
+        <a href="#!admin">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+        </a>Manage Campaigns</h3>
     <div class="divide30"></div>
-    <h3>Manage Campaigns</h1>
-        <div class="divide30"></div>
 
-        <h5>Add New Campaign :</h5>
-        <div class="divide5"></div>
-        <form ng-controller="CampaignController as up" name="up.upload_form" class="sky-form">
-            <div class="row">
-                <div class="col-xs-4">
-                    <div class="input-group">
-                        <span class="input-group-addon"><span class="glyphicon glyphicon-italic"></span></span>
-                        <input type="text" class="form-control" ng-model="up.newCampaign.title" placeholder="Title">
-                    </div>
-                </div>
-                <div class="col-xs-4">
-                    <div class="input-group">
-                        <span class="input-group-addon"><span class="glyphicon glyphicon-link"></span></span>
-                        <input type="text" ng-model="up.newCampaign.link" class="form-control" placeholder="FaceBook Link">
-                    </div>
-                </div>
-            </div>
-            <br>
-            <br>
-            <div class="row">
-                <div class="col-xs-4">
-                    Add Campain Image
-                    <input type="file" ngf-select ng-model="up.file" name="file" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="20MB" /> Maximum 20M
-                </div>
-                <div class="col-xs-4">
-                    Image thumbnail:
-                    <img style="width:100px;" ngf-thumbnail="up.file || './img/add_-ile.png'" />
-                    <i ng-show="up.upload_form.file.$error.required">*required</i><br>
-                    <i ng-show="up.upload_form.file.$error.maxSize">File too large 
-                            {{up.file.size / 1000000|number:1}}MB: max 20M</i>
-                    <!-- <button ng-click="up.submit()">submit</button> -->
-                    <p>{{up.progress}}
-                </div>
-            </div>
-            <div class="divide10"></div>
-            <footer class="text-left">
-                <button ng-click="up.submit()" class="btn btn-theme-bg btn-lg">Submit</button>
-            </footer>
-            <div class="divide30"></div>
-            <div class="divide30"></div>
-        </form>
 
-        <div class="divide30"></div>
-        <h5 style="display: inline-block;">Select Campaigns ( Choose for Addition ) :</h5><span style="color: red;">  Max 4 Campaigns</span>
-        <div class="divide5"></div>
-        <div style="background-color: #CDE;">
-            <div ng-repeat="camp in campaigns">
-                <input type="checkbox" data-checklist-model="foundCampaigns.campaigns" data-checklist-value="camp"> {{camp.title}}
+    <h5>Add New Campaign :</h5>
+    <div class="divide5"></div>
+    <form ng-controller="CampaignController as up" name="up.upload_form" class="sky-form">
+        <div class="row">
+            <div class="col-xs-4">
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-italic"></span>
+                    </span>
+                    <input type="text" class="form-control" ng-model="up.newCampaign.title" placeholder="Title">
+                </div>
             </div>
-            <button ng-click="checkAllCampaigns()" style="margin-right: 10px">Check all</button>
-            <button ng-click="uncheckAllCampaigns()" style="margin-right: 10px">Uncheck all</button>
-            <button ng-click="save()" style="margin-right: 10px">Save</button>
-            <button ng-click="deleteCampaign()">Delete</button>
+            <div class="col-xs-4">
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-link"></span>
+                    </span>
+                    <input type="text" ng-model="up.newCampaign.link" class="form-control" placeholder="FaceBook Link">
+                </div>
+            </div>
         </div>
-        <div class="divide30"></div>
-        <div class="divide30"></div>
-
-
-        <h5>Selected Campaigns ( Choose for Deletion ) :</h5>
-        <div class="divide5"></div>
-        <div style="background-color: #CDE;">
-            <div ng-repeat="scamp in selectedCampaigns">
-                <input type="checkbox" data-checklist-model="toBeSelectedCampaigns.campaigns" data-checklist-value="scamp"> {{scamp.title}}
+        <br>
+        <br>
+        <div class="row">
+            <div class="col-xs-4">
+                Add Campain Image
+                <input type="file" ngf-select ng-model="up.file" name="file" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="20MB"
+                /> Maximum 20M
             </div>
-            <button ng-click="checkAllSelectedCampaigns()" style="margin-right: 10px">Check all</button>
-            <button ng-click="uncheckAllSelectedCampaigns()" style="margin-right: 10px">Uncheck all</button>
-            <button ng-click="deleteSelectedCampaign()">Delete</button>
+            <div class="col-xs-4">
+                Image thumbnail:
+                <img style="width:100px;" ngf-thumbnail="up.file || './img/add_-ile.png'" />
+                <i ng-show="up.upload_form.file.$error.required">*required</i>
+                <br>
+                <i ng-show="up.upload_form.file.$error.maxSize">File too large {{up.file.size / 1000000|number:1}}MB: max 20M</i>
+                <!-- <button ng-click="up.submit()">submit</button> -->
+                <p>{{up.progress}}
+            </div>
         </div>
+        <div class="divide10"></div>
+        <footer class="text-left">
+            <button ng-click="up.submit()" class="btn btn-theme-bg btn-lg">Submit</button>
+        </footer>
         <div class="divide30"></div>
         <div class="divide30"></div>
+    </form>
+
+    <div class="divide30"></div>
+    <h5 style="display: inline-block;">Select Campaigns ( Choose for Addition ) :</h5>
+    <span style="color: red;"> Max 4 Campaigns</span>
+    <div class="divide5"></div>
+    <div style="background-color: #CDE;">
+        <div ng-repeat="camp in campaigns">
+            <input type="checkbox" data-checklist-model="foundCampaigns.campaigns" data-checklist-value="camp"> {{camp.title}}
+        </div>
+        <button ng-click="checkAllCampaigns()" style="margin-right: 10px">Check all</button>
+        <button ng-click="uncheckAllCampaigns()" style="margin-right: 10px">Uncheck all</button>
+        <button ng-click="save()" style="margin-right: 10px">Save</button>
+        <button ng-click="deleteCampaign()">Delete</button>
+    </div>
+    <div class="divide30"></div>
+    <div class="divide30"></div>
+
+
+    <h5>Selected Campaigns ( Choose for Deletion ) :</h5>
+    <div class="divide5"></div>
+    <div style="background-color: #CDE;">
+        <div ng-repeat="scamp in selectedCampaigns">
+            <input type="checkbox" data-checklist-model="toBeSelectedCampaigns.campaigns" data-checklist-value="scamp"> {{scamp.title}}
+        </div>
+        <button ng-click="checkAllSelectedCampaigns()" style="margin-right: 10px">Check all</button>
+        <button ng-click="uncheckAllSelectedCampaigns()" style="margin-right: 10px">Uncheck all</button>
+        <button ng-click="deleteSelectedCampaign()">Delete</button>
+    </div>
+    <div class="divide30"></div>
+    <div class="divide30"></div>
 </div>

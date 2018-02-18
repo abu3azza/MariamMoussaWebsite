@@ -1,5 +1,5 @@
 app.controller('MArticlesController', ['Upload', '$window', '$http', "$rootScope", '$scope', 'marked', function(Upload, $window, $http, $rootScope, $scope, marked) {
-    alert("hi MArticlesController");
+    // alert("hi MArticlesController");
     var vm = this;
     vm.newArticle = {};
     $scope.articles = [];

@@ -1,112 +1,128 @@
 <div class="container">
     <div class="divide30"></div>
-    <h3>Manage Articles</h1>
-        <div class="divide30"></div>
+    <h3>
+        <a href="#!admin">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+        </a>Manage Articles</h3>
+    <div class="divide30"></div>
 
-        <h5>Add New Articles :</h5>
-        <div class="divide5"></div>
-        <form ng-controller="MArticlesController as up" name="up.upload_form" class="sky-form">
-            <div class="row">
-                <div class="col-xs-4">
-                    <div class="input-group">
-                        <span class="input-group-addon"><span class="glyphicon glyphicon-italic"></span></span>
-                        <input type="text" class="form-control" ng-model="up.newArticle.title" placeholder="Title">
-                    </div>
-                </div>
-                <div class="col-xs-4">
-                    <div class="input-group">
-                        <span class="input-group-addon"><span class="glyphicon glyphicon-globe"></span></span>
-                        <input type="text" ng-model="up.newArticle.publishedIn" class="form-control" placeholder="Published In">
-                    </div>
-                </div>
-                <div class="col-xs-4">
-                    <div class="input-group">
-                        <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
-                        <input type="text" ng-model="up.newArticle.writtenBy" class="form-control" placeholder="Written By ">
-                    </div>
+    <h5>Add New Articles :</h5>
+    <div class="divide5"></div>
+    <form ng-controller="MArticlesController as up" name="up.upload_form" class="sky-form">
+        <div class="row">
+            <div class="col-xs-4">
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-italic"></span>
+                    </span>
+                    <input type="text" class="form-control" ng-model="up.newArticle.title" placeholder="Title">
                 </div>
             </div>
-            <div class="divide20"></div>
-            <div class="row">
-                <div class="col-xs-8">
-                    <div class="input-group">
-                        <span class="input-group-addon"><span class="glyphicon glyphicon-pushpin"></span></span>
-                        <input type="text" class="form-control" ng-model="up.newArticle.miniDescription" placeholder="Mini Description">
-                    </div>
-                </div>
-                <div class="col-xs-4">
-                    <div class="input-group">
-                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                        <input type="text" ng-model="up.newArticle.publishDate" class="form-control" placeholder="Date">
-                    </div>
-                </div>
-
-            </div>
-            <div class="divide20"></div>
-            <div class="row">
-
-                <div class="col-md-12 col-xs-4">
-                    <br> Add Articles Describtion :
-                    <br>
-                    <br>
-                    <div class="form-group">
-                        <textarea name="editor1" class="content-box" ng-model="editor1" markdown-editor="{  'iconlibrary': 'fa', addExtraButtons: true, resize: 'vertical'}" on-fullscreen="onFullScreenCallback()" on-fullscreen-exit="onFullScreenExitCallback()" rows="10">
-                                    </textarea>
-                    </div>
-                </div>
-                <div class="col-md-12 col-xs-4">
-                    <div class="form-group">
-                        <button ng-click="getHTML()">getHTML</button>
-                        <label for="comment">Preview Result:</label>
-                        <div marked="editor1" class="markdown outline" style="padding: 20px">
-                        </div>
-                    </div>
+            <div class="col-xs-4">
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-globe"></span>
+                    </span>
+                    <input type="text" ng-model="up.newArticle.publishedIn" class="form-control" placeholder="Published In">
                 </div>
             </div>
-            <br>
-            <br>
-            <div class="row">
-                <div class="col-xs-4">
-                    Add Articles Image :
-                    <br>
-                    <br>
-                    <input type="file" ngf-select ng-model="up.file" name="file" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="20MB" /> Maximum 20M
-                </div>
-                <div class="col-xs-4">
-                    Image thumbnail:
-                    <img style="width:100px;" ngf-thumbnail="up.file || './img/add_-ile.png'" />
-                    <i ng-show="up.upload_form.file.$error.required">*required</i><br>
-                    <i ng-show="up.upload_form.file.$error.maxSize">File too large 
-                                {{up.file.size / 1000000|number:1}}MB: max 20M</i>
-                    <!-- <button ng-click="up.submit()">submit</button> -->
-                    <p>{{up.progress}}
+            <div class="col-xs-4">
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                    </span>
+                    <input type="text" ng-model="up.newArticle.writtenBy" class="form-control" placeholder="Written By ">
                 </div>
             </div>
-            <div class="divide10"></div>
-            <footer class="text-left">
-                <button ng-click="up.submit()" class="btn btn-theme-bg btn-lg">Submit</button>
-            </footer>
-            <div class="divide30"></div>
-            <div class="divide30"></div>
-        </form>
-
-        <div class="divide30"></div>
-        <h5 style="display: inline-block;">Select Articles ( Choose for Addition ) :</h5><span style="color: red;">  Max 4 Programs</span>
-        <div class="divide5"></div>
-        <div style="background-color: #CDE;">
-            <div ng-repeat="article in articles">
-                <input type="checkbox" data-checklist-model="foundArticles.articles" data-checklist-value="article"> {{article.title}}
-            </div>
-            <button ng-click="checkAllArticles()" style="margin-right: 10px">Check all</button>
-            <button ng-click="uncheckAllArticles()" style="margin-right: 10px">Uncheck all</button>
-            <!-- <button ng-click="save()" style="margin-right: 10px">Save</button> -->
-            <button ng-click="deleteArticles()">Delete</button>
         </div>
+        <div class="divide20"></div>
+        <div class="row">
+            <div class="col-xs-8">
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-pushpin"></span>
+                    </span>
+                    <input type="text" class="form-control" ng-model="up.newArticle.miniDescription" placeholder="Mini Description">
+                </div>
+            </div>
+            <div class="col-xs-4">
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                    <input type="text" ng-model="up.newArticle.publishDate" class="form-control" placeholder="Date">
+                </div>
+            </div>
+
+        </div>
+        <div class="divide20"></div>
+        <div class="row">
+
+            <div class="col-md-12 col-xs-4">
+                <br> Add Articles Describtion :
+                <br>
+                <br>
+                <div class="form-group">
+                    <textarea name="editor1" class="content-box" ng-model="editor1" markdown-editor="{  'iconlibrary': 'fa', addExtraButtons: true, resize: 'vertical'}"
+                        on-fullscreen="onFullScreenCallback()" on-fullscreen-exit="onFullScreenExitCallback()" rows="10">
+                                    </textarea>
+                </div>
+            </div>
+            <div class="col-md-12 col-xs-4">
+                <div class="form-group">
+                    <button ng-click="getHTML()">getHTML</button>
+                    <label for="comment">Preview Result:</label>
+                    <div marked="editor1" class="markdown outline" style="padding: 20px">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <br>
+        <div class="row">
+            <div class="col-xs-4">
+                Add Articles Image :
+                <br>
+                <br>
+                <input type="file" ngf-select ng-model="up.file" name="file" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="20MB"
+                /> Maximum 20M
+            </div>
+            <div class="col-xs-4">
+                Image thumbnail:
+                <img style="width:100px;" ngf-thumbnail="up.file || './img/add_-ile.png'" />
+                <i ng-show="up.upload_form.file.$error.required">*required</i>
+                <br>
+                <i ng-show="up.upload_form.file.$error.maxSize">File too large {{up.file.size / 1000000|number:1}}MB: max 20M</i>
+                <!-- <button ng-click="up.submit()">submit</button> -->
+                <p>{{up.progress}}
+            </div>
+        </div>
+        <div class="divide10"></div>
+        <footer class="text-left">
+            <button ng-click="up.submit()" class="btn btn-theme-bg btn-lg">Submit</button>
+        </footer>
         <div class="divide30"></div>
         <div class="divide30"></div>
+    </form>
+
+    <div class="divide30"></div>
+    <h5 style="display: inline-block;">Select Articles ( Choose for Addition ) :</h5>
+    <span style="color: red;"> Max 4 Programs</span>
+    <div class="divide5"></div>
+    <div style="background-color: #CDE;">
+        <div ng-repeat="article in articles">
+            <input type="checkbox" data-checklist-model="foundArticles.articles" data-checklist-value="article"> {{article.title}}
+        </div>
+        <button ng-click="checkAllArticles()" style="margin-right: 10px">Check all</button>
+        <button ng-click="uncheckAllArticles()" style="margin-right: 10px">Uncheck all</button>
+        <!-- <button ng-click="save()" style="margin-right: 10px">Save</button> -->
+        <button ng-click="deleteArticles()">Delete</button>
+    </div>
+    <div class="divide30"></div>
+    <div class="divide30"></div>
 
 
-        <!-- <h5>Selected Articles ( Choose for Deletion ) :</h5>
+    <!-- <h5>Selected Articles ( Choose for Deletion ) :</h5>
         <div class="divide5"></div>
         <div style="background-color: #CDE;">
             <div ng-repeat="sarticle in selectedArticles">
