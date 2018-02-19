@@ -1,5 +1,5 @@
 app.controller('MVideosController', ['$http', '$scope', function($http, $scope) {
-    alert("hi MVideosController");
+    // alert("hi MVideosController");
     $scope.newVideo = {};
     $scope.newVideo._id = '5a5f63be2ad23a4dfd52d182';
 

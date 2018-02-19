@@ -20,7 +20,7 @@ app.controller('MainController', function($scope, $timeout, $sce, $http) {
         };
 
         $scope.open = function() {
-            alert('halsbala');
+            // alert('halsbala');
             $scope.toggleModal('Edit Home Video');
         };
 
@@ -168,7 +168,8 @@ app.controller('MainController', function($scope, $timeout, $sce, $http) {
                     });
 
             }, function errorCallback(response) {
-                alert("error" + response);
+                // alert("error" + response);
+                console.log("error" + response);
 
             });
             $http({
@@ -179,12 +180,13 @@ app.controller('MainController', function($scope, $timeout, $sce, $http) {
                 // alert("respnse data" + JSON.stringify(responseArticles));
                 angular.forEach(responseArticles,
                     function(item) {
-                        alert(JSON.stringify(item));
+                        // alert(JSON.stringify(item));
                         $scope.selectedArticles.push(item);
                     });
 
             }, function errorCallback(response) {
-                alert("error" + response);
+                // alert("error" + response);
+                console.log("error in getArticles "+ response);
 
             });
 
@@ -195,9 +197,10 @@ app.controller('MainController', function($scope, $timeout, $sce, $http) {
                 responseVideo = response.data;
                 // alert("respnse data" + JSON.stringify(responseArticles));
                 $scope.trustedVideo = $sce.trustAsResourceUrl(responseVideo[0].HomeVideoLink);
-                alert('new Trusted Video = ' + $scope.trustedVideo);
+                // alert('new Trusted Video = ' + $scope.trustedVideo);
             }, function errorCallback(response) {
-                alert("error" + response);
+                // alert("error" + response);
+                console.log("error loading videos" + response);
 
             });
 

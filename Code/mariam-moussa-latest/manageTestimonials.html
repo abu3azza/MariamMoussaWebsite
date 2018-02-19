@@ -1,55 +1,62 @@
 <div class="container">
     <div class="divide30"></div>
-    <h3>Manage Testmonials</h1>
-        <div class="divide30"></div>
+    <h3>
+        <a href="#!admin">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+        </a>Manage Testmonials</h3>
+    <div class="divide30"></div>
 
 
-        <div class="divide5"></div>
-        <form name="up.upload_form" class="sky-form">
-            <div class="row">
-                <div class="col-xs-6">
-                    <div class="input-group">
-                        <span class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></span>
-                        <input type="text" ng-model="newTestimonial.writer" class="form-control" placeholder="Writer">
-                    </div>
-                    <div class="divide5"></div>
-
+    <div class="divide5"></div>
+    <form name="up.upload_form" class="sky-form">
+        <div class="row">
+            <div class="col-xs-6">
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                    </span>
+                    <input type="text" ng-model="newTestimonial.writer" class="form-control" placeholder="Writer">
                 </div>
-            </div>
-            <div class="divide30"></div>
+                <div class="divide5"></div>
 
-            <div class="row">
-                <div class="col-xs-8">
-                    <div class="input-group">
-                        <span class="input-group-addon"><span class="glyphicon glyphicon-pushpin"></span></span>
-                        <!-- <input type="text" ng-model="newTestimonial.description" class="form-control" placeholder="Testmonials Video Embeded Link"> -->
-                        <textarea class="form-control" ng-model="newTestimonial.description" rows="4" cols="50" maxlength="300" placeholder="Testmonial"></textarea>
-                    </div>
-                    <div class="divide5"></div>
-
-                </div>
             </div>
-
-            <div class="divide10"></div>
-            <footer class="text-left">
-                <button ng-click="submit()" class="btn btn-theme-bg btn-lg">Submit</button>
-            </footer>
-            <div class="divide30"></div>
-            <div class="divide30"></div>
-        </form>
-        <div class="divide30"></div>
-        <h5 style="display: inline-block;">Select Articles ( Choose for Deletion ) :</h5>
-        <div class="divide5"></div>
-        <div style="background-color: #CDE;">
-            <div ng-repeat="test in testimonials">
-                <input type="checkbox" data-checklist-model="foundTestimonials.testimonials" data-checklist-value="test"> {{test.description}}
-            </div>
-            <button ng-click="checkAllTestimonials()" style="margin-right: 10px">Check all</button>
-            <button ng-click="uncheckAllTestimonials()" style="margin-right: 10px">Uncheck all</button>
-            <!-- <button ng-click="save()" style="margin-right: 10px">Save</button> -->
-            <button ng-click="deleteTestimonials()">Delete</button>
         </div>
         <div class="divide30"></div>
+
+        <div class="row">
+            <div class="col-xs-8">
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-pushpin"></span>
+                    </span>
+                    <!-- <input type="text" ng-model="newTestimonial.description" class="form-control" placeholder="Testmonials Video Embeded Link"> -->
+                    <textarea class="form-control" ng-model="newTestimonial.description" rows="4" cols="50" maxlength="300" placeholder="Testmonial"></textarea>
+                </div>
+                <div class="divide5"></div>
+
+            </div>
+        </div>
+
+        <div class="divide10"></div>
+        <footer class="text-left">
+            <button ng-click="submit()" class="btn btn-theme-bg btn-lg">Submit</button>
+        </footer>
         <div class="divide30"></div>
+        <div class="divide30"></div>
+    </form>
+    <div class="divide30"></div>
+    <h5 style="display: inline-block;">Select Testimonials ( Choose for Deletion ) :</h5>
+    <div class="divide5"></div>
+    <div style="background-color: #CDE;">
+        <div ng-repeat="test in testimonials">
+            <input type="checkbox" data-checklist-model="foundTestimonials.testimonials" data-checklist-value="test"> {{test.description}}
+        </div>
+        <button ng-click="checkAllTestimonials()" style="margin-right: 10px">Check all</button>
+        <button ng-click="uncheckAllTestimonials()" style="margin-right: 10px">Uncheck all</button>
+        <!-- <button ng-click="save()" style="margin-right: 10px">Save</button> -->
+        <button ng-click="deleteTestimonials()">Delete</button>
+    </div>
+    <div class="divide30"></div>
+    <div class="divide30"></div>
 
 </div>
