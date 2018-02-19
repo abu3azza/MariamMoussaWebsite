@@ -50,3 +50,5 @@ require('./users.model');
 require('./campaign.model');
 require('./program.model');
 require('./article.model');
+require('./videos.model');
+require('./testimonials.model');
