@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" ng-controller="CampaignController as up">
     <div class="divide30">
 
     </div>
@@ -11,7 +11,7 @@
 
     <h5>Add New Campaign :</h5>
     <div class="divide5"></div>
-    <form ng-controller="CampaignController as up" name="up.upload_form" class="sky-form">
+    <form name="up.upload_form" class="sky-form">
         <div class="row">
             <div class="col-xs-4">
                 <div class="input-group">
@@ -57,7 +57,7 @@
     </form>
 
     <div class="divide30"></div>
-    <h5 style="display: inline-block;">Select Campaigns ( Choose for Addition ) :</h5>
+    <h5 style="display: inline-block;">All Campaigns :</h5>
     <span style="color: red;"> Max 4 Campaigns</span>
     <div class="divide5"></div>
     <div style="background-color: #CDE;">
@@ -66,14 +66,14 @@
         </div>
         <button ng-click="checkAllCampaigns()" style="margin-right: 10px">Check all</button>
         <button ng-click="uncheckAllCampaigns()" style="margin-right: 10px">Uncheck all</button>
-        <button ng-click="save()" style="margin-right: 10px">Save</button>
+        <button ng-click="save()" style="margin-right: 10px">Show on Homepage</button>
         <button ng-click="deleteCampaign()">Delete</button>
     </div>
     <div class="divide30"></div>
     <div class="divide30"></div>
 
 
-    <h5>Selected Campaigns ( Choose for Deletion ) :</h5>
+    <h5>Shown on Homepage ( Select for hiding ) :</h5>
     <div class="divide5"></div>
     <div style="background-color: #CDE;">
         <div ng-repeat="scamp in selectedCampaigns">
@@ -81,7 +81,7 @@
         </div>
         <button ng-click="checkAllSelectedCampaigns()" style="margin-right: 10px">Check all</button>
         <button ng-click="uncheckAllSelectedCampaigns()" style="margin-right: 10px">Uncheck all</button>
-        <button ng-click="deleteSelectedCampaign()">Delete</button>
+        <button ng-click="deleteSelectedCampaign()">Hide from Homepage</button>
     </div>
     <div class="divide30"></div>
     <div class="divide30"></div>
