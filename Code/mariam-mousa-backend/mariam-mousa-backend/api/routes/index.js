@@ -10,6 +10,8 @@ var ctrlUpload = require('../controllers/fileupload.controller.js');
 var ctrlCampaign = require('../controllers/campaign.controller.js');
 var ctrlProgram = require('../controllers/program.controller.js');
 var ctrlArticle = require('../controllers/articles.controller.js');
+var ctrlVideos = require('../controllers/videos.controller');
+var ctrlTestimonials = require('../controllers/testimonials.controller.js');
 
 var cors = require('cors');
 
@@ -170,6 +172,56 @@ router
 router
     .route('/getArticlesCount')
     .get(ctrlArticle.articlesGetCount);
+
+
+
+//#######################VIDEOS##############################
+
+
+router
+    .route('/addVideos')
+    .post(ctrlVideos.addVideos);
+
+
+
+router
+    .route('/updateHomePageVideo')
+    .post(ctrlVideos.updateHomePage);
+
+router
+    .route('/updateTestimonialsVideo')
+    .post(ctrlVideos.updateTestimonailsVideo);
+
+
+router
+    .route('/getAllVideos')
+    .get(ctrlVideos.videosGetAll);
+
+router
+    .route('/deleteVideo')
+    .put(ctrlVideos.deleteVideo);
+
+//#######################TESTIMONIALS##############################
+
+
+router
+    .route('/addTestimonial')
+    .post(ctrlTestimonials.add);
+
+router
+    .route('/getAllTestimonials')
+    .get(ctrlTestimonials.testimonialsGetAll);
+
+
+router
+    .route('/deleteTestimonial')
+    .put(ctrlTestimonials.deleteTestimonial);
+
+
+//#############################
+router
+    .route('/deleteImage')
+    .put(ctrlUpload.deleteImage);
 
 
 module.exports = router;

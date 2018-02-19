@@ -79,6 +79,20 @@ var app = angular.module('mmapp', ['ui.calendar', 'ngRoute', 'ui.bootstrap', "ch
                         restricted: false
                     }
 
+                }).when('/manageVideos', {
+                    templateUrl: 'manageVideos.html',
+                    controller: 'MVideosController',
+                    access: {
+                        restricted: false
+                    }
+
+                }).when('/manageTestimonials', {
+                    templateUrl: 'manageTestimonials.html',
+                    controller: 'MTestimonialsController',
+                    access: {
+                        restricted: false
+                    }
+
                 }).when('/about-mariam', {
                     templateUrl: 'about-mariam.html',
                     controller: 'AboutMariamController',
@@ -257,7 +271,7 @@ var app = angular.module('mmapp', ['ui.calendar', 'ngRoute', 'ui.bootstrap', "ch
 
                 }).when('/testimonials', {
                     templateUrl: 'testimonials.html',
-                    // controller: 'LoginController',
+                    controller: 'TestimonialsController',
                     access: {
                         restricted: false
                     }

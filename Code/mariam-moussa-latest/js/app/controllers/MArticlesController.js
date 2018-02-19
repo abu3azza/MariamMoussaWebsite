@@ -197,7 +197,8 @@ app.controller('MArticlesController', ['Upload', '$window', '$http', "$rootScope
         // alert(JSON.stringify($scope.foundCampaigns.campaigns));
 
         for (var i = 0; i < $scope.foundArticles.articles.length; i++) {
-            // alert($scope.foundCampaigns.campaigns[i]);
+            alert(JSON.stringify($scope.foundArticles.articles[i].imagePath));
+            var name = $scope.foundArticles.articles[i].imagePath;
             $http({
                     url: 'http://localhost:3000/api/deleteArticle',
                     method: "PUT",
@@ -206,7 +207,22 @@ app.controller('MArticlesController', ['Upload', '$window', '$http', "$rootScope
                     headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
                 })
                 .then(function(result) {
+                    alert("hawhawhaw" + name);
                     console.log(result);
+                    alert(JSON.stringify($scope.foundArticles.articles[i]));
+                    $http({
+                            url: 'http://localhost:3000/api/deleteImage',
+                            method: "PUT",
+                            params: { name: name },
+                            dataType: 'json',
+                            headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+                        })
+                        .then(function(result) {
+                            console.log(result);
+
+                        }).catch(function(error) {
+                            console.log(error);
+                        });
 
                 }).catch(function(error) {
                     console.log(error);

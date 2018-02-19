@@ -12,58 +12,34 @@
 
 <div class="divide80"></div>
 <div class="container">
-    <!-- <div class="row">
+    <div class="row">
         <div class="col-md-3">
         </div>
         <div class="col-md-6">
             <div class="blog-post">
                 <div class="embed-responsive embed-responsive-16by9">
-                    <iframe src="http://player.vimeo.com/video/57175742"></iframe>
+                    <iframe style="overflow:hidden;height:100%;width:100%" width="100%" height="100%" ng-src="{{trustedVideo}}" frameborder="0" allowfullscreen></iframe>
                 </div>
-             
+
             </div>
         </div>
-    </div> -->
+    </div>
     <div class="row">
-        <div class="col-md-4 margin-btm-20">
-            <div class="quote dark">
-                <blockquote>
-                    <p>
-                        Coaching helped me to know more how to deal with my problems. I think it gave me more self-confidence and it helped me as if I’m talking to myself, and what are the questions to ask; it helps to go deep inside my thinking. It is trying to get out what
-                        is inside.</p>
-                </blockquote>
-            </div>
-            <div class="quote-footer text-right">
-                <div class="quote-author-img">
-                    <img src="img/customer.png" alt="">
-                </div>
-                <h4 style="color:#2ba5f8">Anonymous</h4>
-            </div>
-        </div>
+
         <!--colored quote box col-->
-        <div class="col-md-8 margin-btm-20">
-            <div class="quote green">
+        <div ng-repeat="test in testimonials" class="col-md-12 margin-btm-20">
+            <div class="quote green" ng-class-even="'dark'">
                 <blockquote>
-                    <p>
-                        To start with; I was a hesitant person that was unable to make decisions for my own self as I was hesitant about my capabilities, and by time I was becoming more hesitant and I hated this about myself given that I was never that hesitant in my life before.
-                        <br/><br/> I had an idea of the reason behind this new problem that appeared in my life but I was also afraid as well as unable to face this problem alone or in other words I needed or preferred to feel safe and have someone to
-                        help me go through fixing this problem.
-                        <br/><br/> By a pure coincidence I knew that someone I know and trust a lot does this coaching thing. I asked about the process and pricing and was glad it was all suitable for me.
-                        <br/><br/> I took the decision to be as open as I can, to get the best outcome as I was really upset with the hesitant and weak personality I had at the time.
-                        <br/><br/> I started the 6-months course. I followed even the tiniest recommendation, comment; I did any assignment I was asked to do even the permanent ones that I practice until this moment.
-                        <br/><br/> Finally, I am very comfortable, confident and happy with the personality I have at the moment and I know that I would have never reached it without external help and also personal effort and contribution.
-                        <br/><br/> I definitely recommend coaching for any early stage of any possible personality deformation not only serious cases.
-                        <br/><br/> I was also glad to find a Christian coach who had the extra option of relating any situation and finding its solution according to the Christian beliefs.
-                        <br/><br/> The results of my personality changes were noticed by my close friends and family members and I received compliments about my progress and I was very surprised as I thought I am doing this progress for my own self development
-                        and had no idea it could be apparent to others as well.</p>
+                    <p>{{test.description}}</p>
                 </blockquote>
             </div>
             <div class="quote-footer text-right">
                 <div class="quote-author-img">
                     <img src="img/customer.png" alt="">
                 </div>
-                <h4 style="color: #1d8bc0">Lilian</h4>
+                <h4 style="color: #1d8bc0">{{test.writer}}</h4>
             </div>
+            <div class="divide30"></div>
         </div>
         <!--colored quote box col-->
 

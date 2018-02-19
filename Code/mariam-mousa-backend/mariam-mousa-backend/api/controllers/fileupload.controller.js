@@ -1,4 +1,6 @@
 var multer = require('multer');
+const fs = require('fs');
+
 
 
 module.exports.upload = function(req, res) {
@@ -32,4 +34,20 @@ module.exports.upload = function(req, res) {
         console.log("da el file name" + filename);
         res.json({ error_code: 0, err_desc: null, imgname: filename });
     })
+};
+
+module.exports.deleteImage = function(req, res) {
+    var name = req.query.name;
+
+    console.log('imageName = ' + name);
+    fs.unlink('./uploads/' + name, (err) => {
+        if (err) {
+            console.log("7asal error : " + err);
+            res.json({ error_code: 1, err_desc: err });
+            return;
+        }
+        console.log('successfully deleted ./uploads/' + name);
+        res.json({ error_code: 0, err_desc: 'deleted succesfully', imgname: name });
+
+    });
 };

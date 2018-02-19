@@ -1,4 +1,4 @@
-app.controller('CampaignController', ['Upload', '$window', '$http', '$scope', function (Upload, $window, $http, $scope) {
+app.controller('CampaignController', ['Upload', '$window', '$http', '$scope', function(Upload, $window, $http, $scope) {
     // alert('hi campaign controller');
     var vm = this;
     vm.newCampaign = {};
@@ -23,7 +23,7 @@ app.controller('CampaignController', ['Upload', '$window', '$http', '$scope', fu
             responseData = response.data;
             // alert("respnse data" + JSON.stringify(responseData));
             angular.forEach(responseData,
-                function (item) {
+                function(item) {
                     $scope.campaigns.push(item);
                 });
             $scope.$apply();
@@ -39,7 +39,7 @@ app.controller('CampaignController', ['Upload', '$window', '$http', '$scope', fu
             responseData2 = response.data;
             // alert("respnse data" + JSON.stringify(responseData2));
             angular.forEach(responseData2,
-                function (item) {
+                function(item) {
                     $scope.selectedCampaigns.push(item);
                 });
 
@@ -49,18 +49,18 @@ app.controller('CampaignController', ['Upload', '$window', '$http', '$scope', fu
         });
     }
 
-    vm.submit = function () { //function to call on form submit
+    vm.submit = function() { //function to call on form submit
         if (vm.upload_form.file.$valid && vm.file) { //check if from is valid
             vm.upload(vm.file); //call upload function
         }
 
     }
-    vm.upload = function (file) {
+    vm.upload = function(file) {
         // alert("File: =>" + JSON.stringify(file));
         Upload.upload({
             url: 'http://localhost:3000/api/upload', //webAPI exposed to upload the file
             data: { file: file } //pass file as data, should be user ng-model
-        }).then(function (resp) { //upload function returns a promise
+        }).then(function(resp) { //upload function returns a promise
             if (resp.data.error_code === 0) { //validate success
                 // $window.alert('Success ' + resp.config.data.file.name + 'uploaded. Response: ');
                 vm.addCampaign(resp.data.imgname);
@@ -68,10 +68,10 @@ app.controller('CampaignController', ['Upload', '$window', '$http', '$scope', fu
             } else {
                 $window.alert('an error occured');
             }
-        }, function (resp) { //catch error
+        }, function(resp) { //catch error
             console.log('Error status: ' + resp.status);
             $window.alert('Error status: ' + resp.status);
-        }, function (evt) {
+        }, function(evt) {
             console.log(evt);
             var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
             console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
@@ -80,23 +80,23 @@ app.controller('CampaignController', ['Upload', '$window', '$http', '$scope', fu
         alert(" Done Uploading ");
     };
 
-    vm.addCampaign = function (imgname) {
+    vm.addCampaign = function(imgname) {
         vm.newCampaign.path = imgname;
         // $window.alert(JSON.stringify(vm.newCampaign));
 
         $http({
-            url: 'http://localhost:3000/api/addCampaign',
-            method: "POST",
-            data: $.param(vm.newCampaign),
-            dataType: 'json',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
-        })
-            .then(function (result) {
+                url: 'http://localhost:3000/api/addCampaign',
+                method: "POST",
+                data: $.param(vm.newCampaign),
+                dataType: 'json',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+            })
+            .then(function(result) {
                 console.log(result);
                 alert("Campaign added successfully");
-                retrieveAllCampaigns();//To referesh campaigns list.
+                retrieveAllCampaigns(); //To referesh campaigns list.
                 alert(JSON.stringify($scope.campaigns));
-            }).catch(function (error) {
+            }).catch(function(error) {
                 console.log(error);
             });
     }
@@ -107,21 +107,21 @@ app.controller('CampaignController', ['Upload', '$window', '$http', '$scope', fu
     $scope.toBeSelectedCampaigns = {
         campaigns: []
     };
-    $scope.checkAllCampaigns = function () {
+    $scope.checkAllCampaigns = function() {
         $scope.foundCampaigns.campaigns = angular.copy($scope.campaigns);
     };
-    $scope.uncheckAllCampaigns = function () {
+    $scope.uncheckAllCampaigns = function() {
         $scope.foundCampaigns.campaigns = [];
     };
-    $scope.checkAllSelectedCampaigns = function () {
+    $scope.checkAllSelectedCampaigns = function() {
         $scope.toBeSelectedCampaigns.campaigns = angular.copy($scope.selectedCampaigns);
     };
-    $scope.uncheckAllSelectedCampaigns = function () {
+    $scope.uncheckAllSelectedCampaigns = function() {
         $scope.toBeSelectedCampaigns.campaigns = [];
     };
 
 
-    $scope.save = function () {//Move Campaigns to selected campaigns
+    $scope.save = function() { //Move Campaigns to selected campaigns
         // alert(JSON.stringify($scope.foundCampaigns.campaigns));
 
         if (($scope.foundCampaigns.campaigns.length + $scope.selectedCampaigns.length) > 4) {
@@ -130,16 +130,16 @@ app.controller('CampaignController', ['Upload', '$window', '$http', '$scope', fu
             for (var i = 0; i < $scope.foundCampaigns.campaigns.length; i++) {
                 // alert($scope.foundCampaigns.campaigns[i]);
                 $http({
-                    url: 'http://localhost:3000/api/addSelectedCampaigns',
-                    method: "POST",
-                    data: $.param($scope.foundCampaigns.campaigns[i]),
-                    dataType: 'json',
-                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
-                })
-                    .then(function (result) {
+                        url: 'http://localhost:3000/api/addSelectedCampaigns',
+                        method: "POST",
+                        data: $.param($scope.foundCampaigns.campaigns[i]),
+                        dataType: 'json',
+                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+                    })
+                    .then(function(result) {
                         console.log(result);
                         retrieveAllCampaigns();
-                    }).catch(function (error) {
+                    }).catch(function(error) {
                         console.log(error);
                     });
             }
@@ -147,43 +147,58 @@ app.controller('CampaignController', ['Upload', '$window', '$http', '$scope', fu
         }
 
     };
-    $scope.deleteSelectedCampaign = function () {
+    $scope.deleteSelectedCampaign = function() {
         // alert(JSON.stringify($scope.toBeSelectedCampaigns.campaigns));
 
         for (var i = 0; i < $scope.toBeSelectedCampaigns.campaigns.length; i++) {
             // alert($scope.toBeSelectedCampaigns.campaigns[i]);
             $http({
-                url: 'http://localhost:3000/api/deleteSelectedCampaign',
-                method: "PUT",
-                data: $.param($scope.toBeSelectedCampaigns.campaigns[i]),
-                dataType: 'json',
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
-            })
-                .then(function (result) {
+                    url: 'http://localhost:3000/api/deleteSelectedCampaign',
+                    method: "PUT",
+                    data: $.param($scope.toBeSelectedCampaigns.campaigns[i]),
+                    dataType: 'json',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+                })
+                .then(function(result) {
                     console.log(result);
                     retrieveAllCampaigns();
-                }).catch(function (error) {
+                }).catch(function(error) {
                     console.log(error);
                 });
         }
         alert("Deleted Successfully");
     }
-    $scope.deleteCampaign = function () {
+    $scope.deleteCampaign = function() {
         // alert(JSON.stringify($scope.foundCampaigns.campaigns));
 
         for (var i = 0; i < $scope.foundCampaigns.campaigns.length; i++) {
             // alert($scope.foundCampaigns.campaigns[i]);
+            var name = $scope.foundCampaigns.campaigns[i].path;
             $http({
-                url: 'http://localhost:3000/api/deleteCampaign',
-                method: "PUT",
-                data: $.param($scope.foundCampaigns.campaigns[i]),
-                dataType: 'json',
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
-            })
-                .then(function (result) {
+
+                    url: 'http://localhost:3000/api/deleteCampaign',
+                    method: "PUT",
+                    data: $.param($scope.foundCampaigns.campaigns[i]),
+                    dataType: 'json',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+                })
+                .then(function(result) {
+                    $http({
+                            url: 'http://localhost:3000/api/deleteImage',
+                            method: "PUT",
+                            params: { name: name },
+                            dataType: 'json',
+                            headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+                        })
+                        .then(function(result) {
+                            console.log(result);
+
+                        }).catch(function(error) {
+                            console.log(error);
+                        });
                     console.log(result);
                     retrieveAllCampaigns();
-                }).catch(function (error) {
+                }).catch(function(error) {
                     console.log(error);
                 });
         }

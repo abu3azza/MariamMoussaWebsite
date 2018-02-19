@@ -153,6 +153,7 @@ app.controller('MainController', function($scope, $timeout, $sce, $http) {
 
             var responseCampaigns;
             var responseArticles;
+            var responseVideo;
 
             $http({
                 method: 'GET',
@@ -182,6 +183,19 @@ app.controller('MainController', function($scope, $timeout, $sce, $http) {
                         $scope.selectedArticles.push(item);
                     });
 
+            }, function errorCallback(response) {
+                alert("error" + response);
+
+            });
+
+            $http({
+                method: 'GET',
+                url: 'http://localhost:3000/api/getAllVideos'
+            }).then(function successCallback(response) {
+                responseVideo = response.data;
+                // alert("respnse data" + JSON.stringify(responseArticles));
+                $scope.trustedVideo = $sce.trustAsResourceUrl(responseVideo[0].HomeVideoLink);
+                alert('new Trusted Video = ' + $scope.trustedVideo);
             }, function errorCallback(response) {
                 alert("error" + response);
 
