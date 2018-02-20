@@ -274,13 +274,13 @@
                         <div class="item-img-wrap " style="height: 200px;width: 270px; ">
                             <img ng-src="http://localhost:3000/{{item.imagePath}} " class="img-responsive " style="min-height: 200px; ">
                             <div class="item-img-overlay ">
-                                <a href="#!article-details/{{item._id}} " class="show-image ">
+                                <a href="#!article-details/{{item._id}}/{{$index}}" class="show-image ">
                                     <span></span>
                                 </a>
                             </div>
                         </div>
                         <div class="work-desc ">
-                            <h3><a href="#!article-details/{{item._id}} ">{{item.title}}</a></h3>
+                            <h3><a href="#!article-details/{{item._id}}/{{$index}}">{{item.title}}</a></h3>
                             <span> {{item.publishDate}}</span>
                         </div>
                     </div>
