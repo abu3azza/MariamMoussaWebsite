@@ -1,7 +1,7 @@
 app.controller('ArticleController', ['$window', '$http', '$scope', function($window, $http, $scope) {
 
 
-    alert("hi atricle controller");
+    // alert("hi atricle controller");
 
     $scope.articles = [];
 
@@ -15,13 +15,12 @@ app.controller('ArticleController', ['$window', '$http', '$scope', function($win
             angular.forEach(responseData,
 
                 function(item) {
-                    alert("hwhw" + JSON.stringify(item));
+                    // alert("hwhw" + JSON.stringify(item));
                     $scope.articles.push(item);
                 });
 
         }, function errorCallback(response) {
-            alert("error" + response);
-
+            console.log("Unexpected error "+ response);
         });
     }
     init();

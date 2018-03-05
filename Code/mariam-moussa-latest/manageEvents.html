@@ -1,0 +1,120 @@
+<div class="container">
+    <div class="divide30"></div>
+    <h3>Manage Articles</h1>
+        <div class="divide30"></div>
+
+        <h5>Add New Articles :</h5>
+        <div class="divide5"></div>
+        <form name="ec.eventForm" class="sky-form">
+            <div class="row">
+                <div class="col-xs-4">
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-italic"></span>
+                        </span>
+                        <input type="text" class="form-control" ng-model="ec.newEvent.title" placeholder="Title">
+                    </div>
+                </div>
+                <div class="col-xs-4">
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-globe"></span>
+                        </span>
+                        <input type="text" ng-model="ec.newEvent.facebookLink" class="form-control" placeholder="Facebook Link">
+                    </div>
+                </div>
+                <div class="col-xs-4">
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                        </span>
+                        <input type="text" ng-model="ec.newEvent.googleFormsLink" class="form-control" placeholder="Google Forms Link ">
+                    </div>
+                </div>
+            </div>
+            <div class="divide20"></div>
+            <div class="row">
+                <div class="col-xs-4">
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-pushpin"></span>
+                        </span>
+                        <input type="text" class="form-control" ng-model="ec.newEvent.description" placeholder="Description">
+                    </div>
+                </div>
+
+                <div class="col-xs-4">
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-pushpin"></span>
+                        </span>
+
+                        <select ng-model="ec.newEvent.categoryStyleClass" required data-validation-required-message="Please choose event type" class="form-control"
+                            placeholder="Category">
+                            <option ng-repeat="cat in ec.categories" value="{{cat.styleClass}}">
+                                {{cat.description}}
+                            </option>
+                        </select>
+
+                    </div>
+                </div>
+
+                <div class="col-xs-4">
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-pushpin"></span>
+                        </span>
+
+                        <input type="text" class="form-control" ng-model="ec.newEvent.date" placeholder="Description">
+
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <textarea name="editor1" class="content-box" ng-model="editor1" markdown-editor="{  'iconlibrary': 'fa', addExtraButtons: true, resize: 'vertical'}"
+                        on-fullscreen="onFullScreenCallback()" on-fullscreen-exit="onFullScreenExitCallback()" rows="10">
+                                        </textarea>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <button ng-click="getHTML()">Check HTML</button>
+                        <br>
+                        <br>
+                        <label for="comment">Preview Result:</label>
+                        <div marked="editor1" class="markdown outline" style="padding: 20px">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="divide20"></div>
+            <br>
+            <br>
+            <div class="row">
+                <div class="col-xs-4">
+                    Add Event Image :
+                    <br>
+                    <br>
+                    <input type="file" ngf-select ng-model="ec.file" name="file" ngf-pattern="'image/*'" accept="image/*" ngf-max-size="20MB"
+                    /> Maximum 20M
+                </div>
+                <div class="col-xs-4">
+                    Image thumbnail:
+                    <img style="width:100px;" ngf-thumbnail="ec.file || './img/add_-ile.png'" />
+                    <i ng-show="ec.eventForm.file.$error.required">*required</i>
+                    <br>
+                    <i ng-show="ec.eventForm.file.$error.maxSize">File too large {{ec.file.size / 1000000|number:1}}MB: max 20M</i>
+                    <!-- <button ng-click="ec.submit()">submit</button> -->
+                    <p>{{ec.progress}}
+                </div>
+            </div>
+            <div class="divide10"></div>
+            <footer class="text-left">
+                <button ng-click="ec.submit()" class="btn btn-theme-bg btn-lg">Submit</button>
+            </footer>
+
+        </form>
+
+
+
+</div>

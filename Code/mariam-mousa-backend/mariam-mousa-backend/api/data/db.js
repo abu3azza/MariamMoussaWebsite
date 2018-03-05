@@ -52,3 +52,4 @@ require('./program.model');
 require('./article.model');
 require('./videos.model');
 require('./testimonials.model');
+require('./event.model');

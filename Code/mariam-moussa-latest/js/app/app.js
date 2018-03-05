@@ -16,6 +16,13 @@ var app = angular.module('mmapp', ['ui.calendar', 'ngRoute', 'ui.bootstrap', "ch
                     access: {
                         restricted: false
                     }
+                }).when('/manageEvents', {
+                    templateUrl: 'manageEvents.html',
+                    controller: 'MEventsController',
+                    controllerAs: 'ec',
+                    access: {
+                        restricted: false
+                    }
                 }).when('/editor', {
                     templateUrl: 'editor.html',
                     controller: 'EditorController',
@@ -279,6 +286,7 @@ var app = angular.module('mmapp', ['ui.calendar', 'ngRoute', 'ui.bootstrap', "ch
                 }).when('/events', {
                     templateUrl: 'events.html',
                     controller: 'EventController',
+                    controllerAs: 'ectrl',
                     access: {
                         restricted: false
                     }

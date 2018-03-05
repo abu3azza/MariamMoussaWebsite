@@ -44,24 +44,22 @@
     <div class="row">
         <div class="portfolio-box iso-call col-4-space">
 
-
-            <!--project post-->
-            <div class="project-post  workshops">
-                <div class="item-img-wrap ">
-                    <img src="img/program/life-tuning-logo.jpg" class="img-responsive" alt="events">
-                    <div class="item-img-overlay">
-                        <a href="img/program/life-tuning-logo.jpg" class="show-image">
-                            <span></span>
-                        </a>
+            <div ng-repeat="event in allEvents" class="project-post" ng-class="event.categoryStyleClass">
+                    <div class="item-img-wrap ">
+                        <img ng-src="http://localhost:3000/{{event.imagePath}}" style="max-height: 262px;max-width: 172px;" class="img-responsive" alt="events">
+                        <div class="item-img-overlay">
+                            <a href="{{event.facebookLink}}" class="show-image">
+                                <span></span>
+                            </a>
+                        </div>
                     </div>
+                    <div class="work-desc">
+                        <h3><a href="{{event.facebookLink}}">{{event.title}}</a></h3>
+                        <span>{{event.categoryStyleClass}} <br/>
+                                <i class="fa fa-calendar"></i> June 5th to 6th July</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><a href="https://www.facebook.com/Mariam.Moussa.Coaching">more details</a></small>
+                    </div>
+                    <!--work desc-->
                 </div>
-                <div class="work-desc">
-                    <h3><a href="https://www.facebook.com/events/914560298684196/">Life Tuning Program	</a></h3>
-                    <span>Programs <br/>
-                            <i class="fa fa-calendar"></i> June 5th to 6th July</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><a href="https://www.facebook.com/Mariam.Moussa.Coaching">more details</a></small>
-                </div>
-                <!--work desc-->
-            </div>
             <!--project post-->
         </div>
     </div>
