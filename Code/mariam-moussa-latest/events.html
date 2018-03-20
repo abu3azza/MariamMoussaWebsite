@@ -1,3 +1,9 @@
+<style>
+    .hiddenItem {
+        opacity: 0;
+    }
+</style>
+
 <div class="breadcrumb-wrap">
     <div class="container">
         <div class="row">
@@ -20,7 +26,11 @@
                                         <button class="btn  btn-theme-bg btn-lg" type="submit">Submit</button>
                                     </span>
                                 </div>
-                            </form> --><small><a href="" ng-click="open()">Subscribe here</a></small></h4>
+                            </form> -->
+            <small>
+                <a href="" ng-click="open()">Subscribe here</a>
+            </small>
+        </h4>
         <script>
             function myFunction() {
                 var email = prompt("Enter email to subscribe");
@@ -35,36 +45,72 @@
         <span class="center-line"></span>
     </div>
     <ul class="filter list-inline">
-        <li><a class="active" href="#" data-filter="*">Show All</a></li>
-        <li><a href="#" data-filter=".webinars">Webinars</a></li>
-        <li><a href="#" data-filter=".workshops">Workshops</a></li>
-        <li><a href="#" data-filter=".dayEvents">Day Events</a></li>
-        <li><a href="#" data-filter=".programs">Programs</a></li>
+        <li>
+            <a class="active" href="#" data-filter="*">Show All</a>
+        </li>
+        <li>
+            <a href="#" data-filter=".webinars">Webinars</a>
+        </li>
+        <li>
+            <a href="#" data-filter=".workshops">Workshops</a>
+        </li>
+        <li>
+            <a href="#" data-filter=".dayEvents">Day Events</a>
+        </li>
+        <li>
+            <a href="#" data-filter=".programs">Programs</a>
+        </li>
     </ul>
     <div class="row">
         <div class="portfolio-box iso-call col-4-space">
-
             <div ng-repeat="event in allEvents" class="project-post" ng-class="event.categoryStyleClass">
-                    <div class="item-img-wrap ">
-                        <img ng-src="http://localhost:3000/{{event.imagePath}}" style="max-height: 262px;max-width: 172px;" class="img-responsive" alt="events">
-                        <div class="item-img-overlay">
-                            <a href="{{event.facebookLink}}" class="show-image">
-                                <span></span>
-                            </a>
-                        </div>
+                <div class="item-img-wrap">
+                    <img ng-src="http://localhost:3000/{{event.imagePath}}" style="max-height: 262px;max-width: 172px;" class="img-responsive"
+                        alt="events">
+                    <div class="item-img-overlay">
+                        <a href="{{event.facebookLink}}" class="show-image">
+                            <span></span>
+                        </a>
                     </div>
-                    <div class="work-desc">
-                        <h3><a href="{{event.facebookLink}}">{{event.title}}</a></h3>
-                        <span>{{event.categoryStyleClass}} <br/>
-                                <i class="fa fa-calendar"></i> June 5th to 6th July</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small><a href="https://www.facebook.com/Mariam.Moussa.Coaching">more details</a></small>
-                    </div>
-                    <!--work desc-->
                 </div>
-            <!--project post-->
+                <div class="work-desc">
+                    <h3>
+                        <a href="{{event.facebookLink}}">{{event.title}}</a>
+                    </h3>
+                    <span>
+                        <i class="fa fa-calendar"></i> {{event.date}} </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <small>
+                        <a href="https://www.facebook.com/Mariam.Moussa.Coaching">more details</a>
+                    </small>
+                </div>
+            </div>
+            <div class="hiddenItem project-post programs ">
+                <div class="item-img-wrap " style="
+                min-height: 133px;
+                max-height: 133px;
+            ">
+                    <img src="img/events/eve-1.jpg" class="img-responsive" style="display:none;" alt="events">
+                    <div class="item-img-overlay">
+                        <a href="img/events/eve-1.jpg" class="show-image">
+                            <span></span>
+                        </a>
+                    </div>
+                </div>
+                <div class="work-desc" style="display:none;">
+                    <h3>
+                        <a href="eve-.html">Event Title </a>
+                    </h3>
+                    <span>Webinars
+                        <br/>
+                        <i class="fa fa-calendar"></i> 31st july 2015</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <small>
+                        <a href="eve-.html">more details</a>
+                    </small>
+                </div>
+            </div>
         </div>
     </div>
 </div>
-<!--container-->
 
 <div class="divide30"></div>
 
@@ -80,11 +126,12 @@
         <form ng-submit="subscribeNewsLetter()" role="form" class="subscribe-form">
             <div class="input-group">
 
-                <input type="email" class="form-control" required data-validation-required-message="Please enter email." ng-model="subscriber" placeholder="Enter email to subscribe">
+                <input type="email" class="form-control" required data-validation-required-message="Please enter email." ng-model="subscriber"
+                    placeholder="Enter email to subscribe">
                 <span class="input-group-btn">
-                                    <button class="btn  btn-theme-bg btn-lg"  type="submit">Ok</button>
-                                    <!--  -->
-                                </span>
+                    <button class="btn  btn-theme-bg btn-lg" type="submit">Ok</button>
+                    <!--  -->
+                </span>
             </div>
             <span ng-show="showSubMsg" style="color: #ffba00;"> Thanks For Subscription</span>
         </form>
@@ -92,80 +139,3 @@
 
 
 </modal>
-<script>
-    var winDow = $(window);
-    // Needed variables
-    var $container = $('.iso-call');
-    var $filter = $('.filter');
-
-    try {
-        $container.imagesLoaded(function() {
-            $container.trigger('resize');
-            $container.isotope({
-                filter: '*',
-                layoutMode: 'masonry',
-                animationOptions: {
-                    duration: 750,
-                    easing: 'linear'
-                }
-            });
-
-            $('.triggerAnimation').waypoint(function() {
-                var animation = $(this).attr('data-animate');
-                $(this).css('opacity', '');
-                $(this).addClass("animated " + animation);
-
-            }, {
-                offset: '75%',
-                triggerOnce: true
-            });
-            setTimeout(1500);
-        });
-    } catch (err) {}
-
-    winDow.bind('resize', function() {
-        var selector = $filter.find('a.active').attr('data-filter');
-
-        try {
-            $container.isotope({
-                filter: selector,
-                animationOptions: {
-                    duration: 750,
-                    easing: 'linear',
-                    queue: false
-                }
-            });
-        } catch (err) {}
-        return false;
-    });
-
-    // Isotope Filter 
-    $filter.find('a').click(function() {
-        var selector = $(this).attr('data-filter');
-
-        try {
-            $container.isotope({
-                filter: selector,
-                animationOptions: {
-                    duration: 750,
-                    easing: 'linear',
-                    queue: false
-                }
-            });
-        } catch (err) {
-
-        }
-        return false;
-    });
-
-
-    var filterItemA = $('.filter li a');
-
-    filterItemA.on('click', function() {
-        var $this = $(this);
-        if (!$this.hasClass('active')) {
-            filterItemA.removeClass('active');
-            $this.addClass('active');
-        }
-    });
-</script>

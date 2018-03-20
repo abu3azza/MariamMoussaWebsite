@@ -21,7 +21,7 @@ var app = angular.module('mmapp', ['ui.calendar', 'ngRoute', 'ui.bootstrap', "ch
                     controller: 'MEventsController',
                     controllerAs: 'ec',
                     access: {
-                        restricted: false
+                        restricted: true
                     }
                 }).when('/editor', {
                     templateUrl: 'editor.html',
@@ -83,21 +83,21 @@ var app = angular.module('mmapp', ['ui.calendar', 'ngRoute', 'ui.bootstrap', "ch
                     templateUrl: 'managePrograms.html',
                     controller: 'MProgramController',
                     access: {
-                        restricted: false
+                        restricted: true
                     }
 
                 }).when('/manageVideos', {
                     templateUrl: 'manageVideos.html',
                     controller: 'MVideosController',
                     access: {
-                        restricted: false
+                        restricted: true
                     }
 
                 }).when('/manageTestimonials', {
                     templateUrl: 'manageTestimonials.html',
                     controller: 'MTestimonialsController',
                     access: {
-                        restricted: false
+                        restricted: true
                     }
 
                 }).when('/about-mariam', {
@@ -181,7 +181,7 @@ var app = angular.module('mmapp', ['ui.calendar', 'ngRoute', 'ui.bootstrap', "ch
                     templateUrl: 'manageArticiles.html',
                     controller: 'MArticlesController',
                     access: {
-                        restricted: false
+                        restricted: true
                     }
 
                 }).when('/articles', {

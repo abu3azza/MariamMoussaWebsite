@@ -1,7 +1,27 @@
-app.controller('EventController', function($scope, $timeout) {
+app.controller('EventController', function ($scope, $timeout, $http) {
 
+    $scope.allEvents = [];
+    function init() {
+        var responseData;
+        $http({
+            method: 'GET',
+            url: 'http://localhost:3000/api/getEvents'
+        }).then(function successCallback(response) {
+            responseData = response.data;
+            angular.forEach(responseData,
 
-    $scope.toggleModal = function(btnClicked) {
+                function (item) {
+                    // alert("event : " + JSON.stringify(item));
+                    $scope.allEvents.push(item);
+                });
+                $scope.$apply();
+        }, function errorCallback(response) {
+            alert("error" + response);
+
+        });
+    }
+    init();
+    $scope.toggleModal = function (btnClicked) {
         $scope.buttonClicked = btnClicked;
         $scope.showModal = !$scope.showModal;
     };
@@ -47,7 +67,7 @@ app.controller('EventController', function($scope, $timeout) {
                     offset: '75%',
                     triggerOnce: true
                 });
-                setTimeout(1500);
+                setTimeout(5000);
             });
         } catch (err) {}
 

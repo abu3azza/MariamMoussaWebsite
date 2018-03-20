@@ -13,6 +13,7 @@ module.exports.add = function (req, res, next) {
         var googleFormsLink = req.body.googleFormsLink;
         var categoryStyleClass = req.body.categoryStyleClass;
         var imagePath = req.body.imagePath;
+        var date = req.body.date;
 
         console.log("Starting to insert + " + JSON.stringify(req.body));
 
@@ -22,7 +23,8 @@ module.exports.add = function (req, res, next) {
             facebookLink: facebookLink,
             googleFormsLink: googleFormsLink,
             categoryStyleClass: categoryStyleClass,
-            imagePath: imagePath
+            imagePath: imagePath,
+            date: date
 
         }, function (err, event) {
             if (err) {

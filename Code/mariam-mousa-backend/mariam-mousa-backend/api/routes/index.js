@@ -10,12 +10,13 @@ var ctrlUpload = require('../controllers/fileupload.controller.js');
 var ctrlCampaign = require('../controllers/campaign.controller.js');
 var ctrlProgram = require('../controllers/program.controller.js');
 var ctrlArticle = require('../controllers/articles.controller.js');
+var ctrlEvent = require('../controllers/events.controller.js');
 var ctrlVideos = require('../controllers/videos.controller');
 var ctrlTestimonials = require('../controllers/testimonials.controller.js');
 
 var cors = require('cors');
 
-router.all('/*', function(req, res, next) {
+router.all('/*', function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     // res.header("Access-Control-Allow-Headers", "X-Requested-With, Content-Type");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -202,7 +203,22 @@ router
     .put(ctrlVideos.deleteVideo);
 
 //#######################TESTIMONIALS##############################
+router
+    .route('/addEvent')
+    .post(ctrlEvent.add);
 
+
+router
+    .route('/getEvents')
+    .get(ctrlEvent.eventsGetAll);
+
+router
+    .route('/deleteEvent')
+    .put(ctrlEvent.deleteEvent);
+
+router
+    .route('/getEventById')
+    .get(ctrlEvent.eventsGetOne);
 
 router
     .route('/addTestimonial')
