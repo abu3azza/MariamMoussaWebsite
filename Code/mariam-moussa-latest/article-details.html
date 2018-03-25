@@ -1,14 +1,18 @@
-<meta property="og:url" content="http://www.nytimes.com/2015/02/19/arts/international/when-great-minds-dont-think-alike.html" />
+<meta property="og:url" content="http://www.nytimes.com/2015/02/19/arts/international/when-great-minds-dont-think-alike.html"
+/>
 <meta property="og:type" content="article" />
 <meta property="og:title" content="When Great Minds Don’t Think Alike" />
 <meta property="og:description" content="How much does culture influence creative thinking?" />
-<meta property="og:image" content="http://static01.nyt.com/images/2015/02/19/arts/international/19iht-btnumbers19A/19iht-btnumbers19A-facebookJumbo-v2.jpg" />
+<meta property="og:image" content="http://static01.nyt.com/images/2015/02/19/arts/international/19iht-btnumbers19A/19iht-btnumbers19A-facebookJumbo-v2.jpg"
+/>
 
 <div class="breadcrumb-wrap">
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
-                <h4 align="right">Coaching Articles - <small>{{article.title}}</small></h4>
+                <h4 align="right">Coaching Articles -
+                    <small>{{article.title}}</small>
+                </h4>
             </div>
 
         </div>
@@ -25,9 +29,14 @@
                 </div>
                 <!--work link-->
                 <ul class="list-inline post-detail">
-                    <li>First Published in <a>{{article.publishedIn}}</a></li>
-                    <li>Written by : <a href="#!about-mariam">{{article.writtenBy}} </a></li>
-                    <li><i class="fa fa-calendar"></i> {{article.publishDate}}</li>
+                    <li>First Published in
+                        <a>{{article.publishedIn}}</a>
+                    </li>
+                    <li>Written by :
+                        <a href="#!about-mariam">{{article.writtenBy}} </a>
+                    </li>
+                    <li>
+                        <i class="fa fa-calendar"></i> {{article.publishDate}}</li>
                     <!-- <li><i class="fa fa-thumbs-up" aria-hidden="true"></i></i> <a href="#">Like</a></li>
                     <li><i class="fa fa-share" aria-hidden="true"></i></i> <a href="#">Share</a></li>
                     <li><i class="fa fa-comment"></i> <a href="#comments">What do you think?</a></li> -->
@@ -36,7 +45,6 @@
                 <p ng-bind-html="trustedHTML" align="justify">
                 </p>
 
-                {{object}}
                 <br/>
                 <!-- <form action="" id="comments">
                     <div class="row" id="comments">
@@ -53,9 +61,12 @@
             </div>
             <!--blog post-->
             <ul class="pager">
-                {{hawhaw}}
-                <li ng-show="offset > 0" class="previous"><button class="npbut" ng-click="getPrevArticle()">&larr; Previous Page</button></li>
-                <li ng-show="offset+1 < count" class="next"><button class="npbut" ng-click="getNextArticle()">Next Page &rarr;</button></li>
+                <li ng-show="offset > 0" class="previous">
+                    <button class="npbut" ng-click="getPrevArticle()">&larr; Previous Page</button>
+                </li>
+                <li ng-show="offset+1 < count" class="next">
+                    <button class="npbut" ng-click="getNextArticle()">Next Page &rarr;</button>
+                </li>
             </ul>
             <div share-square="true" share-links="Facebook, Twitter, LinkedIn, Google-Plus" share-title="Da el title EL 3azzem"></div>
 
@@ -78,7 +89,7 @@
         color: #2ba5f8;
         float: left;
     }
-    
+
     .next {
         display: inline-block;
         padding: 5px 14px;
@@ -88,7 +99,7 @@
         color: #2ba5f8;
         float: right;
     }
-    
+
     .npbut {
         background-color: transparent;
         border: 0px;

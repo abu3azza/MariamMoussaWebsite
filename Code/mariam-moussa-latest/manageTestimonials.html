@@ -49,7 +49,7 @@
     <div class="divide5"></div>
     <div style="background-color: #CDE;">
         <div ng-repeat="test in testimonials">
-            <input type="checkbox" data-checklist-model="foundTestimonials.testimonials" data-checklist-value="test"> {{test.description}}
+            <input type="checkbox" data-checklist-model="foundTestimonials.testimonials" data-checklist-value="test"> {{test.writer}} : {{test.description | limitTo:30}}...
         </div>
         <button ng-click="checkAllTestimonials()" style="margin-right: 10px">Check all</button>
         <button ng-click="uncheckAllTestimonials()" style="margin-right: 10px">Uncheck all</button>

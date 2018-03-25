@@ -27,7 +27,7 @@ app.controller('ArticleDetailsController', function ($window, $http, $scope, $ro
 
 
         }, function errorCallback(response) {
-            alert("error" + response);
+            // alert("error" + response);
 
         });
 
@@ -39,11 +39,11 @@ app.controller('ArticleDetailsController', function ($window, $http, $scope, $ro
 
         }).then(function successCallback(response) {
             $scope.count = response.data;
-            alert("count =" + $scope.count);
+            // alert("count =" + $scope.count);
 
 
         }, function errorCallback(response) {
-            alert("error" + response);
+            // alert("error" + response);
 
         });
 
@@ -53,9 +53,9 @@ app.controller('ArticleDetailsController', function ($window, $http, $scope, $ro
     init();
 
     $scope.getNextArticle = function () {
-        alert("dal el offset abl " + $scope.offset + 2 + " we dah el count " + $scope.count);
+        // alert("dal el offset abl " + $scope.offset + 2 + " we dah el count " + $scope.count);
         if (($scope.offset + 1) < $scope.count) {
-            alert("da5al");
+            // alert("da5al");
             $scope.offset++;
         }
         $scope.hawhaw = "hawhaw";
@@ -65,22 +65,22 @@ app.controller('ArticleDetailsController', function ($window, $http, $scope, $ro
 
 
         }).then(function successCallback(response) {
-            alert("respnse  data==>" + JSON.stringify(response.data));
+            // alert("respnse  data==>" + JSON.stringify(response.data));
             $scope.article = response.data[0];
-            alert("respnse ==>" + JSON.stringify($scope.article));
+            // alert("respnse ==>" + JSON.stringify($scope.article));
             $scope.trustedHTML = $sce.trustAsHtml($scope.article.description);
 
 
 
         }, function errorCallback(response) {
-            alert("error" + response);
+            // alert("error" + response);
 
         });
-        alert("after Alert" + JSON.stringify($scope.article));
+        // alert("after Alert" + JSON.stringify($scope.article));
     }
 
     $scope.getPrevArticle = function () {
-        alert("befor" + $scope.offset);
+        // alert("befor" + $scope.offset);
 
         $scope.offset = $scope.offset - 1;
         $scope.object = JSON.stringify($scope.article);
@@ -90,17 +90,17 @@ app.controller('ArticleDetailsController', function ($window, $http, $scope, $ro
 
 
         }).then(function successCallback(response) {
-            alert("respnse  data==>" + JSON.stringify(response.data));
+            // alert("respnse  data==>" + JSON.stringify(response.data));
             $scope.article = response.data[0];
-            alert("respnse ==>" + JSON.stringify($scope.article));
+            // alert("respnse ==>" + JSON.stringify($scope.article));
             $scope.trustedHTML = $sce.trustAsHtml($scope.article.description);
 
 
         }, function errorCallback(response) {
-            alert("error" + response);
+            // alert("error" + response);
 
         });
-        alert("after Alert" + JSON.stringify($scope.article));
+        // alert("after Alert" + JSON.stringify($scope.article));
     }
 
 });

@@ -2,7 +2,15 @@
 <html lang="en" ng-app="mmapp">
 
 <head>
+    <!-- Global Site Tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_TRACKING_ID"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
 
+        gtag('config', 'GA_TRACKING_ID');
+    </script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js" type="text/javascript"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.min.js" type="text/javascript"></script>
@@ -12,7 +20,6 @@
     <script src="./js/ng-file-upload/ng-file-upload-shim.min.js"></script>
     <script src="./js/ng-file-upload/ng-file-upload.min.js"></script>
     <!-- for no html5 browsers support -->
-
 
     <script src="https://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.5.0.js"></script>
     <meta name="keywords" content="Egypt, Middle East, Coaching, Co-Active Coaching, Personal Coaching, Corporate Coaching, Professional Coaching, Individual Coaching, Team Coaching, Coaching Services, Group Coaching, Coach, Coachee, Certified Coach, ICF Certified, CTI Certified, ACC, CPCC, Life Coach, Business Coach, Executive Coach, Transformational Coach, Coaching Relationship, Transformation, Fear, Stuck, Obstacles, Impact, Inspiring Quotes, Aliveness, Dreams, Passion, Life Purpose, Life Meaning, Potential, Values, Magnificence, Fulfillment, Spark, Purpose, Change, Growth, Self-Development, Development, Inspiration, Life Story, Quotes, Leadership, Leaders, Teams, Career Shifting, Transitioning, Entrepreneurship, Relationships, Habits, Perspectives, Values, Empowerment, Self-Confidence, Self-Discovery, Self-Awareness, Who Am I, Training, Webinars, Articles, Workshops, Day Events, Free Sample Session, Programs, Business Partners, ICF, CTI, Professionalism, Quality of Services, Compassion, Aliveness, Inspiration, Influence, Leadership, Challenges, Development, Learning, Positivity, Support, Understanding, Championing, Innovation, Individuality, Love, Social, People-oriented, Society, People, Corporate social responsibility, Writer, Secretary, Office assistant, Marketing, Events, Finance, Sales, Business development"
@@ -82,20 +89,41 @@
             <div class="row">
                 <div class="col-sm-4 hidden-xs">
                     <ul class="list-inline socials-simple">
-                        <li><a href="https://www.facebook.com/Mariam.Moussa.Coaching" target="_blank"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="https://www.instagram.com/mariammoussacoaching/" target="_blank"><i class="fa fa-instagram"></i></a></li>
-                        <li><a href="https://www.linkedin.com/company/mariam-moussa---coaching" target="_blank"><i class="fa fa-linkedin"></i></a></li>
-                        <li><a href="https://www.youtube.com/channel/UCHBESP7XIzu7fi8z6jhfduw" target="_blank"><i class="fa fa-youtube"></i></a></li>
+                        <li>
+                            <a href="https://www.facebook.com/Mariam.Moussa.Coaching" target="_blank">
+                                <i class="fa fa-facebook"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.instagram.com/mariammoussacoaching/" target="_blank">
+                                <i class="fa fa-instagram"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.linkedin.com/company/mariam-moussa---coaching" target="_blank">
+                                <i class="fa fa-linkedin"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.youtube.com/channel/UCHBESP7XIzu7fi8z6jhfduw" target="_blank">
+                                <i class="fa fa-youtube"></i>
+                            </a>
+                        </li>
                     </ul>
                 </div>
                 <div ng-controller="ServicesController" class="col-sm-8 text-right">
                     <ul class="list-inline top-dark-right">
-                        <li><button style="background: transparent;border: aliceblue;" ng-click="gotoBottom( 'contact-us' )"><i class="fa fa-user"></i> Contact Us</button></li>
+                        <li>
+                            <button style="background: transparent;border: aliceblue;" ng-click="gotoBottom( 'contact-us' )">
+                                <i class="fa fa-user"></i> Contact Us</button>
+                        </li>
                     </ul>
                     <div class="search">
                         <form role="form">
                             <input type="text" class="form-control" autocomplete="off" placeholder="Write something and press enter">
-                            <span class="search-close"><i class="fa fa-times"></i></span>
+                            <span class="search-close">
+                                <i class="fa fa-times"></i>
+                            </span>
                         </form>
                     </div>
 
@@ -128,13 +156,19 @@
 
                     <div class="caption text-center-top sft" data-x="center" data-y="210" data-speed="1000" data-start="1400" data-easing="easeOutExpo">
                         <!-- Mina -->Hello!
-                        <font color="#117ca0"><b> This is Mariam Moussa</b></font>
+                        <font color="#117ca0">
+                            <b> This is Mariam Moussa</b>
+                        </font>
                     </div>
 
                     <div class="caption text-center-btm sfr text-center" data-x="center" data-y="280" data-speed="1000" data-start="1600" data-easing="easeOutExpo">
 
                         <!-- Mina -->
-                        <font color="#2ba5f8"><b><i>Create the kind of self that you will be happy with.</i></b></font>
+                        <font color="#2ba5f8">
+                            <b>
+                                <i>Create the kind of self that you will be happy with.</i>
+                            </b>
+                        </font>
                     </div>
                 </li>
                 <!-- SLIDE -->
@@ -147,34 +181,47 @@
                     <!-- MAIN IMAGE -->
                     <img src="img/slider-3.jpg" alt="slider-3" data-bgfit="cover" data-bgposition="left top" data-bgrepeat="no-repeat">
                     <div class="caption text-center-top sft" data-x="center" data-y="120" data-speed="1000" data-start="1400" data-easing="easeOutExpo">
-                        <!-- Mina --><small><font color="#ffba00">BOOK your FREE SAMPLE SESSION here NOW!</font></small>
+                        <!-- Mina -->
+                        <small>
+                            <font color="#ffba00">BOOK your FREE SAMPLE SESSION here NOW!</font>
+                        </small>
                     </div>
 
                     <!-- LAYER NR. 2 -->
                     <div class="caption text-center-btm sfr text-left" data-x="0" data-y="360" data-speed="1000" data-start="1600" data-easing="easeOutExpo">
                         <!-- Mina -->
-                        <font color="#117ca0"><b>To start any coaching relationship,</b></font>
+                        <font color="#117ca0">
+                            <b>To start any coaching relationship,</b>
+                        </font>
                     </div>
 
                     <!-- LAYER NR. 3 -->
                     <div class="caption text-center-btm sfr text-left" data-x="0" data-y="390" data-speed="1000" data-start="1600" data-easing="easeOutExpo">
                         <!-- Mina -->
-                        <font color="#117ca0"><b> a free sample session is conducted</b></font>
+                        <font color="#117ca0">
+                            <b> a free sample session is conducted</b>
+                        </font>
                     </div>
                     <!-- LAYER NR. 4 -->
                     <div class="caption text-center-btm sfr text-left" data-x="0" data-y="420" data-speed="1000" data-start="1600" data-easing="easeOutExpo">
                         <!-- Mina -->
-                        <font color="#117ca0"><b> so that the coachee paints</b></font>
+                        <font color="#117ca0">
+                            <b> so that the coachee paints</b>
+                        </font>
                     </div>
                     <!-- LAYER NR. 5 -->
                     <div class="caption text-center-btm sfr text-left" data-x="0" data-y="450" data-speed="1000" data-start="1600" data-easing="easeOutExpo">
                         <!-- Mina -->
-                        <font color="#117ca0"><b> a full picture of the process</b></font>
+                        <font color="#117ca0">
+                            <b> a full picture of the process</b>
+                        </font>
                     </div>
                     <!-- LAYER NR. 5 -->
                     <div class="caption text-center-btm sfr text-left" data-x="0" data-y="480" data-speed="1000" data-start="1600" data-easing="easeOutExpo">
                         <!-- Mina -->
-                        <font color="#117ca0"><b> and tastes the impact of coaching.</b></font>
+                        <font color="#117ca0">
+                            <b> and tastes the impact of coaching.</b>
+                        </font>
                     </div>
                     <!-- LAYER NR. 7 -->
                     <div class="caption text-center-btm sfr text-left" data-x="center" data-y="240" data-speed="1000" data-start="1600" data-easing="easeOutExpo">
@@ -231,13 +278,21 @@
 
                         <ul class="list-unstyled contact">
                             <li>
-                                <p style="color:#FFF"><strong><i class="fa fa-envelope"></i> Mail:</strong> <a href="mailto:info@mariam-moussa.com">info@mariam-moussa.com</a></p>
+                                <p style="color:#FFF">
+                                    <strong>
+                                        <i class="fa fa-envelope"></i> Mail:</strong>
+                                    <a href="mailto:info@mariam-moussa.com">info@mariam-moussa.com</a>
+                                </p>
                             </li>
                             <li>
-                                <p style="color:#FFF"><strong><i class="fa fa-phone"></i> Phone:</strong> +2 0122 231 8990</p>
+                                <p style="color:#FFF">
+                                    <strong>
+                                        <i class="fa fa-phone"></i> Phone:</strong> +2 0122 231 8990</p>
                             </li>
                             <li>
-                                <p style="color:#FFF"><strong><i class="fa fa-skype"></i> Skype</strong> mariam.nagy.moussa</p>
+                                <p style="color:#FFF">
+                                    <strong>
+                                        <i class="fa fa-skype"></i> Skype</strong> mariam.nagy.moussa</p>
                             </li>
 
                         </ul>
@@ -248,15 +303,35 @@
                     <div class="footer-col">
                         <h3 style="color:#ececec">Follow us</h3>
                         <ul class="list-inline top-social">
-                            <li><a href="https://www.facebook.com/Mariam.Moussa.Coaching" target="_blank"><i class="fa fa-facebook"></i></a></li>
-                            <li><a href="https://www.instagram.com/mariammoussacoaching/" target="_blank"><i class="fa fa-instagram"></i></a></li>
-                            <li><a href="https://www.linkedin.com/company/mariam-moussa---coaching" target="_blank"><i class="fa fa-linkedin"></i></a></li>
-                            <li><a href="https://www.youtube.com/channel/UCHBESP7XIzu7fi8z6jhfduw" target="_blank"><i class="fa fa-youtube"></i></a></li>
+                            <li>
+                                <a href="https://www.facebook.com/Mariam.Moussa.Coaching" target="_blank">
+                                    <i class="fa fa-facebook"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.instagram.com/mariammoussacoaching/" target="_blank">
+                                    <i class="fa fa-instagram"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.linkedin.com/company/mariam-moussa---coaching" target="_blank">
+                                    <i class="fa fa-linkedin"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.youtube.com/channel/UCHBESP7XIzu7fi8z6jhfduw" target="_blank">
+                                    <i class="fa fa-youtube"></i>
+                                </a>
+                            </li>
                         </ul>
                     </div>
                     <br/>
                     <div class="footer-col">
-                        <h3><a href="#!faqs" style="color:#ececec">FAQ<i></i></a></h3>
+                        <h3>
+                            <a href="#!faqs" style="color:#ececec">FAQ
+                                <i></i>
+                            </a>
+                        </h3>
 
                     </div>
                 </div>
@@ -268,11 +343,12 @@
                         <form ng-submit="subscribeNewsLetter()" role="form" class="subscribe-form">
                             <div class="input-group">
 
-                                <input type="email" class="form-control" required data-validation-required-message="Please enter email." ng-model="subscriber" placeholder="Enter email to subscribe">
+                                <input type="email" class="form-control" required data-validation-required-message="Please enter email." ng-model="subscriber"
+                                    placeholder="Enter email to subscribe">
                                 <span class="input-group-btn">
-                                        <button class="btn  btn-theme-bg btn-lg"  type="submit">Ok</button>
-                                        <!--  -->
-                                    </span>
+                                    <button class="btn  btn-theme-bg btn-lg" type="submit">Ok</button>
+                                    <!--  -->
+                                </span>
                             </div>
                             <span ng-show="showSubMsg" style="color: #ffba00;"> Thanks For Subscribing</span>
                         </form>
@@ -283,7 +359,13 @@
             <div class="row">
                 <div class="col-md-12 text-center">
                     <div class="footer-btm">
-                        <!-- Mina --><span>&copy; Copyright 2016 <a href="index.html">Mariam Moussa</a> | Designed by <a href="http://pr-designer.com/" target="_blank">PR-Designer</a> | Developed by <a href="mailto:mina.kahil@gmail.com"> Mina Kahil </a> & <a href="mailto:nadernaguibmoh@gmail.com"> Nader Naguib </a></span>
+                        <!-- Mina -->
+                        <span>&copy; Copyright 2016
+                            <a href="index.html">Mariam Moussa</a> | Designed by
+                            <a href="http://pr-designer.com/" target="_blank">PR-Designer</a> | Developed by
+                            <a href="mailto:mina.kahil@gmail.com"> Mina Kahil </a> &
+                            <a href="mailto:nadernaguibmoh@gmail.com"> Nader Naguib </a>
+                        </span>
                     </div>
                 </div>
             </div>
@@ -389,6 +471,7 @@
     <script type="text/javascript" src="js/app/controllers/CampaignController.js"></script>
     <script type="text/javascript" src="js/app/controllers/MProgramController.js"></script>
     <script type="text/javascript" src="js/app/controllers/ProgramController.js"></script>
+    <script type="text/javascript" src="js/app/controllers/DisplayEventController.js"></script>
     <script type="text/javascript" src="js/app/controllers/MArticlesController.js"></script>
     <script type="text/javascript" src="js/app/controllers/MEventsController.js"></script>
     <script type="text/javascript" src="js/app/controllers/ArticleController.js"></script>

@@ -66,7 +66,7 @@
             <div ng-repeat="event in allEvents" class="project-post" ng-class="event.categoryStyleClass">
                 <div class="item-img-wrap">
                     <img ng-src="http://localhost:3000/{{event.imagePath}}" style="max-height: 262px;max-width: 172px;" class="img-responsive"
-                        alt="events">
+                        alt="events"/>
                     <div class="item-img-overlay">
                         <a href="{{event.facebookLink}}" class="show-image">
                             <span></span>
@@ -75,12 +75,13 @@
                 </div>
                 <div class="work-desc">
                     <h3>
-                        <a href="{{event.facebookLink}}">{{event.title}}</a>
+                        <a ng-href="#!eventDisplay/{{event._id}}">{{event.title}}</a>
                     </h3>
                     <span>
                         <i class="fa fa-calendar"></i> {{event.date}} </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <small>
-                        <a href="https://www.facebook.com/Mariam.Moussa.Coaching">more details</a>
+                        <!-- <a href="https://www.facebook.com/Mariam.Moussa.Coaching">more details</a> -->
+                        <a ng-href="#!eventDisplay/{{event._id}}">more details</a>
                     </small>
                 </div>
             </div>
@@ -91,7 +92,7 @@
             ">
                     <img src="img/events/eve-1.jpg" class="img-responsive" style="display:none;" alt="events">
                     <div class="item-img-overlay">
-                        <a href="img/events/eve-1.jpg" class="show-image">
+                        <a ng-href="#!eventDisplay/{{event._id}}" class="show-image">
                             <span></span>
                         </a>
                     </div>
@@ -104,7 +105,7 @@
                         <br/>
                         <i class="fa fa-calendar"></i> 31st july 2015</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <small>
-                        <a href="eve-.html">more details</a>
+                        <a ng-href="#!eventDisplay/{{event._id}}">more details</a>
                     </small>
                 </div>
             </div>

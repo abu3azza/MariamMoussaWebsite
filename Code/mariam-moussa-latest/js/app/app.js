@@ -233,6 +233,13 @@ var app = angular.module('mmapp', ['ui.calendar', 'ngRoute', 'ui.bootstrap', "ch
                         restricted: false
                     }
 
+                }).when('/eventDisplay/:id', {
+                    templateUrl: 'eventDisplay.html',
+                    controller: 'DisplayEventController',
+                    access: {
+                        restricted: false
+                    }
+
                 }).when('/quote', {
                     templateUrl: 'quote.html',
                     // controller: 'LoginController',
@@ -292,11 +299,8 @@ var app = angular.module('mmapp', ['ui.calendar', 'ngRoute', 'ui.bootstrap', "ch
                     }
 
                 }).otherwise({
-
-
                     template: "<div></div>",
                     controller: function($window, $location, $rootScope) {
-
                         $window.location.href = 'index.html#!home';
 
                     }

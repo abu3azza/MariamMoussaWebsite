@@ -1,5 +1,5 @@
 app.controller('MEventsController', ['Upload', '$window', '$http', "$rootScope", '$scope', 'marked', function (Upload, $window, $http, $rootScope, $scope, marked) {
-    alert("hi MEventsController");
+    // alert("hi MEventsController");
     var vm = this;
     vm.newEvent = {};
     vm.categories = [];
@@ -8,11 +8,13 @@ app.controller('MEventsController', ['Upload', '$window', '$http', "$rootScope",
     vm.editor1 = "";
     $scope.markdownService = marked('#TEST');
 
-    $scope.events = [];
+    $scope.allEvents = [];
+    $scope.eventSelection = { checkedEvents: [] };
     // $scope.selectedEvents = [];
+    init();
 
     function init() {
-        alert("Starting Events Controller");
+        // alert("Starting Events Controller");
         vm.categories = [
             { description: "Webinar", styleClass: "webinars" },
             { description: "Workshop", styleClass: "workshops" },
@@ -20,11 +22,73 @@ app.controller('MEventsController', ['Upload', '$window', '$http', "$rootScope",
             { description: "Program", styleClass: "programs" }
         ];
         var responseData;
-        var responseData2;
+        loadAllEvents();
+        // var responseData2;
 
     }
 
-    init();
+    function loadAllEvents() {
+        console.log("Loading events");
+        $scope.allEvents = [];
+        $scope.eventSelection.checkedEvents = [];
+        $http({
+            method: 'GET',
+            url: 'http://localhost:3000/api/getEvents'
+        }).then(function successCallback(response) {
+            responseData = response.data;
+            // alert("respnse data" + JSON.stringify(responseData));
+            angular.forEach(responseData,
+                function (item) {
+                    $scope.allEvents.push(item);
+                });
+
+        }, function errorCallback(response) {
+            alert("error" + response);
+
+        });
+    }
+
+
+    $scope.checkAllEvents = function () {
+        $scope.eventSelection.checkedEvents = angular.copy($scope.allEvents);
+    };
+    $scope.uncheckAllEvents = function () {
+        $scope.eventSelection.checkedEvents = [];
+    };
+
+    $scope.deleteSelectedEvents = function () {
+        var checkedEventsIds = [];
+        alert(JSON.stringify($scope.eventSelection.checkedEvents));
+        for (var i = 0; i < $scope.eventSelection.checkedEvents.length; i++) {
+            checkedEventsIds.push($scope.eventSelection.checkedEvents[i]._id);
+        }
+        alert(JSON.stringify(checkedEventsIds));
+
+        var events = { events: checkedEventsIds };
+        $http({
+            url: 'http://localhost:3000/api/deleteEvents',
+            method: "POST",
+            data: angular.toJson(events),
+            dataType: 'json',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+        })
+            .then(function (response) {
+                // console.log(response);
+                var responseData = response.data;
+                // alert("respnse data" + JSON.stringify(responseData));
+                $scope.allEvents = [];
+                angular.forEach(responseData,
+                    function (item) {
+                        $scope.allEvents.push(item);
+                    });
+                alert("Deletion Successfull");
+
+            }).catch(function (error) {
+                console.log(error);
+                alert("Deletion Failed");
+            });
+        // }
+    };
     //=================Editor Section functions ================
     $scope.convertMarkdown = function () {
         vm.convertedMarkdown = marked(vm.markdown);
@@ -33,10 +97,11 @@ app.controller('MEventsController', ['Upload', '$window', '$http', "$rootScope",
         e.hidePreview();
     }
     //==================Editor End ================
-    vm.submit = function () { //function to call on form submit
+    $scope.submit = function () { //function to call on form submit
+        // alert("here");
         var result = document.getElementsByClassName("markdown");
         vm.newEvent.eventDetails = result[0].innerHTML;
-        alert("Inserted Event : " + JSON.stringify(vm.newEvent));
+        // alert("Inserted Event : " + JSON.stringify(vm.newEvent));
         if (vm.eventForm.file.$valid && vm.file) { //check if from is valid
             // alert("Uploading");
             vm.uploadAndSubmitEvent(vm.file); //call upload function
@@ -85,6 +150,7 @@ app.controller('MEventsController', ['Upload', '$window', '$http', "$rootScope",
             .then(function (result) {
                 console.log(result);
                 alert("Event added successfully");
+                loadAllEvents();
 
             }).catch(function (error) {
                 console.log(error);
@@ -104,112 +170,33 @@ app.controller('MEventsController', ['Upload', '$window', '$http', "$rootScope",
 
     }
 
-    // /**
-    //  * For some convenience, Angular-Markdown-Editor Directive also save each Markdown Editor inside $rootScope
-    //  * Each of editor object are available through their $rootScope.markdownEditorObjects[editorName]
-    //  *
-    //  * Example: <textarea name="editor1" markdown-editor="{'iconlibrary': 'fa'}"></textarea>
-    //  * We would then call our object through $rootScope.markdownEditorObjects.editor1
-    //  */
-    // $scope.fullScreenPreview = function() {
-    //     $rootScope.markdownEditorObjects.editor1.showPreview();
-    //     alert("code: " + $rootScope.markdownEditorObjects.editor1.code.alert);
-    //     $rootScope.markdownEditorObjects.editor1.setFullscreen(true);
-    // }
-
-    // $scope.getHTML = function() {
-
-    //     var result = document.getElementsByClassName("markdown");
-    //     alert(result[0].innerHTML);
-    // }
-
-    // /** Markdown event hook onFullscreen, in this example we will automatically show the result preview when going in full screen
-    //  * the argument (e) is the actual Markdown object returned which help call any of API functions defined in Markdown Editor
-    //  * For a list of API functions take a look on official demo site http://www.codingdrama.com/bootstrap-markdown/
-    //  * @param object e: Markdown Editor object
-    //  */
-    // $scope.onFullScreenCallback = function(e) {
-    //     e.showPreview();
-    // }
-
-    // /** After exiting from full screen, let's go back to editor mode (which mean hide the preview)
-    //  * NOTE: If you want this one to work, you will have to manually download the JS file, not sure why but they haven't released any versions in a while
-    //  *       https://github.com/toopay/bootstrap-markdown/tree/master/js
-    //  */
     $scope.onFullScreenExitCallback = function (e) {
         e.hidePreview();
     }
 
-
-
-
-    $scope.foundEvents = {
-        events: []
-    };
-    // $scope.toBeSelectedEvents = {
-    //     events: []
-    // };
-
-    $scope.checkAllEvents = function () {
-        $scope.foundEvents.events = angular.copy($scope.events);
-    };
-    $scope.uncheckAllEvents = function () {
-        $scope.foundEvents.events = [];
-    };
-
-    // $scope.checkAllSelectedEvents = function() {
-    //     $scope.toBeSelectedEvents.events = angular.copy($scope.selectedEvents);
-    // };
-    // $scope.uncheckAllSelectedEvents = function() {
-    //     $scope.toBeSelectedEvents.events = [];
-    // };
-
-    // $scope.save = function() {
-    //     // alert(JSON.stringify($scope.foundCampaigns.campaigns));
-
-    //     if (($scope.foundEvents.events.length + $scope.selectedEvents.length) > 4) {
-    //         alert("Selected Events must be 4 or less");
-    //     } else {
-    //         for (var i = 0; i < $scope.foundEvents.events.length; i++) {
-    //             // alert($scope.foundCampaigns.campaigns[i]);
-    //             $http({
-    //                     url: 'http://localhost:3000/api/addSelectedEvents',
-    //                     method: "POST",
-    //                     data: $.param($scope.foundEvents.events[i]),
-    //                     dataType: 'json',
-    //                     headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
-    //                 })
-    //                 .then(function(result) {
-    //                     console.log(result);
-
-    //                 }).catch(function(error) {
-    //                     console.log(error);
-    //                 });
-    //         }
-    //         alert("Saved Successfully");
-    //     }
-
-    // };
-    $scope.deleteEvents = function () {
-        // alert(JSON.stringify($scope.foundCampaigns.campaigns));
-
-        for (var i = 0; i < $scope.foundEvents.events.length; i++) {
-            // alert($scope.foundCampaigns.campaigns[i]);
+    $scope.deleteEventsOnebyOne = function () {
+        var deletionError;
+        for (var i = 0; i < $scope.eventSelection.checkedEvents.length; i++) {
             $http({
                 url: 'http://localhost:3000/api/deleteEvent',
                 method: "PUT",
-                data: $.param($scope.foundEvents.events[i]),
+                data: $.param($scope.eventSelection.checkedEvents[i]),
                 dataType: 'json',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
             })
                 .then(function (result) {
-                    console.log(result);
 
+                    console.log(result);
                 }).catch(function (error) {
                     console.log(error);
+                    deletionError = error;
                 });
         }
         alert("Deleted Successfully");
+        if (!deletionError) {
+            console.log("RE-loading events");
+            loadAllEvents();
+        }
     }
 
 

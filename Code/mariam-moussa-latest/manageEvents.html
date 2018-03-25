@@ -108,12 +108,23 @@
                 <br>
                 <i ng-show="ec.eventForm.file.$error.maxSize">File too large {{ec.file.size / 1000000|number:1}}MB: max 20M</i>
                 <!-- <button ng-click="ec.submit()">submit</button> -->
-                <p>{{ec.progress}}
+                <p>{{ec.progress}}</p>
             </div>
         </div>
+
+        <div style="background-color: #CDE;">
+            <div ng-repeat="event in allEvents">
+                <input type="checkbox" data-checklist-model="eventSelection.checkedEvents" data-checklist-value="event"> {{event.title}}
+            </div>
+            <button ng-click="checkAllEvents()" style="margin-right: 10px">Check all</button>
+            <button ng-click="uncheckAllEvents()" style="margin-right: 10px">Uncheck all</button>
+            <!-- <button ng-click="save()" style="margin-right: 10px">Save</button> -->
+            <button ng-click="deleteEventsOnebyOne()">Delete</button>
+        </div>
+
         <div class="divide10"></div>
         <footer class="text-left">
-            <button ng-click="ec.submit()" class="btn btn-theme-bg btn-lg">Submit</button>
+            <button ng-click="submit()" class="btn btn-theme-bg btn-lg">Submit</button>
         </footer>
 
     </form>

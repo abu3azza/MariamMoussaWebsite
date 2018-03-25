@@ -14,8 +14,8 @@ angular.module('td.easySocialShare', [])
                     shareLinks = [],
                     square = '';
 
-                alert($location.absUrl());
-                alert("pageLink : " + pageLink);
+                // alert($location.absUrl());
+                // alert("pageLink : " + pageLink);
 
                 elem.addClass('td-easy-social-share');
 
@@ -25,7 +25,7 @@ angular.module('td.easySocialShare', [])
                 // assign share link for each network
                 angular.forEach(links, function(key) {
                     key = key.trim();
-                    alert("pageLink : " + pageLink);
+                    // alert("pageLink : " + pageLink);
 
                     switch (key) {
                         case 'twitter':

@@ -5,7 +5,9 @@
         <div class="row">
 
             <div class="col-sm-12">
-                <h4 align="right">Coaching Programs - <small>{{program.title}}</small></h4>
+                <h4 align="right">Coaching Event -
+                    <small>{{event.title}}</small>
+                </h4>
 
             </div>
 
@@ -16,10 +18,6 @@
     </div>
 
 </div>
-<!--breadcrumbs-->
-<!--me intro parallax-->
-
-<!--me page inner-->
 
 <div class="container">
     <div class="center-heading">
@@ -27,7 +25,8 @@
         </div>
         <div class="col-md-3">
 
-            <h3> <img ng-src="http://localhost:3000/{{program.path}}" class="img-responsive">
+            <h3>
+                <img ng-src="http://localhost:3000/{{event.imagePath}}" class="img-responsive">
             </h3>
         </div>
         <div class="col-md-4">
@@ -38,12 +37,7 @@
                     <div class="embed-responsive embed-responsive-16by9">
                         <iframe width="560" height="315" ng-src="{{trustedVideo}}" frameborder="0" allowfullscreen></iframe>
                     </div>
-                    <!--          <ul class="list-inline post-detail">
-                            <li>by <a href="#">assan</a></li>
-                            <li><i class="fa fa-calendar"></i> 31st july 2014</li>
-                            <li><i class="fa fa-tag"></i> <a href="#">Sports</a></li>
-                            <li><i class="fa fa-comment"></i> <a href="#">6 Comments</a></li>
-                        </ul>   -->
+
                 </div>
             </div>
 
@@ -53,14 +47,18 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h3 style="color: #ffba00"> ‘{{program.title}}’
+                    <h3 style="color: #ffba00"> ‘{{event.title}}’
 
                         <h3 class="heading">Description</h3>
+                        <p>{{event.description}}</p>
+                        <h3 class="heading">Details</h3>
                         <p ng-bind-html="trustedHTML" class="margin20" align="justify">
 
                         </p>
                         <ul class="pager">
-                            <li class="previous"><a href="#!services">&larr; Back</a></li>
+                            <li class="previous">
+                                <a href="#!events">&larr; Back</a>
+                            </li>
                         </ul>
                 </div>
 

@@ -1,6 +1,6 @@
 app.controller('TestimonialsController', function($scope, $http, $sce) {
 
-    alert("hi Testmonials Controller");
+    // alert("hi Testmonials Controller");
 
     $scope.video = "https://www.youtube.com/embed/bJi9yceCmZ4";
     $scope.trustedVideo = $sce.trustAsResourceUrl($scope.video);
@@ -17,9 +17,9 @@ app.controller('TestimonialsController', function($scope, $http, $sce) {
             url: 'http://localhost:3000/api/getAllVideos'
         }).then(function successCallback(response) {
             responseVideo = response.data;
-            // alert("respnse data" + JSON.stringify(responseArticles));
+            alert("respnse data" + JSON.stringify(responseVideo));
             $scope.trustedVideo = $sce.trustAsResourceUrl(responseVideo[0].TestimonialsVideoLink);
-            alert('new Trusted Video = ' + $scope.trustedVideo);
+            // alert('new Trusted Video = ' + $scope.trustedVideo);
         }, function errorCallback(response) {
             alert("error" + response);
 
@@ -39,7 +39,7 @@ app.controller('TestimonialsController', function($scope, $http, $sce) {
                 });
 
 
-            alert('testemonials' + $scope.testimonials);
+            // alert('testemonials' + $scope.testimonials);
         }, function errorCallback(response) {
             alert("error" + response);
 

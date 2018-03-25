@@ -202,7 +202,7 @@ router
     .route('/deleteVideo')
     .put(ctrlVideos.deleteVideo);
 
-//#######################TESTIMONIALS##############################
+//#######################Events##############################
 router
     .route('/addEvent')
     .post(ctrlEvent.add);
@@ -216,6 +216,7 @@ router
     .route('/deleteEvent')
     .put(ctrlEvent.deleteEvent);
 
+router.route('/deleteEvents').post(ctrlEvent.deleteEvents);
 router
     .route('/getEventById')
     .get(ctrlEvent.eventsGetOne);

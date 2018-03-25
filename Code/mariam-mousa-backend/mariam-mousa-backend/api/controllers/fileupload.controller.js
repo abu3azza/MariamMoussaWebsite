@@ -3,15 +3,15 @@ const fs = require('fs');
 
 
 
-module.exports.upload = function(req, res) {
+module.exports.upload = function (req, res) {
 
     var filename;
     console.log("bedayet el upload");
     var storage = multer.diskStorage({ //multers disk storage settings
-        destination: function(req, file, cb) {
+        destination: function (req, file, cb) {
             cb(null, './uploads/')
         },
-        filename: function(req, file, cb) {
+        filename: function (req, file, cb) {
             console.log("File :" + JSON.stringify(file));
             var datetimestamp = Date.now();
             filename = file.fieldname + '-' + datetimestamp + '.' + file.originalname.split('.')[file.originalname.split('.').length - 1];
@@ -24,7 +24,7 @@ module.exports.upload = function(req, res) {
         storage: storage
     }).single('file');
     console.log("da el var upload  " + upload);
-    upload(req, res, function(err) {
+    upload(req, res, function (err) {
         if (err) {
 
             console.log("7asal error : " + err);
@@ -35,11 +35,22 @@ module.exports.upload = function(req, res) {
         res.json({ error_code: 0, err_desc: null, imgname: filename });
     })
 };
+module.exports.deleteImageByPath = function (path) {
+    fs.unlink('./uploads/' + path, (err) => {
+        if (err) {
+            console.log("failed to delete image : " + path);
+            console.log("error=>" + err);
+            return;
+        } else {
+            console.log("Image deleted succssfully");
+        }
+    })
+};
 
-module.exports.deleteImage = function(req, res) {
+module.exports.deleteImage = function (req, res) {
     var name = req.query.name;
 
-    console.log('imageName = ' + name);
+    console.log('deleting Image : ' + name);
     fs.unlink('./uploads/' + name, (err) => {
         if (err) {
             console.log("7asal error : " + err);
