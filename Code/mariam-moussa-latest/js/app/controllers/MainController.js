@@ -157,7 +157,7 @@ app.controller('MainController', function($scope, $timeout, $sce, $http) {
 
             $http({
                 method: 'GET',
-                url: 'http://localhost:3000/api/getSelectedCampaigns'
+                url: 'http://207.154.226.195:3000/api/getSelectedCampaigns'
             }).then(function successCallback(response) {
                 responseCampaigns = response.data;
                 // alert("respnse data" + JSON.stringify(responseCampaigns));
@@ -174,7 +174,7 @@ app.controller('MainController', function($scope, $timeout, $sce, $http) {
             });
             $http({
                 method: 'GET',
-                url: 'http://localhost:3000/api/getArticles?maxArticles=10'
+                url: 'http://207.154.226.195:3000/api/getArticles?maxArticles=10'
             }).then(function successCallback(response) {
                 responseArticles = response.data;
                 // alert("respnse data" + JSON.stringify(responseArticles));
@@ -192,7 +192,7 @@ app.controller('MainController', function($scope, $timeout, $sce, $http) {
 
             $http({
                 method: 'GET',
-                url: 'http://localhost:3000/api/getAllVideos'
+                url: 'http://207.154.226.195:3000/api/getAllVideos'
             }).then(function successCallback(response) {
                 responseVideo = response.data;
                 // alert("respnse data" + JSON.stringify(responseArticles));
