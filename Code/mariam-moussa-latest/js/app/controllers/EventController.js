@@ -1,6 +1,7 @@
-app.controller('EventController', function ($scope, $timeout, $http) {
+app.controller('EventController', function($scope, $timeout, $http) {
 
     $scope.allEvents = [];
+
     function init() {
         var responseData;
         $http({
@@ -10,18 +11,18 @@ app.controller('EventController', function ($scope, $timeout, $http) {
             responseData = response.data;
             angular.forEach(responseData,
 
-                function (item) {
+                function(item) {
                     // alert("event : " + JSON.stringify(item));
                     $scope.allEvents.push(item);
                 });
-                $scope.$apply();
+            $scope.$apply();
         }, function errorCallback(response) {
             alert("error" + response);
 
         });
     }
     init();
-    $scope.toggleModal = function (btnClicked) {
+    $scope.toggleModal = function(btnClicked) {
         $scope.buttonClicked = btnClicked;
         $scope.showModal = !$scope.showModal;
     };

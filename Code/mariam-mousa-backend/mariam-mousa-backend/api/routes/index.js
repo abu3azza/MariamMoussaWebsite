@@ -241,4 +241,14 @@ router
     .put(ctrlUpload.deleteImage);
 
 
+router
+    .route('/uploadBrochure')
+    .post(ctrlUpload.uploadBrochure);
+
+router
+    .route('/deleteBrochure')
+    .put(ctrlUpload.deleteBrochure);
+
+
+
 module.exports = router;

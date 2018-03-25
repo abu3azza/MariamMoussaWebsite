@@ -9,11 +9,11 @@ function LoginController($http, $window, $location, AuthFactory, jwtHelper) {
     // var decodedToken = jwtHelper.decodeToken(token);
     // lc.loggedInUser = decodedToken.username;
 
-    lc.isLoggedIn = function () {
+    lc.isLoggedIn = function() {
         return AuthFactory.isLoggedIn;
     };
 
-    lc.getLoggedUserName = function () {
+    lc.getLoggedUserName = function() {
         if ($window.sessionStorage.token) {
 
             var decodedToken = jwtHelper.decodeToken($window.sessionStorage.token);
@@ -23,7 +23,7 @@ function LoginController($http, $window, $location, AuthFactory, jwtHelper) {
         }
     }
 
-    lc.login = function () {
+    lc.login = function() {
         if (lc.username && lc.password) {
             var user = {
                 username: lc.username,
@@ -31,13 +31,13 @@ function LoginController($http, $window, $location, AuthFactory, jwtHelper) {
             };
             // alert(user.username + " fasla  " + user.password);
             $http({
-                url: 'http://207.154.226.195:3000/api/login',
-                method: "POST",
-                data: $.param(user),
-                dataType: 'json',
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
-            })
-                .then(function (response) {
+                    url: 'http://207.154.226.195:3000/api/login',
+                    method: "POST",
+                    data: $.param(user),
+                    dataType: 'json',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+                })
+                .then(function(response) {
                     //  // alert(JSON.stringify(response));
                     if (response.data.success) {
                         $window.sessionStorage.token = response.data.token;
@@ -53,7 +53,7 @@ function LoginController($http, $window, $location, AuthFactory, jwtHelper) {
                         $location.path('/admin');
 
                     }
-                }).catch(function (error) {
+                }).catch(function(error) {
                     //    // alert(error);
                     console.log(error);
                 })

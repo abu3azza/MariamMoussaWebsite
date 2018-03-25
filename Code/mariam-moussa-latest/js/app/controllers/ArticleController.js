@@ -20,7 +20,7 @@ app.controller('ArticleController', ['$window', '$http', '$scope', function($win
                 });
 
         }, function errorCallback(response) {
-            console.log("Unexpected error "+ response);
+            console.log("Unexpected error " + response);
         });
     }
     init();

@@ -1,4 +1,4 @@
-app.controller('MArticlesController', ['Upload', '$window', '$http', "$rootScope", '$scope', 'marked', function (Upload, $window, $http, $rootScope, $scope, marked) {
+app.controller('MArticlesController', ['Upload', '$window', '$http', "$rootScope", '$scope', 'marked', function(Upload, $window, $http, $rootScope, $scope, marked) {
     // alert("hi MArticlesController");
     var vm = this;
     vm.newArticle = {};
@@ -15,7 +15,7 @@ app.controller('MArticlesController', ['Upload', '$window', '$http', "$rootScope
             responseData = response.data;
             // alert("respnse data" + JSON.stringify(responseData));
             angular.forEach(responseData,
-                function (item) {
+                function(item) {
                     $scope.articles.push(item);
                 });
 
@@ -25,6 +25,7 @@ app.controller('MArticlesController', ['Upload', '$window', '$http', "$rootScope
         });
 
     }
+
     function reloadArticles() {
         var responseData;
         $scope.articles = [];
@@ -35,7 +36,7 @@ app.controller('MArticlesController', ['Upload', '$window', '$http', "$rootScope
         }).then(function successCallback(response) {
             responseData = response.data;
             angular.forEach(responseData,
-                function (item) {
+                function(item) {
                     $scope.articles.push(item);
                 });
             $scope.$digest();
@@ -47,7 +48,7 @@ app.controller('MArticlesController', ['Upload', '$window', '$http', "$rootScope
     }
 
     init();
-    vm.submit = function () { //function to call on form submit
+    vm.submit = function() { //function to call on form submit
         var result = document.getElementsByClassName("markdown");
         vm.newArticle.description = result[0].innerHTML;
         if (vm.upload_form.file.$valid && vm.file) { //check if from is valid
@@ -56,12 +57,12 @@ app.controller('MArticlesController', ['Upload', '$window', '$http', "$rootScope
         }
 
     }
-    vm.upload = function (file) {
+    vm.upload = function(file) {
         // alert("File: =>" + JSON.stringify(file));
         Upload.upload({
             url: 'http://207.154.226.195:3000/api/upload', //webAPI exposed to upload the file
             data: { file: file } //pass file as data, should be user ng-model
-        }).then(function (resp) { //upload function returns a promise
+        }).then(function(resp) { //upload function returns a promise
             if (resp.data.error_code === 0) { //validate success
                 // $window.alert('Success ' + resp.config.data.file.name + 'uploaded. Response: ');
                 vm.addArticle(resp.data.imgname);
@@ -69,10 +70,10 @@ app.controller('MArticlesController', ['Upload', '$window', '$http', "$rootScope
             } else {
                 $window.alert('Unexpected Error occured!');
             }
-        }, function (resp) { //catch error
+        }, function(resp) { //catch error
             console.log('Error status: ' + resp.status);
             $window.alert('Error status: ' + resp.status);
-        }, function (evt) {
+        }, function(evt) {
             console.log(evt);
             var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
             console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
@@ -81,21 +82,21 @@ app.controller('MArticlesController', ['Upload', '$window', '$http', "$rootScope
         // alert("Done uploading ");
     };
 
-    vm.addArticle = function (imgname) {
+    vm.addArticle = function(imgname) {
         vm.newArticle.imagePath = imgname;
         // $window.alert(JSON.stringify(vm.newArticle));
 
         $http({
-            url: 'http://207.154.226.195:3000/api/addArticle',
-            method: "POST",
-            data: $.param(vm.newArticle),
-            dataType: 'json',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
-        })
-            .then(function (result) {
+                url: 'http://207.154.226.195:3000/api/addArticle',
+                method: "POST",
+                data: $.param(vm.newArticle),
+                dataType: 'json',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+            })
+            .then(function(result) {
                 console.log(result);
                 alert("Article added successfully");
-            }).catch(function (error) {
+            }).catch(function(error) {
                 console.log(error);
             });
     }
@@ -107,14 +108,14 @@ app.controller('MArticlesController', ['Upload', '$window', '$http', "$rootScope
 
     // --
     // normal flow, function call
-    $scope.convertMarkdown = function () {
+    $scope.convertMarkdown = function() {
         vm.convertedMarkdown = marked(vm.markdown);
 
 
     }
 
 
-    $scope.onFullScreenExitCallback = function (e) {
+    $scope.onFullScreenExitCallback = function(e) {
         e.hidePreview();
     }
 
@@ -125,47 +126,47 @@ app.controller('MArticlesController', ['Upload', '$window', '$http', "$rootScope
         articles: []
     };
 
-    $scope.checkAllArticles = function () {
+    $scope.checkAllArticles = function() {
         $scope.foundArticles.articles = angular.copy($scope.articles);
     };
-    $scope.uncheckAllArticles = function () {
+    $scope.uncheckAllArticles = function() {
         $scope.foundArticles.articles = [];
     };
 
 
-    $scope.deleteArticles = function () {
+    $scope.deleteArticles = function() {
         // alert(JSON.stringify($scope.foundCampaigns.campaigns));
 
         for (var i = 0; i < $scope.foundArticles.articles.length; i++) {
             // alert(JSON.stringify($scope.foundArticles.articles[i].imagePath));
             var name = $scope.foundArticles.articles[i].imagePath;
             $http({
-                url: 'http://207.154.226.195:3000/api/deleteArticle',
-                method: "PUT",
-                data: $.param($scope.foundArticles.articles[i]),
-                dataType: 'json',
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
-            })
-                .then(function (result) {
+                    url: 'http://207.154.226.195:3000/api/deleteArticle',
+                    method: "PUT",
+                    data: $.param($scope.foundArticles.articles[i]),
+                    dataType: 'json',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+                })
+                .then(function(result) {
                     // alert("hawhawhaw" + name);
                     console.log(result);
                     // alert(JSON.stringify($scope.foundArticles.articles[i]));
                     reloadArticles();
                     $http({
-                        url: 'http://207.154.226.195:3000/api/deleteImage',
-                        method: "PUT",
-                        params: { name: name },
-                        dataType: 'json',
-                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
-                    })
-                        .then(function (result) {
+                            url: 'http://207.154.226.195:3000/api/deleteImage',
+                            method: "PUT",
+                            params: { name: name },
+                            dataType: 'json',
+                            headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+                        })
+                        .then(function(result) {
                             console.log(result);
 
-                        }).catch(function (error) {
+                        }).catch(function(error) {
                             console.log(error);
                         });
 
-                }).catch(function (error) {
+                }).catch(function(error) {
                     console.log(error);
                 });
         }

@@ -1,4 +1,4 @@
-app.controller('ArticleDetailsController', function ($window, $http, $scope, $routeParams, $sce) {
+app.controller('ArticleDetailsController', function($window, $http, $scope, $routeParams, $sce) {
 
 
     console.log("hi ArticleDetailsController controller");
@@ -52,7 +52,7 @@ app.controller('ArticleDetailsController', function ($window, $http, $scope, $ro
 
     init();
 
-    $scope.getNextArticle = function () {
+    $scope.getNextArticle = function() {
         // alert("dal el offset abl " + $scope.offset + 2 + " we dah el count " + $scope.count);
         if (($scope.offset + 1) < $scope.count) {
             // alert("da5al");
@@ -79,7 +79,7 @@ app.controller('ArticleDetailsController', function ($window, $http, $scope, $ro
         // alert("after Alert" + JSON.stringify($scope.article));
     }
 
-    $scope.getPrevArticle = function () {
+    $scope.getPrevArticle = function() {
         // alert("befor" + $scope.offset);
 
         $scope.offset = $scope.offset - 1;

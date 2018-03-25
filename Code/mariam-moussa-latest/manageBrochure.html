@@ -1,0 +1,27 @@
+<div class="container">
+    <div class="divide30"></div>
+    <h3>
+        <a href="#!admin">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+        </a>Manage Brochure</h3>
+    <div class="divide30"></div>
+
+    <h5>Add New Brochure :</h5>
+    <div class="divide5"></div>
+    <form ng-controller="MBrochureController as up" name="up.upload_form" class="sky-form">
+        <div class="row">
+            <div class="col-xs-4">
+                <br>
+                <br>
+                <input type="file" ngf-select ng-model="up.file" name="file" ngf-pattern="'.pdf'" accept=".pdf" ngf-max-size="20MB" /> Maximum 20M
+            </div>
+        </div>
+        <div class="divide10"></div>
+        <footer class="text-left">
+            <button ng-click="up.submit()" class="btn btn-theme-bg btn-lg">Submit</button>
+        </footer>
+        <div class="divide30"></div>
+        <div class="divide30"></div>
+    </form>
+    <div class="divide30"></div>
+</div>
