@@ -18,7 +18,7 @@ app.controller('CampaignController', ['Upload', '$window', '$http', '$scope', fu
         $scope.selectedCampaigns = [];
         $http({
             method: 'GET',
-            url: 'http://localhost:3000/api/getCampaigns'
+            url: 'http://207.154.226.195:3000/api/getCampaigns'
         }).then(function successCallback(response) {
             responseData = response.data;
             // alert("respnse data" + JSON.stringify(responseData));
@@ -34,7 +34,7 @@ app.controller('CampaignController', ['Upload', '$window', '$http', '$scope', fu
         });
         $http({
             method: 'GET',
-            url: 'http://localhost:3000/api/getSelectedCampaigns'
+            url: 'http://207.154.226.195:3000/api/getSelectedCampaigns'
         }).then(function successCallback(response) {
             responseData2 = response.data;
             // alert("respnse data" + JSON.stringify(responseData2));
@@ -58,7 +58,7 @@ app.controller('CampaignController', ['Upload', '$window', '$http', '$scope', fu
     vm.upload = function(file) {
         // alert("File: =>" + JSON.stringify(file));
         Upload.upload({
-            url: 'http://localhost:3000/api/upload', //webAPI exposed to upload the file
+            url: 'http://207.154.226.195:3000/api/upload', //webAPI exposed to upload the file
             data: { file: file } //pass file as data, should be user ng-model
         }).then(function(resp) { //upload function returns a promise
             if (resp.data.error_code === 0) { //validate success
@@ -85,7 +85,7 @@ app.controller('CampaignController', ['Upload', '$window', '$http', '$scope', fu
         // $window.alert(JSON.stringify(vm.newCampaign));
 
         $http({
-                url: 'http://localhost:3000/api/addCampaign',
+                url: 'http://207.154.226.195:3000/api/addCampaign',
                 method: "POST",
                 data: $.param(vm.newCampaign),
                 dataType: 'json',
@@ -130,7 +130,7 @@ app.controller('CampaignController', ['Upload', '$window', '$http', '$scope', fu
             for (var i = 0; i < $scope.foundCampaigns.campaigns.length; i++) {
                 // alert($scope.foundCampaigns.campaigns[i]);
                 $http({
-                        url: 'http://localhost:3000/api/addSelectedCampaigns',
+                        url: 'http://207.154.226.195:3000/api/addSelectedCampaigns',
                         method: "POST",
                         data: $.param($scope.foundCampaigns.campaigns[i]),
                         dataType: 'json',
@@ -153,7 +153,7 @@ app.controller('CampaignController', ['Upload', '$window', '$http', '$scope', fu
         for (var i = 0; i < $scope.toBeSelectedCampaigns.campaigns.length; i++) {
             // alert($scope.toBeSelectedCampaigns.campaigns[i]);
             $http({
-                    url: 'http://localhost:3000/api/deleteSelectedCampaign',
+                    url: 'http://207.154.226.195:3000/api/deleteSelectedCampaign',
                     method: "PUT",
                     data: $.param($scope.toBeSelectedCampaigns.campaigns[i]),
                     dataType: 'json',
@@ -176,7 +176,7 @@ app.controller('CampaignController', ['Upload', '$window', '$http', '$scope', fu
             var name = $scope.foundCampaigns.campaigns[i].path;
             $http({
 
-                    url: 'http://localhost:3000/api/deleteCampaign',
+                    url: 'http://207.154.226.195:3000/api/deleteCampaign',
                     method: "PUT",
                     data: $.param($scope.foundCampaigns.campaigns[i]),
                     dataType: 'json',
@@ -184,7 +184,7 @@ app.controller('CampaignController', ['Upload', '$window', '$http', '$scope', fu
                 })
                 .then(function(result) {
                     $http({
-                            url: 'http://localhost:3000/api/deleteImage',
+                            url: 'http://207.154.226.195:3000/api/deleteImage',
                             method: "PUT",
                             params: { name: name },
                             dataType: 'json',

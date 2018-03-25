@@ -8,7 +8,7 @@ app.controller('ServicesController', function($scope, $location, $anchorScroll, 
 
         $http({
             method: 'GET',
-            url: 'http://localhost:3000/api/getSelectedPrograms'
+            url: 'http://207.154.226.195:3000/api/getSelectedPrograms'
         }).then(function successCallback(response) {
             responseData2 = response.data;
             // alert("respnse data" + JSON.stringify(responseData2));

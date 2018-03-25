@@ -272,7 +272,7 @@
                 <data-owl-carousel class="owl-carousel" data-options="{navigation: false, pagination: true, rewindNav : true ,autoPlay: 4000 ,margin:0,  items: 4 , stopOnHover: true ,autoWidth:true}">
                     <div owl-carousel-item=" " ng-repeat="item in selectedArticles " class="item ">
                         <div class="item-img-wrap " style="height: 200px;width: 270px; ">
-                            <img ng-src="http://localhost:3000/{{item.imagePath}} " class="img-responsive " style="min-height: 200px; ">
+                            <img ng-src="http://207.154.226.195:3000/{{item.imagePath}} " class="img-responsive " style="min-height: 200px; ">
                             <div class="item-img-overlay ">
                                 <a href="#!article-details/{{item._id}}/{{$index}}" class="show-image ">
                                     <span></span>
@@ -310,7 +310,7 @@
         <div class="row ">
             <div ng-repeat="camp in selectedCampaigns" class="col-sm-3 text-center" style="margin-right: -5px;padding-left: 19px !important;">
                 <div class="person-v2 ">
-                    <a href="{{camp.link}} " target="_blank "><img ng-src="http://localhost:3000/{{camp.path}} " class="img-responsive " style="width: 270px;height: 200px;max-width: 270px !important; "></a>
+                    <a href="{{camp.link}} " target="_blank "><img ng-src="http://207.154.226.195:3000/{{camp.path}} " class="img-responsive " style="width: 270px;height: 200px;max-width: 270px !important; "></a>
                     <div class="person-desc-v2 ">
                         <a href="{{camp.link}} " target="_blank ">
                             <h3>{{camp.title}}</h3>

@@ -33,7 +33,7 @@ app.controller('MEventsController', ['Upload', '$window', '$http', "$rootScope",
         $scope.eventSelection.checkedEvents = [];
         $http({
             method: 'GET',
-            url: 'http://localhost:3000/api/getEvents'
+            url: 'http://207.154.226.195:3000/api/getEvents'
         }).then(function successCallback(response) {
             responseData = response.data;
             // alert("respnse data" + JSON.stringify(responseData));
@@ -66,7 +66,7 @@ app.controller('MEventsController', ['Upload', '$window', '$http', "$rootScope",
 
         var events = { events: checkedEventsIds };
         $http({
-            url: 'http://localhost:3000/api/deleteEvents',
+            url: 'http://207.154.226.195:3000/api/deleteEvents',
             method: "POST",
             data: angular.toJson(events),
             dataType: 'json',
@@ -114,7 +114,7 @@ app.controller('MEventsController', ['Upload', '$window', '$http', "$rootScope",
         // alert("File: =>" + JSON.stringify(file));
         // alert("Starting upload and Submit Event")
         Upload.upload({
-            url: 'http://localhost:3000/api/upload', //webAPI exposed to upload the file
+            url: 'http://207.154.226.195:3000/api/upload', //webAPI exposed to upload the file
             data: { file: file } //pass file as data, should be user ng-model
         }).then(function (resp) { //upload function returns a promise
             if (resp.data.error_code === 0) { //validate success
@@ -141,7 +141,7 @@ app.controller('MEventsController', ['Upload', '$window', '$http', "$rootScope",
         $window.alert(JSON.stringify(vm.newEvent));
 
         $http({
-            url: 'http://localhost:3000/api/addEvent',
+            url: 'http://207.154.226.195:3000/api/addEvent',
             method: "POST",
             data: $.param(vm.newEvent),
             dataType: 'json',
@@ -178,7 +178,7 @@ app.controller('MEventsController', ['Upload', '$window', '$http', "$rootScope",
         var deletionError;
         for (var i = 0; i < $scope.eventSelection.checkedEvents.length; i++) {
             $http({
-                url: 'http://localhost:3000/api/deleteEvent',
+                url: 'http://207.154.226.195:3000/api/deleteEvent',
                 method: "PUT",
                 data: $.param($scope.eventSelection.checkedEvents[i]),
                 dataType: 'json',
@@ -207,7 +207,7 @@ app.controller('MEventsController', ['Upload', '$window', '$http', "$rootScope",
     //     for (var i = 0; i < $scope.toBeSelectedEvents.events.length; i++) {
     //         // alert($scope.toBeSelectedCampaigns.campaigns[i]);
     //         $http({
-    //                 url: 'http://localhost:3000/api/deleteSelectedEvent',
+    //                 url: 'http://207.154.226.195:3000/api/deleteSelectedEvent',
     //                 method: "PUT",
     //                 data: $.param($scope.toBeSelectedEvents.events[i]),
     //                 dataType: 'json',

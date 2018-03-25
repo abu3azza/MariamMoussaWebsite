@@ -17,7 +17,7 @@ app.controller('ArticleDetailsController', function ($window, $http, $scope, $ro
         var responseData;
         $http({
             method: 'GET',
-            url: 'http://localhost:3000/api/getArticleById?id=' + $scope.id
+            url: 'http://207.154.226.195:3000/api/getArticleById?id=' + $scope.id
 
 
         }).then(function successCallback(response) {
@@ -34,7 +34,7 @@ app.controller('ArticleDetailsController', function ($window, $http, $scope, $ro
 
         $http({
             method: 'GET',
-            url: 'http://localhost:3000/api/getArticlesCount'
+            url: 'http://207.154.226.195:3000/api/getArticlesCount'
 
 
         }).then(function successCallback(response) {
@@ -61,7 +61,7 @@ app.controller('ArticleDetailsController', function ($window, $http, $scope, $ro
         $scope.hawhaw = "hawhaw";
         $http({
             method: 'GET',
-            url: 'http://localhost:3000/api/getNextArticle?offset=' + $scope.offset
+            url: 'http://207.154.226.195:3000/api/getNextArticle?offset=' + $scope.offset
 
 
         }).then(function successCallback(response) {
@@ -86,7 +86,7 @@ app.controller('ArticleDetailsController', function ($window, $http, $scope, $ro
         $scope.object = JSON.stringify($scope.article);
         $http({
             method: 'GET',
-            url: 'http://localhost:3000/api/getNextArticle?offset=' + $scope.offset
+            url: 'http://207.154.226.195:3000/api/getNextArticle?offset=' + $scope.offset
 
 
         }).then(function successCallback(response) {

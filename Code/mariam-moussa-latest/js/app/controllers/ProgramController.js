@@ -11,7 +11,7 @@ app.controller('ProgramController', function($window, $http, $rootScope, $scope,
         var responseData;
         $http({
             method: 'GET',
-            url: 'http://localhost:3000/api/getProgramById?id=' + $scope.id
+            url: 'http://207.154.226.195:3000/api/getProgramById?id=' + $scope.id
 
 
         }).then(function successCallback(response) {

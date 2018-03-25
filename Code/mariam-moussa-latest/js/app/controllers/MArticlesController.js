@@ -10,7 +10,7 @@ app.controller('MArticlesController', ['Upload', '$window', '$http', "$rootScope
         var responseData2;
         $http({
             method: 'GET',
-            url: 'http://localhost:3000/api/getArticles'
+            url: 'http://207.154.226.195:3000/api/getArticles'
         }).then(function successCallback(response) {
             responseData = response.data;
             // alert("respnse data" + JSON.stringify(responseData));
@@ -31,7 +31,7 @@ app.controller('MArticlesController', ['Upload', '$window', '$http', "$rootScope
         console.log("Refreshing Articles list");
         $http({
             method: 'GET',
-            url: 'http://localhost:3000/api/getArticles'
+            url: 'http://207.154.226.195:3000/api/getArticles'
         }).then(function successCallback(response) {
             responseData = response.data;
             angular.forEach(responseData,
@@ -59,7 +59,7 @@ app.controller('MArticlesController', ['Upload', '$window', '$http', "$rootScope
     vm.upload = function (file) {
         // alert("File: =>" + JSON.stringify(file));
         Upload.upload({
-            url: 'http://localhost:3000/api/upload', //webAPI exposed to upload the file
+            url: 'http://207.154.226.195:3000/api/upload', //webAPI exposed to upload the file
             data: { file: file } //pass file as data, should be user ng-model
         }).then(function (resp) { //upload function returns a promise
             if (resp.data.error_code === 0) { //validate success
@@ -86,7 +86,7 @@ app.controller('MArticlesController', ['Upload', '$window', '$http', "$rootScope
         // $window.alert(JSON.stringify(vm.newArticle));
 
         $http({
-            url: 'http://localhost:3000/api/addArticle',
+            url: 'http://207.154.226.195:3000/api/addArticle',
             method: "POST",
             data: $.param(vm.newArticle),
             dataType: 'json',
@@ -140,7 +140,7 @@ app.controller('MArticlesController', ['Upload', '$window', '$http', "$rootScope
             // alert(JSON.stringify($scope.foundArticles.articles[i].imagePath));
             var name = $scope.foundArticles.articles[i].imagePath;
             $http({
-                url: 'http://localhost:3000/api/deleteArticle',
+                url: 'http://207.154.226.195:3000/api/deleteArticle',
                 method: "PUT",
                 data: $.param($scope.foundArticles.articles[i]),
                 dataType: 'json',
@@ -152,7 +152,7 @@ app.controller('MArticlesController', ['Upload', '$window', '$http', "$rootScope
                     // alert(JSON.stringify($scope.foundArticles.articles[i]));
                     reloadArticles();
                     $http({
-                        url: 'http://localhost:3000/api/deleteImage',
+                        url: 'http://207.154.226.195:3000/api/deleteImage',
                         method: "PUT",
                         params: { name: name },
                         dataType: 'json',

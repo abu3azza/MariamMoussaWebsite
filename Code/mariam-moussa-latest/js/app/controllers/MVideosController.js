@@ -5,7 +5,7 @@ app.controller('MVideosController', ['$http', '$scope', function($http, $scope) 
 
     $scope.updateHomePageVideo = function() {
         $http({
-                url: 'http://localhost:3000/api/updateHomePageVideo',
+                url: 'http://207.154.226.195:3000/api/updateHomePageVideo',
                 method: "POST",
                 data: $.param($scope.newVideo),
                 dataType: 'json',
@@ -22,7 +22,7 @@ app.controller('MVideosController', ['$http', '$scope', function($http, $scope) 
 
     $scope.updateTestimonialsVideo = function() {
         $http({
-                url: 'http://localhost:3000/api/updateTestimonialsVideo',
+                url: 'http://207.154.226.195:3000/api/updateTestimonialsVideo',
                 method: "POST",
                 data: $.param($scope.newVideo),
                 dataType: 'json',

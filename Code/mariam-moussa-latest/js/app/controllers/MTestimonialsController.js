@@ -21,7 +21,7 @@ app.controller('MTestimonialsController', ['$http', '$scope', function ($http, $
         var responseData;
         $http({
             method: 'GET',
-            url: 'http://localhost:3000/api/getAllTestimonials'
+            url: 'http://207.154.226.195:3000/api/getAllTestimonials'
         }).then(function successCallback(response) {
             responseData = response.data;
             // alert("respnse data" + JSON.stringify(responseData));
@@ -41,7 +41,7 @@ app.controller('MTestimonialsController', ['$http', '$scope', function ($http, $
     $scope.submit = function () {
 
         $http({
-            url: 'http://localhost:3000/api/addTestimonial',
+            url: 'http://207.154.226.195:3000/api/addTestimonial',
             method: "POST",
             data: $.param($scope.newTestimonial),
             dataType: 'json',
@@ -71,7 +71,7 @@ app.controller('MTestimonialsController', ['$http', '$scope', function ($http, $
         for (var i = 0; i < $scope.foundTestimonials.testimonials.length; i++) {
             // alert($scope.foundCampaigns.campaigns[i]);
             $http({
-                url: 'http://localhost:3000/api/deleteTestimonial',
+                url: 'http://207.154.226.195:3000/api/deleteTestimonial',
                 method: "PUT",
                 data: $.param($scope.foundTestimonials.testimonials[i]),
                 dataType: 'json',

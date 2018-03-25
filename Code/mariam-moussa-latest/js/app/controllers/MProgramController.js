@@ -10,7 +10,7 @@ app.controller('MProgramController', ['Upload', '$window', '$http', "$rootScope"
         var responseData2;
         $http({
             method: 'GET',
-            url: 'http://localhost:3000/api/getPrograms'
+            url: 'http://207.154.226.195:3000/api/getPrograms'
         }).then(function successCallback(response) {
             responseData = response.data;
             // alert("respnse data" + JSON.stringify(responseData));
@@ -25,7 +25,7 @@ app.controller('MProgramController', ['Upload', '$window', '$http', "$rootScope"
         });
         $http({
             method: 'GET',
-            url: 'http://localhost:3000/api/getSelectedPrograms'
+            url: 'http://207.154.226.195:3000/api/getSelectedPrograms'
         }).then(function successCallback(response) {
             responseData2 = response.data;
             // alert("respnse data" + JSON.stringify(responseData2));
@@ -52,7 +52,7 @@ app.controller('MProgramController', ['Upload', '$window', '$http', "$rootScope"
     vm.upload = function(file) {
         // alert("File: =>" + JSON.stringify(file));
         Upload.upload({
-            url: 'http://localhost:3000/api/upload', //webAPI exposed to upload the file
+            url: 'http://207.154.226.195:3000/api/upload', //webAPI exposed to upload the file
             data: { file: file } //pass file as data, should be user ng-model
         }).then(function(resp) { //upload function returns a promise
             if (resp.data.error_code === 0) { //validate success
@@ -79,7 +79,7 @@ app.controller('MProgramController', ['Upload', '$window', '$http', "$rootScope"
         $window.alert(JSON.stringify(vm.newProgram));
 
         $http({
-                url: 'http://localhost:3000/api/addProgram',
+                url: 'http://207.154.226.195:3000/api/addProgram',
                 method: "POST",
                 data: $.param(vm.newProgram),
                 dataType: 'json',
@@ -176,7 +176,7 @@ app.controller('MProgramController', ['Upload', '$window', '$http', "$rootScope"
             for (var i = 0; i < $scope.foundPrograms.programs.length; i++) {
                 // alert($scope.foundCampaigns.campaigns[i]);
                 $http({
-                        url: 'http://localhost:3000/api/addSelectedPrograms',
+                        url: 'http://207.154.226.195:3000/api/addSelectedPrograms',
                         method: "POST",
                         data: $.param($scope.foundPrograms.programs[i]),
                         dataType: 'json',
@@ -201,7 +201,7 @@ app.controller('MProgramController', ['Upload', '$window', '$http', "$rootScope"
             var name = $scope.foundPrograms.programs[i].path;
             $http({
 
-                    url: 'http://localhost:3000/api/deleteProgram',
+                    url: 'http://207.154.226.195:3000/api/deleteProgram',
                     method: "PUT",
                     data: $.param($scope.foundPrograms.programs[i]),
                     dataType: 'json',
@@ -212,7 +212,7 @@ app.controller('MProgramController', ['Upload', '$window', '$http', "$rootScope"
                     console.log(result);
                     alert(JSON.stringify($scope.foundPrograms.programs[i]));
                     $http({
-                            url: 'http://localhost:3000/api/deleteImage',
+                            url: 'http://207.154.226.195:3000/api/deleteImage',
                             method: "PUT",
                             params: { name: name },
                             dataType: 'json',
@@ -242,7 +242,7 @@ app.controller('MProgramController', ['Upload', '$window', '$http', "$rootScope"
         for (var i = 0; i < $scope.toBeSelectedPrograms.programs.length; i++) {
             // alert($scope.toBeSelectedCampaigns.campaigns[i]);
             $http({
-                    url: 'http://localhost:3000/api/deleteSelectedProgram',
+                    url: 'http://207.154.226.195:3000/api/deleteSelectedProgram',
                     method: "PUT",
                     data: $.param($scope.toBeSelectedPrograms.programs[i]),
                     dataType: 'json',
