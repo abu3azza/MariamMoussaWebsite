@@ -1,4 +1,7 @@
 <h1>
+    <a href="#!admin">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+    </a>
     Register</h1>
 <div ng-if="message" class="alert alert-success" role="alert">
     <p>{{message}}</p>
@@ -6,6 +9,7 @@
 <div ng-if="error" class="alert alert-danger" role="alert">
     <p> {{error}}</p>
 </div>
+<h3>Add new user</h3>
 <form ng-hide="message" name="register" ng-submit="postRegister()">
     <div class="form-group">
         <label for="username">Username</label>

@@ -62,7 +62,7 @@ var app = angular.module('mmapp', ['ui.calendar', 'ngRoute', 'ui.bootstrap', "ch
                     templateUrl: 'register2.html',
                     controller: 'RegisterController',
                     access: {
-                        restricted: false
+                        restricted: true
                     }
 
                 }).when('/login', {
