@@ -1,4 +1,4 @@
-app.controller('MTestimonialsController', ['$http', '$scope', function ($http, $scope) {
+app.controller('MTestimonialsController', ['$http', '$scope', function($http, $scope) {
 
 
     // alert('HI MANAGE TEST CONTROLLER ');
@@ -26,7 +26,7 @@ app.controller('MTestimonialsController', ['$http', '$scope', function ($http, $
             responseData = response.data;
             // alert("respnse data" + JSON.stringify(responseData));
             angular.forEach(responseData,
-                function (item) {
+                function(item) {
                     $scope.testimonials.push(item);
                 });
 
@@ -38,20 +38,20 @@ app.controller('MTestimonialsController', ['$http', '$scope', function ($http, $
     }
 
     init();
-    $scope.submit = function () {
+    $scope.submit = function() {
 
         $http({
-            url: 'http://207.154.226.195:3000/api/addTestimonial',
-            method: "POST",
-            data: $.param($scope.newTestimonial),
-            dataType: 'json',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
-        })
-            .then(function (result) {
+                url: 'http://207.154.226.195:3000/api/addTestimonial',
+                method: "POST",
+                data: $.param($scope.newTestimonial),
+                dataType: 'json',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+            })
+            .then(function(result) {
                 console.log(result);
                 alert("Testimonial added successfully");
                 init();
-            }).catch(function (error) {
+            }).catch(function(error) {
                 console.log(error);
             });
 
@@ -59,30 +59,30 @@ app.controller('MTestimonialsController', ['$http', '$scope', function ($http, $
 
 
 
-    $scope.checkAllTestimonials = function () {
+    $scope.checkAllTestimonials = function() {
         $scope.foundTestimonials.testimonials = angular.copy($scope.testimonials);
     };
-    $scope.uncheckAllTestimonials = function () {
+    $scope.uncheckAllTestimonials = function() {
         $scope.foundTestimonials.testimonials = [];
     };
-    $scope.deleteTestimonials = function () {
+    $scope.deleteTestimonials = function() {
         // alert(JSON.stringify($scope.foundCampaigns.campaigns));
 
         for (var i = 0; i < $scope.foundTestimonials.testimonials.length; i++) {
             // alert($scope.foundCampaigns.campaigns[i]);
             $http({
-                url: 'http://207.154.226.195:3000/api/deleteTestimonial',
-                method: "PUT",
-                data: $.param($scope.foundTestimonials.testimonials[i]),
-                dataType: 'json',
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
-            })
-                .then(function (result) {
+                    url: 'http://207.154.226.195:3000/api/deleteTestimonial',
+                    method: "PUT",
+                    data: $.param($scope.foundTestimonials.testimonials[i]),
+                    dataType: 'json',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+                })
+                .then(function(result) {
                     console.log(result);
                     init();
                     // alert("Deletion Successfull");
 
-                }).catch(function (error) {
+                }).catch(function(error) {
                     console.log(error);
                     alert("Deletion Failed");
                 });

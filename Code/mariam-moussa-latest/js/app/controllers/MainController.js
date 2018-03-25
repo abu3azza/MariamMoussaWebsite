@@ -186,7 +186,7 @@ app.controller('MainController', function($scope, $timeout, $sce, $http) {
 
             }, function errorCallback(response) {
                 // alert("error" + response);
-                console.log("error in getArticles "+ response);
+                console.log("error in getArticles " + response);
 
             });
 

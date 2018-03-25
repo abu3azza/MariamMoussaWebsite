@@ -79,14 +79,16 @@ var app = angular.module('mmapp', ['ui.calendar', 'ngRoute', 'ui.bootstrap', "ch
                         restricted: false
                     }
 
-                }).when('/managePrograms', {
-                    templateUrl: 'managePrograms.html',
-                    controller: 'MProgramController',
+                })
+                .when('/manageBrochure', {
+                    templateUrl: 'manageBrochure.html',
+                    controller: 'MBrochureController',
                     access: {
                         restricted: true
                     }
 
-                }).when('/manageVideos', {
+                })
+                .when('/manageVideos', {
                     templateUrl: 'manageVideos.html',
                     controller: 'MVideosController',
                     access: {
