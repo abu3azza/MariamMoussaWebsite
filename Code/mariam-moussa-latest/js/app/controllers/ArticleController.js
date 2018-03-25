@@ -9,7 +9,7 @@ app.controller('ArticleController', ['$window', '$http', '$scope', function($win
         var responseData;
         $http({
             method: 'GET',
-            url: 'http://localhost:3000/api/getArticles'
+            url: 'http://207.154.226.195:3000/api/getArticles'
         }).then(function successCallback(response) {
             responseData = response.data;
             angular.forEach(responseData,

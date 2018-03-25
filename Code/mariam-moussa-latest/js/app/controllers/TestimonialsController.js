@@ -14,10 +14,10 @@ app.controller('TestimonialsController', function($scope, $http, $sce) {
 
         $http({
             method: 'GET',
-            url: 'http://localhost:3000/api/getAllVideos'
+            url: 'http://207.154.226.195:3000/api/getAllVideos'
         }).then(function successCallback(response) {
             responseVideo = response.data;
-            alert("respnse data" + JSON.stringify(responseVideo));
+            // alert("respnse data" + JSON.stringify(responseVideo));
             $scope.trustedVideo = $sce.trustAsResourceUrl(responseVideo[0].TestimonialsVideoLink);
             // alert('new Trusted Video = ' + $scope.trustedVideo);
         }, function errorCallback(response) {
@@ -29,7 +29,7 @@ app.controller('TestimonialsController', function($scope, $http, $sce) {
         var responseData;
         $http({
             method: 'GET',
-            url: 'http://localhost:3000/api/getAllTestimonials'
+            url: 'http://207.154.226.195:3000/api/getAllTestimonials'
         }).then(function successCallback(response) {
             responseData = response.data;
             // alert("respnse data" + JSON.stringify(responseData));

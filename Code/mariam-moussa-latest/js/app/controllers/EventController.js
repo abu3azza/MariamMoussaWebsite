@@ -5,7 +5,7 @@ app.controller('EventController', function ($scope, $timeout, $http) {
         var responseData;
         $http({
             method: 'GET',
-            url: 'http://localhost:3000/api/getEvents'
+            url: 'http://207.154.226.195:3000/api/getEvents'
         }).then(function successCallback(response) {
             responseData = response.data;
             angular.forEach(responseData,
