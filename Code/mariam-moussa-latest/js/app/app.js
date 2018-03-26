@@ -1,9 +1,9 @@
 'use strict';
 var app = angular.module('mmapp', ['ui.calendar', 'ngRoute', 'ui.bootstrap', "checklist-model",
-        'angular-jwt', 'ngFileUpload', 'hc.marked', 'hljs', 'angular-markdown-editor', 'td.easySocialShare'
-    ])
+    'angular-jwt', 'ngFileUpload', 'hc.marked', 'hljs', 'angular-markdown-editor', 'td.easySocialShare'
+])
     .config(['$routeProvider', '$httpProvider', 'markedProvider', 'hljsServiceProvider',
-        function($routeProvider, $httpProvider, $window, markedProvider, hljsServiceProvider) {
+        function ($routeProvider, $httpProvider, $window, markedProvider, hljsServiceProvider) {
 
 
             $httpProvider.interceptors.push('AuthInterceptor');
@@ -79,6 +79,9 @@ var app = angular.module('mmapp', ['ui.calendar', 'ngRoute', 'ui.bootstrap', "ch
                         restricted: false
                     }
 
+                }).when('/managePrograms', {
+                    templateUrl: 'managePrograms.html',
+                    controller: 'MProgramController',
                 })
                 .when('/manageBrochure', {
                     templateUrl: 'manageBrochure.html',
@@ -302,7 +305,7 @@ var app = angular.module('mmapp', ['ui.calendar', 'ngRoute', 'ui.bootstrap', "ch
 
                 }).otherwise({
                     template: "<div></div>",
-                    controller: function($window, $location, $rootScope) {
+                    controller: function ($window, $location, $rootScope) {
                         $window.location.href = 'index.html#!home';
 
                     }
@@ -314,13 +317,13 @@ var app = angular.module('mmapp', ['ui.calendar', 'ngRoute', 'ui.bootstrap', "ch
 
             //        $locationProvider.html5Mode(true);
         }
-    ], function(markedProvider, hljsServiceProvider) {
+    ], function (markedProvider, hljsServiceProvider) {
         // marked config
         markedProvider.setOptions({
             gfm: true,
             tables: true,
             sanitize: true,
-            highlight: function(code, lang) {
+            highlight: function (code, lang) {
                 if (lang) {
                     return hljs.highlight(lang, code, true).value;
                 } else {
@@ -340,7 +343,7 @@ var app = angular.module('mmapp', ['ui.calendar', 'ngRoute', 'ui.bootstrap', "ch
 
 
 function run($rootScope, $location, $window, AuthFactory) {
-    $rootScope.$on('$routeChangeStart', function(event, nextRoute, currentRoute) {
+    $rootScope.$on('$routeChangeStart', function (event, nextRoute, currentRoute) {
         $window.scrollTo(0, 0);
         if (nextRoute.access !== undefined && nextRoute.access.restricted && !$window.sessionStorage.token && !AuthFactory.isLoggedIn) {
             event.preventDefault();
