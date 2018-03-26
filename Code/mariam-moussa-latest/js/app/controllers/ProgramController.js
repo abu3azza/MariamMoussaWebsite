@@ -1,8 +1,8 @@
 app.controller('ProgramController', function($window, $http, $rootScope, $scope, $routeParams, $sce) {
 
-    alert("hi program controller");
+    console.log("hi program controller");
     $scope.id = $routeParams.id;
-    alert(JSON.stringify($scope.id));
+    console.log(JSON.stringify($scope.id));
     $scope.program;
     $scope.trustedHTML;
     $scope.trustedVideo;
@@ -21,7 +21,7 @@ app.controller('ProgramController', function($window, $http, $rootScope, $scope,
             $scope.trustedVideo = $sce.trustAsResourceUrl($scope.program.videoLink);
 
         }, function errorCallback(response) {
-            alert("error" + response);
+            console.log("error" + response);
 
         });
 
