@@ -2,18 +2,19 @@ var mongoose = require('mongoose');
 var config = require('../data/config.js');
 var schema = mongoose.schema;
 var auth = mongoose.auth;
+
 // var dburl = 'mongodb://admin:password@localhost:27019/mariammousa2';
-var dburl = 'mongodb://@mariam-moussa.com:27019/mariammousa2?authSource=admin';
+var dburl = 'mongodb://@127.0.0.1:27019/mariammousa2?authSource=admin';
 var retry = null;
 const options = {
-    auth:{user:'mmoussa', password:'mmoussa@12123'},
-    user:'mmoussa',
-    pass:'mmoussa@12123',
+    auth: { user: config.DB_USERNAME, password: config.DB_PASSWORD },
+    user: config.DB_USERNAME,
+    pass: config.DB_PASSWORD,
     useMongoClient: true,
     poolSize: 3, // Maintain up to 10 socket connections
     loggerLevel: 'info'
-  };
-mongoose.connect(dburl,options);
+};
+mongoose.connect(dburl, options);
 
 // CONNECTION EVENTS
 mongoose.connection.on('connected', function() {
